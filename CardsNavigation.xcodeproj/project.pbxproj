@@ -1,0 +1,461 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FA0D98842122341000602071 /* UIImage+Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D98832122341000602071 /* UIImage+Decoder.swift */; };
+		FA0D9886212375E100602071 /* CardsAnimationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D9885212375E100602071 /* CardsAnimationTransition.swift */; };
+		FA1E8161212D3383001DA432 /* LiquidTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E8160212D3383001DA432 /* LiquidTransition.swift */; };
+		FA1E8163212D44E3001DA432 /* TransitionPercentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */; };
+		FA2B5D8D2128B43C00B38B1C /* CardCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D8C2128B43C00B38B1C /* CardCells.swift */; };
+		FA2B5D922128BAAB00B38B1C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D912128BAAB00B38B1C /* Extensions.swift */; };
+		FA2B5D942128BAED00B38B1C /* RestoreTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D932128BAED00B38B1C /* RestoreTransition.swift */; };
+		FA2B5D962128BBCD00B38B1C /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D952128BBCD00B38B1C /* GlobalFunctions.swift */; };
+		FA4A2EA2212B2060003E414C /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */; };
+		FA4A2EA4212B2594003E414C /* DisplayLinkAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */; };
+		FA94878B2135F23400DAE280 /* LiCardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878A2135F23400DAE280 /* LiCardTransition.swift */; };
+		FA94878D2135F5ED00DAE280 /* LiquidRuntimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878C2135F5ED00DAE280 /* LiquidRuntimeHelper.swift */; };
+		FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C5211A1A430047CECD /* AppDelegate.swift */; };
+		FAAE26C8211A1A430047CECD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C7211A1A430047CECD /* ViewController.swift */; };
+		FAAE26CB211A1A430047CECD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAE26C9211A1A430047CECD /* Main.storyboard */; };
+		FAAE26CD211A1A450047CECD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAAE26CC211A1A450047CECD /* Assets.xcassets */; };
+		FAAE26D0211A1A450047CECD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAE26CE211A1A450047CECD /* LaunchScreen.storyboard */; };
+		FAAE26DA211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26D9211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift */; };
+		FAAE26DC211A1D430047CECD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26DB211A1D430047CECD /* WebViewController.swift */; };
+		FAAE26DE211A1E000047CECD /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAAE26DD211A1E000047CECD /* WebViewController.xib */; };
+		FAAE26E0211A1E9B0047CECD /* CardsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26DF211A1E9B0047CECD /* CardsNavigationController.swift */; };
+		FAAE26E2211A46E60047CECD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26E1211A46E60047CECD /* GradientView.swift */; };
+		FAAE26E5211A48540047CECD /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAAE26E4211A48540047CECD /* WebKit.framework */; };
+		FAAE26E7211B6EC80047CECD /* UIView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26E6211B6EC80047CECD /* UIView+Ex.swift */; };
+		FAAE26E9211B79A30047CECD /* CardControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26E8211B79A30047CECD /* CardControllerProtocol.swift */; };
+		FAAE26EB211B7AF70047CECD /* CardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26EA211B7AF70047CECD /* CardInfo.swift */; };
+		FAAE26EE211B84CF0047CECD /* UIImageRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26ED211B84CE0047CECD /* UIImageRetriever.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FA0D98832122341000602071 /* UIImage+Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Decoder.swift"; sourceTree = "<group>"; };
+		FA0D9885212375E100602071 /* CardsAnimationTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAnimationTransition.swift; sourceTree = "<group>"; };
+		FA1E8160212D3383001DA432 /* LiquidTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidTransition.swift; sourceTree = "<group>"; };
+		FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionPercentAnimator.swift; sourceTree = "<group>"; };
+		FA2B5D8C2128B43C00B38B1C /* CardCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCells.swift; sourceTree = "<group>"; };
+		FA2B5D912128BAAB00B38B1C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		FA2B5D932128BAED00B38B1C /* RestoreTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoreTransition.swift; sourceTree = "<group>"; };
+		FA2B5D952128BBCD00B38B1C /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimator.swift; sourceTree = "<group>"; };
+		FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLinkAnimator.swift; sourceTree = "<group>"; };
+		FA94878A2135F23400DAE280 /* LiCardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiCardTransition.swift; sourceTree = "<group>"; };
+		FA94878C2135F5ED00DAE280 /* LiquidRuntimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidRuntimeHelper.swift; sourceTree = "<group>"; };
+		FAAE26C2211A1A430047CECD /* CardsNavigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardsNavigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAAE26C5211A1A430047CECD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FAAE26C7211A1A430047CECD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FAAE26CA211A1A430047CECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		FAAE26CC211A1A450047CECD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FAAE26CF211A1A450047CECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FAAE26D1211A1A450047CECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAAE26D9211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
+		FAAE26DB211A1D430047CECD /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		FAAE26DD211A1E000047CECD /* WebViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
+		FAAE26DF211A1E9B0047CECD /* CardsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsNavigationController.swift; sourceTree = "<group>"; };
+		FAAE26E1211A46E60047CECD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		FAAE26E4211A48540047CECD /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		FAAE26E6211B6EC80047CECD /* UIView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ex.swift"; sourceTree = "<group>"; };
+		FAAE26E8211B79A30047CECD /* CardControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardControllerProtocol.swift; sourceTree = "<group>"; };
+		FAAE26EA211B7AF70047CECD /* CardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfo.swift; sourceTree = "<group>"; };
+		FAAE26ED211B84CE0047CECD /* UIImageRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageRetriever.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FAAE26BF211A1A430047CECD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAAE26E5211A48540047CECD /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FA1E816A212FD93D001DA432 /* LiTransitions */ = {
+			isa = PBXGroup;
+			children = (
+				FA2B5D932128BAED00B38B1C /* RestoreTransition.swift */,
+				FA1E8160212D3383001DA432 /* LiquidTransition.swift */,
+				FA94878C2135F5ED00DAE280 /* LiquidRuntimeHelper.swift */,
+				FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */,
+				FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */,
+				FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */,
+			);
+			path = LiTransitions;
+			sourceTree = "<group>";
+		};
+		FA9487892135F17500DAE280 /* Transitions */ = {
+			isa = PBXGroup;
+			children = (
+				FA94878A2135F23400DAE280 /* LiCardTransition.swift */,
+			);
+			path = Transitions;
+			sourceTree = "<group>";
+		};
+		FAAE26B9211A1A430047CECD = {
+			isa = PBXGroup;
+			children = (
+				FAAE26C4211A1A430047CECD /* CardsNavigation */,
+				FAAE26C3211A1A430047CECD /* Products */,
+				FAAE26E3211A48540047CECD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		FAAE26C3211A1A430047CECD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FAAE26C2211A1A430047CECD /* CardsNavigation.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAAE26C4211A1A430047CECD /* CardsNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				FAAE26C5211A1A430047CECD /* AppDelegate.swift */,
+				FAAE26C7211A1A430047CECD /* ViewController.swift */,
+				FA2B5D952128BBCD00B38B1C /* GlobalFunctions.swift */,
+				FA2B5D912128BAAB00B38B1C /* Extensions.swift */,
+				FAAE26DB211A1D430047CECD /* WebViewController.swift */,
+				FA9487892135F17500DAE280 /* Transitions */,
+				FA1E816A212FD93D001DA432 /* LiTransitions */,
+				FAAE26EC211B7AFC0047CECD /* Cards */,
+				FAAE26E6211B6EC80047CECD /* UIView+Ex.swift */,
+				FAAE26E1211A46E60047CECD /* GradientView.swift */,
+				FAAE26DD211A1E000047CECD /* WebViewController.xib */,
+				FAAE26D9211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift */,
+				FAAE26C9211A1A430047CECD /* Main.storyboard */,
+				FAAE26CC211A1A450047CECD /* Assets.xcassets */,
+				FAAE26CE211A1A450047CECD /* LaunchScreen.storyboard */,
+				FAAE26D1211A1A450047CECD /* Info.plist */,
+			);
+			path = CardsNavigation;
+			sourceTree = "<group>";
+		};
+		FAAE26E3211A48540047CECD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FAAE26E4211A48540047CECD /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FAAE26EC211B7AFC0047CECD /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				FAAE26DF211A1E9B0047CECD /* CardsNavigationController.swift */,
+				FA2B5D8C2128B43C00B38B1C /* CardCells.swift */,
+				FA0D9885212375E100602071 /* CardsAnimationTransition.swift */,
+				FAAE26EA211B7AF70047CECD /* CardInfo.swift */,
+				FAAE26E8211B79A30047CECD /* CardControllerProtocol.swift */,
+				FAAE26ED211B84CE0047CECD /* UIImageRetriever.swift */,
+				FA0D98832122341000602071 /* UIImage+Decoder.swift */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FAAE26C1211A1A430047CECD /* CardsNavigation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAAE26D4211A1A450047CECD /* Build configuration list for PBXNativeTarget "CardsNavigation" */;
+			buildPhases = (
+				FAAE26BE211A1A430047CECD /* Sources */,
+				FAAE26BF211A1A430047CECD /* Frameworks */,
+				FAAE26C0211A1A430047CECD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CardsNavigation;
+			productName = CardsNavigation;
+			productReference = FAAE26C2211A1A430047CECD /* CardsNavigation.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FAAE26BA211A1A430047CECD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Alex Development";
+				TargetAttributes = {
+					FAAE26C1211A1A430047CECD = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = FAAE26BD211A1A430047CECD /* Build configuration list for PBXProject "CardsNavigation" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAAE26B9211A1A430047CECD;
+			productRefGroup = FAAE26C3211A1A430047CECD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FAAE26C1211A1A430047CECD /* CardsNavigation */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FAAE26C0211A1A430047CECD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAAE26D0211A1A450047CECD /* LaunchScreen.storyboard in Resources */,
+				FAAE26CD211A1A450047CECD /* Assets.xcassets in Resources */,
+				FAAE26CB211A1A430047CECD /* Main.storyboard in Resources */,
+				FAAE26DE211A1E000047CECD /* WebViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FAAE26BE211A1A430047CECD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA94878B2135F23400DAE280 /* LiCardTransition.swift in Sources */,
+				FA0D98842122341000602071 /* UIImage+Decoder.swift in Sources */,
+				FAAE26E0211A1E9B0047CECD /* CardsNavigationController.swift in Sources */,
+				FAAE26EB211B7AF70047CECD /* CardInfo.swift in Sources */,
+				FAAE26C8211A1A430047CECD /* ViewController.swift in Sources */,
+				FAAE26E2211A46E60047CECD /* GradientView.swift in Sources */,
+				FA0D9886212375E100602071 /* CardsAnimationTransition.swift in Sources */,
+				FA4A2EA2212B2060003E414C /* TransitionAnimator.swift in Sources */,
+				FAAE26DA211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift in Sources */,
+				FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */,
+				FA1E8163212D44E3001DA432 /* TransitionPercentAnimator.swift in Sources */,
+				FAAE26DC211A1D430047CECD /* WebViewController.swift in Sources */,
+				FAAE26E7211B6EC80047CECD /* UIView+Ex.swift in Sources */,
+				FA2B5D962128BBCD00B38B1C /* GlobalFunctions.swift in Sources */,
+				FA94878D2135F5ED00DAE280 /* LiquidRuntimeHelper.swift in Sources */,
+				FA1E8161212D3383001DA432 /* LiquidTransition.swift in Sources */,
+				FA2B5D942128BAED00B38B1C /* RestoreTransition.swift in Sources */,
+				FAAE26EE211B84CF0047CECD /* UIImageRetriever.swift in Sources */,
+				FA2B5D8D2128B43C00B38B1C /* CardCells.swift in Sources */,
+				FA4A2EA4212B2594003E414C /* DisplayLinkAnimator.swift in Sources */,
+				FAAE26E9211B79A30047CECD /* CardControllerProtocol.swift in Sources */,
+				FA2B5D922128BAAB00B38B1C /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FAAE26C9211A1A430047CECD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAAE26CA211A1A430047CECD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		FAAE26CE211A1A450047CECD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAAE26CF211A1A450047CECD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FAAE26D2211A1A450047CECD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		FAAE26D3211A1A450047CECD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FAAE26D5211A1A450047CECD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RE82W8HD52;
+				INFOPLIST_FILE = CardsNavigation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = alex.CardsNavigation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FAAE26D6211A1A450047CECD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RE82W8HD52;
+				INFOPLIST_FILE = CardsNavigation/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = alex.CardsNavigation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FAAE26BD211A1A430047CECD /* Build configuration list for PBXProject "CardsNavigation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAAE26D2211A1A450047CECD /* Debug */,
+				FAAE26D3211A1A450047CECD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAAE26D4211A1A450047CECD /* Build configuration list for PBXNativeTarget "CardsNavigation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAAE26D5211A1A450047CECD /* Debug */,
+				FAAE26D6211A1A450047CECD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FAAE26BA211A1A430047CECD /* Project object */;
+}
