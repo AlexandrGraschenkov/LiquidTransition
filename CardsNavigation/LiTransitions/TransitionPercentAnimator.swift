@@ -35,7 +35,7 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
     fileprivate(set) var lastUpdateTime: TimeInterval = 0
     weak var context: UIViewControllerContextTransitioning?
     var totalDuration: Double = 0
-    var timing: LiTiming = LiTiming.easeOutBounce
+    lazy var timing: LiTiming = LiTiming.easeOutBounce
     var isCanceled: Bool = false
     
     weak var delegate: TransitionPercentAnimatorDelegate?
@@ -57,27 +57,18 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
             percentMaped = (toPercent - fromPercent) * percentMaped + fromPercent
             super.update(percentMaped)
             self.delegate?.transitionPercentChanged(percentMaped)
-//            print(percent, " == ", toPercent)
+            
             if (percent == 1) {
                 print((finish ? "finished" : "canceled"))
                 if finish {
-                    self.isCanceled = false
                     self.finish()
                 } else {
-                    self.isCanceled = true
                     self.cancel()
-//                    self.context?.containerView.layer.removeAllAnimations()
                 }
                 
-//                self.context?.completeTransition(true)
                 self.context?.completeTransition(finish)
             }
         })
-    }
-    
-    override func finish() {
-        super.finish()
-        print("call finish")
     }
     
     func pauseAnimation() {

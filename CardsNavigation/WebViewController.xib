@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WebViewController" customModule="CardsNavigation" customModuleProvider="target">
             <connections>
-                <outlet property="testLabel" destination="OeJ-hF-2gi" id="cAS-Gj-DGY"/>
                 <outlet property="toolbar" destination="wtY-pB-FfA" id="FLf-0S-IRO"/>
                 <outlet property="view" destination="iN0-l3-epB" id="5jU-jW-anH"/>
             </connections>
@@ -77,14 +76,6 @@
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" red="0.87971583549222798" green="0.87971583549222798" blue="0.87971583549222798" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OeJ-hF-2gi">
-                    <rect key="frame" x="16" y="548" width="80" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="1" green="0.66121689337610023" blue="0.62951223333827921" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <point key="canvasLocation" x="33.5" y="53.5"/>

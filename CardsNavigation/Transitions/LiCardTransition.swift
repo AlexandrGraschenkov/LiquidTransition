@@ -38,7 +38,6 @@ class LiCardTransition: TransitionAnimator<CardsNavigationController, WebViewCon
         clipContainer.center = CGPoint(x: content.bounds.midX, y: content.bounds.midY)
         clipContainer.clipsToBounds = true
         clipContainer.backgroundColor = UIColor.white
-//        clipContainer.layer.cornerRadius = 20
         content.mask = clipContainer
         
         if let toolbar = webVC.getToolbarView() {
@@ -47,24 +46,18 @@ class LiCardTransition: TransitionAnimator<CardsNavigationController, WebViewCon
             toolbar.frame = frame
             toolbar.layer.transform = AnimationHelper.xRotation(-.pi / 2.0)
         }
-        webVC.testLabel.center = CGPoint(x: 100, y: 100)
         
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
             content.transform = .identity
-//            self.clipContainer.layer.cornerRadius = 0
             self.clipContainer.frame = content.bounds
             content.frame = startContentFrame
             webVC.getToolbarView()?.layer.transform = CATransform3DIdentity
-            webVC.testLabel.center = CGPoint(x: 200, y: 200)
         }) { (finished) in
             print("Anim " + (finished ? "finished" : "canceled"))
-            UIView.performWithoutAnimation {
-                content.mask = nil
-                content.transform = .identity
-                webVC.getToolbarView()?.layer.transform = CATransform3DIdentity
-                webVC.testLabel.center = CGPoint(x: 200, y: 200)
-                self.clipContainer = nil
-            }
+            content.mask = nil
+            content.transform = .identity
+            webVC.getToolbarView()?.layer.transform = CATransform3DIdentity
+            self.clipContainer = nil
         }
     }
     

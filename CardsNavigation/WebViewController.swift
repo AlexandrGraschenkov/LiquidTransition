@@ -13,7 +13,6 @@ class WebViewController: UIViewController {
     
     var web: WKWebView!
     @IBOutlet weak var toolbar: UIView!
-    @IBOutlet weak var testLabel: UILabel!
     
     
     
@@ -29,7 +28,6 @@ class WebViewController: UIViewController {
         if let url = urlToLoad {
             web.load(URLRequest(url: url))
         }
-        view.bringSubview(toFront: testLabel)
         
         let pan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(onEdgePan(pan:)))
         pan.edges = .left
@@ -73,7 +71,6 @@ class WebViewController: UIViewController {
             let progress = max(0, min(1, translation.x / 150.0))
             print(progress)
             let pos = pan.location(in: v)
-            testLabel.center = pos
             LiquidTransition.shared.update(progress: progress)
         case .ended:
             LiquidTransition.shared.finish()
