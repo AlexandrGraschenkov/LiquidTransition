@@ -19,6 +19,7 @@
 		FA4A2EA4212B2594003E414C /* DisplayLinkAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */; };
 		FA94878B2135F23400DAE280 /* LiCardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878A2135F23400DAE280 /* LiCardTransition.swift */; };
 		FA94878D2135F5ED00DAE280 /* LiquidRuntimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878C2135F5ED00DAE280 /* LiquidRuntimeHelper.swift */; };
+		FAAB21DC214630C500AAFF48 /* LiTiming.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB21DB214630C500AAFF48 /* LiTiming.swift */; };
 		FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C5211A1A430047CECD /* AppDelegate.swift */; };
 		FAAE26C8211A1A430047CECD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C7211A1A430047CECD /* ViewController.swift */; };
 		FAAE26CB211A1A430047CECD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAE26C9211A1A430047CECD /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 		FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLinkAnimator.swift; sourceTree = "<group>"; };
 		FA94878A2135F23400DAE280 /* LiCardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiCardTransition.swift; sourceTree = "<group>"; };
 		FA94878C2135F5ED00DAE280 /* LiquidRuntimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidRuntimeHelper.swift; sourceTree = "<group>"; };
+		FAAB21DB214630C500AAFF48 /* LiTiming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiTiming.swift; sourceTree = "<group>"; };
 		FAAE26C2211A1A430047CECD /* CardsNavigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardsNavigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAE26C5211A1A430047CECD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAAE26C7211A1A430047CECD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */,
 				FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */,
 				FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */,
+				FAAB21DB214630C500AAFF48 /* LiTiming.swift */,
 			);
 			path = LiTransitions;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				FA2B5D942128BAED00B38B1C /* RestoreTransition.swift in Sources */,
 				FAAE26EE211B84CF0047CECD /* UIImageRetriever.swift in Sources */,
 				FA2B5D8D2128B43C00B38B1C /* CardCells.swift in Sources */,
+				FAAB21DC214630C500AAFF48 /* LiTiming.swift in Sources */,
 				FA4A2EA4212B2594003E414C /* DisplayLinkAnimator.swift in Sources */,
 				FAAE26E9211B79A30047CECD /* CardControllerProtocol.swift in Sources */,
 				FA2B5D922128BAAB00B38B1C /* Extensions.swift in Sources */,

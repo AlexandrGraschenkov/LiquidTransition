@@ -20,6 +20,7 @@ class LiCardTransition: TransitionAnimator<CardsNavigationController, WebViewCon
         addCustomAnimation(closure: animateCornerRadius)
     }
     
+    
     func animation(cardsVC: CardsNavigationController, webVC: WebViewController, container: UIView, duration: Double) {
         let content = webVC.getContentView()
         let startContentFrame = content.frame
@@ -46,17 +47,24 @@ class LiCardTransition: TransitionAnimator<CardsNavigationController, WebViewCon
             toolbar.frame = frame
             toolbar.layer.transform = AnimationHelper.xRotation(-.pi / 2.0)
         }
+        webVC.testLabel.center = CGPoint(x: 100, y: 100)
         
-        UIView.animate(withDuration: duration, animations: {
+        UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
             content.transform = .identity
 //            self.clipContainer.layer.cornerRadius = 0
             self.clipContainer.frame = content.bounds
             content.frame = startContentFrame
             webVC.getToolbarView()?.layer.transform = CATransform3DIdentity
+            webVC.testLabel.center = CGPoint(x: 200, y: 200)
         }) { (finished) in
-            print(finished)
-            content.mask = nil
-            self.clipContainer = nil
+            print("Anim " + (finished ? "finished" : "canceled"))
+            UIView.performWithoutAnimation {
+                content.mask = nil
+                content.transform = .identity
+                webVC.getToolbarView()?.layer.transform = CATransform3DIdentity
+                webVC.testLabel.center = CGPoint(x: 200, y: 200)
+                self.clipContainer = nil
+            }
         }
     }
     
@@ -64,6 +72,5 @@ class LiCardTransition: TransitionAnimator<CardsNavigationController, WebViewCon
         if let clip = clipContainer {
             clip.layer.cornerRadius = 20 / scaleFactor * (1-percent)
         }
-//        print(clipContainer!.layer.cornerRadius)
     }
 }

@@ -31,10 +31,12 @@ class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
     }
     
     public var duration: CGFloat = 1.0
-    public let key: String
-    public let interactive = TransitionPercentAnimator()
     public let direction: Direction
+    public var timing: LiTiming = LiTiming.default
+    public let interactive = TransitionPercentAnimator()
     public internal(set) var isPresenting: Bool = true
+    
+    internal let key: String
     fileprivate var tempVal: Int = 0
     
     
@@ -56,10 +58,23 @@ class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return TimeInterval(duration)
     }
+    
+    open func prepareAnimation(vc1: VC1, vc2: VC2, isPresenting: Bool) {
+        
+    }
 
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         interactive.context = transitionContext
         interactive.totalDuration = transitionDuration(using: transitionContext)
+        if let vc1 = transitionContext.viewController(forKey: .to) as? VC1,
+            let vc2 = transitionContext.viewController(forKey: .from) as? VC2,
+            !isPresenting && direction == .both {
+            prepareAnimation(vc1: vc1, vc2: vc2, isPresenting: isPresenting)
+        } else if let vc1 = transitionContext.viewController(forKey: .from) as? VC1,
+                  let vc2 = transitionContext.viewController(forKey: .to) as? VC2 {
+            prepareAnimation(vc1: vc1, vc2: vc2, isPresenting: isPresenting)
+        }
+        
         if let toView = transitionContext.view(forKey: .to) {
             toView.transform = .identity
             toView.frame = transitionContext.containerView.bounds
@@ -74,8 +89,6 @@ class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
         UIView.animate(withDuration: interactive.totalDuration, animations: {
             transitionContext.containerView.backgroundColor = color
         }) { (_) in
-//            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-//            let isBackward = !self.isPresenting && self.direction == .both
             if transitionContext.transitionWasCancelled {
                 transitionContext.view(forKey: .to)?.removeFromSuperview()
             } else {

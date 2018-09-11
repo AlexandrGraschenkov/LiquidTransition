@@ -43,8 +43,11 @@ class LiquidTransition: NSObject {
         } else {
             let finish = complete ?? transition.interactive.needFinish()
             transition.progress = finish ? 1 : 0
-            transition.interactive.finish()
-            transition.interactive.cancel()
+            if finish {
+                transition.interactive.finish()
+            } else {
+                transition.interactive.cancel()
+            }
         }
     }
     

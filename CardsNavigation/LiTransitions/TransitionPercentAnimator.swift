@@ -21,8 +21,8 @@ class InvertableInteractiveTransition: UIPercentDrivenInteractiveTransition {
     }
     override func update(_ percentComplete: CGFloat) {
         percent = percentComplete
-        var val = backward ? 1.0-percentComplete : percentComplete
-        val = min(val, 0.999)
+        var val = backward ? 1.0-percent : percent
+        val = min(val, 1)
         super.update(val)
 //        print(val, super.percentComplete)
     }
@@ -35,6 +35,8 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
     fileprivate(set) var lastUpdateTime: TimeInterval = 0
     weak var context: UIViewControllerContextTransitioning?
     var totalDuration: Double = 0
+    var timing: LiTiming = LiTiming.easeOutBounce
+    var isCanceled: Bool = false
     
     weak var delegate: TransitionPercentAnimatorDelegate?
     
@@ -48,21 +50,34 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
             speedUp = speed
         }
         let animDuration = duration * abs(toPercent - fromPercent) / speedUp
+        print("Animate " + (finish ? "finish" : "cancel"))
         
         cancelAnimation = DisplayLinkAnimator.animate(duration: Double(animDuration), closure: { (percent) in
-            super.update(percent)
-            self.delegate?.transitionPercentChanged(percent)
-            if (percent == toPercent) {
+            var percentMaped = self.timing.getValue(x: percent)
+            percentMaped = (toPercent - fromPercent) * percentMaped + fromPercent
+            super.update(percentMaped)
+            self.delegate?.transitionPercentChanged(percentMaped)
+//            print(percent, " == ", toPercent)
+            if (percent == 1) {
+                print((finish ? "finished" : "canceled"))
                 if finish {
+                    self.isCanceled = false
                     self.finish()
                 } else {
+                    self.isCanceled = true
                     self.cancel()
+//                    self.context?.containerView.layer.removeAllAnimations()
                 }
                 
+//                self.context?.completeTransition(true)
                 self.context?.completeTransition(finish)
-//                self.context?.completeTransition(finish)
             }
         })
+    }
+    
+    override func finish() {
+        super.finish()
+        print("call finish")
     }
     
     func pauseAnimation() {
