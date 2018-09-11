@@ -24,7 +24,6 @@ class InvertableInteractiveTransition: UIPercentDrivenInteractiveTransition {
         var val = backward ? 1.0-percent : percent
         val = min(val, 1)
         super.update(val)
-//        print(val, super.percentComplete)
     }
 }
 
@@ -63,6 +62,8 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
                 if finish {
                     self.finish()
                 } else {
+                    self.backward = false
+                    super.update(0)
                     self.cancel()
                 }
                 

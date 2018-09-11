@@ -56,6 +56,7 @@ class LiCardTransition: TransitionAnimator<CardsNavigationController, WebViewCon
             print("Anim " + (finished ? "finished" : "canceled"))
             content.mask = nil
             content.transform = .identity
+            content.frame = startContentFrame
             webVC.getToolbarView()?.layer.transform = CATransform3DIdentity
             self.clipContainer = nil
         }
