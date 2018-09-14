@@ -39,9 +39,7 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
     
     weak var delegate: TransitionPercentAnimatorDelegate?
     
-    func animate(finish: Bool, speed: CGFloat = 0) {
-        cancelAnimation?()
-        
+    func getDurationToState(finish: Bool, speed: CGFloat = 0) -> CGFloat {
         let fromPercent = percent
         let toPercent: CGFloat = finish ? 1.0 : 0.0
         var speedUp: CGFloat = 1.0
@@ -49,6 +47,15 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
             speedUp = speed
         }
         let animDuration = duration * abs(toPercent - fromPercent) / speedUp
+        return animDuration
+    }
+    
+    func animate(finish: Bool, speed: CGFloat = 0) {
+        cancelAnimation?()
+        
+        let fromPercent = percent
+        let toPercent: CGFloat = finish ? 1.0 : 0.0
+        let animDuration = getDurationToState(finish: finish, speed:  speed)
         print("Animate " + (finish ? "finish" : "cancel"))
         
         cancelAnimation = DisplayLinkAnimator.animate(duration: Double(animDuration), closure: { (percent) in

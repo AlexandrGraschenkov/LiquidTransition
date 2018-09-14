@@ -16,15 +16,14 @@ class LiCardTransition: TransitionAnimator<CardsNavigationController, WebViewCon
         super.init(from: CardsNavigationController.self, to: WebViewController.self, direction: .both)
         
         duration = 0.7
-        setAnimation(closure: animation(cardsVC:webVC:container:duration:))
         addCustomAnimation(closure: animateCornerRadius)
     }
     
     
-    func animation(cardsVC: CardsNavigationController, webVC: WebViewController, container: UIView, duration: Double) {
-        let content = webVC.getContentView()
+    override func animation(vc1: CardsNavigationController, vc2: WebViewController, container: UIView, duration: Double) {
+        let content = vc2.getContentView()
         let startContentFrame = content.frame
-        let card = cardsVC.getTransitionCell()
+        let card = vc1.getTransitionCell()
         
         let cardFrame = card.convert(card.bounds, to: container)
         
@@ -40,7 +39,7 @@ class LiCardTransition: TransitionAnimator<CardsNavigationController, WebViewCon
         clipContainer.backgroundColor = UIColor.white
         content.mask = clipContainer
         
-        if let toolbar = webVC.getToolbarView() {
+        if let toolbar = vc2.getToolbarView() {
             let frame = toolbar.frame
             toolbar.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
             toolbar.frame = frame
@@ -51,13 +50,12 @@ class LiCardTransition: TransitionAnimator<CardsNavigationController, WebViewCon
             content.transform = .identity
             self.clipContainer.frame = content.bounds
             content.frame = startContentFrame
-            webVC.getToolbarView()?.layer.transform = CATransform3DIdentity
+            vc2.getToolbarView()?.layer.transform = CATransform3DIdentity
         }) { (finished) in
-            print("Anim " + (finished ? "finished" : "canceled"))
             content.mask = nil
             content.transform = .identity
             content.frame = startContentFrame
-            webVC.getToolbarView()?.layer.transform = CATransform3DIdentity
+            vc2.getToolbarView()?.layer.transform = CATransform3DIdentity
             self.clipContainer = nil
         }
     }

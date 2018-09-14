@@ -30,25 +30,7 @@ class LiquidTransition: NSObject {
     func finish(complete: Bool? = nil, animated: Bool = true) {
         guard let transition = currentTransition else { return }
         
-        if (animated) {
-            var finish = true
-            var speed: CGFloat = 0
-            if let complete = complete {
-                finish = complete
-            } else {
-                finish = transition.interactive.needFinish()
-                speed = abs(transition.interactive.lastSpeed)
-            }
-            transition.interactive.animate(finish: finish, speed: speed)
-        } else {
-            let finish = complete ?? transition.interactive.needFinish()
-            transition.progress = finish ? 1 : 0
-            if finish {
-                transition.interactive.finish()
-            } else {
-                transition.interactive.cancel()
-            }
-        }
+        transition.completeInteractive(complete: complete, animated: animated)
     }
     
     func addTransition(transition: LiquidTransitionProtocol) {
