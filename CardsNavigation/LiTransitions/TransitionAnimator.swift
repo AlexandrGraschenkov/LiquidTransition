@@ -13,16 +13,17 @@ protocol LiquidTransitionProtocol: UIViewControllerAnimatedTransitioning {
     var duration: CGFloat { get set }
     var interactive: TransitionPercentAnimator { get }
     var isPresenting: Bool { get set }
-    var key: String { get }
     
     func completeInteractive(complete: Bool?, animated: Bool)
+    func canAnimate(from: UIViewController, to: UIViewController, direction: LiquidTransition.Direction) -> Bool
 }
 
 fileprivate var _animators: [LiquidTransitionProtocol] = []
 
 class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
     
-    public typealias CustomAnim = (_ progress: CGFloat)->()
+    public typealias CustomAnimation = (_ progress: CGFloat)->()
+    public typealias ControllerCheckClosure = (_ vc1: UIViewController, _ vc2: UIViewController, _ dir: Direction) -> Bool
     typealias Direction = LiquidTransition.Direction
     
     
@@ -37,17 +38,33 @@ class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
     public let interactive = TransitionPercentAnimator()
     public internal(set) var isPresenting: Bool = true
     
-    internal let key: String
-    
     
     public init(from: VC1.Type, to: VC2.Type, direction: Direction) {
         self.direction = direction
-        key = LiquidTransition.generateKey(fromVC: from, toVC: to, direction: direction)
+        fromTypes = [from as! AnyClass]
+        toTypes = [to as! AnyClass]
         super.init()
         interactive.delegate = self
     }
     
-    public func addCustomAnimation(closure: @escaping CustomAnim) {
+    public init(from: [AnyClass], to: [AnyClass], direction: Direction) {
+        self.direction = direction
+        fromTypes = from
+        toTypes = to
+        super.init()
+        interactive.delegate = self
+    }
+    
+    public init(direction: Direction) {
+        self.direction = direction
+        fromTypes = []
+        toTypes = []
+        super.init()
+        controllerCheck = { (_, _, _) -> Bool in false }
+        interactive.delegate = self
+    }
+    
+    public func addCustomAnimation(_ closure: @escaping CustomAnimation) {
         customAnimations.append(closure)
     }
     
@@ -78,6 +95,29 @@ class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
         // override to animate interactive view to destanation location
     }
     
+    //// You can override to perform more complex logic
+    open func canAnimate(from: UIViewController, to: UIViewController, direction animDirection: Direction) -> Bool {
+        if !direction.contains(animDirection) { return false }
+        if fromTypes.count == 0 || toTypes.count == 0 {
+            let className = String(describing: self)
+            print("LiquidTransition warning: override \(className).canAnimate(from: UIViewController, to: UIViewController, direction: Direction) -> Bool method")
+            return false
+        }
+        
+        var fromType = type(of: from)
+        var toType = type(of: to)
+        
+        // check is backward
+        if direction.contains(.both) && animDirection.contains(.dismiss) {
+            swap(&fromType, &toType)
+        }
+        
+        if fromTypes.contains(where: {fromType === $0}) &&
+            toTypes.contains(where: {toType === $0}) {
+            return true
+        }
+        return false
+    }
     
     
     // -------------------------------
@@ -180,7 +220,10 @@ class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
     
     // MARK: - Fileprivate
     
-    fileprivate var customAnimations: [CustomAnim] = []
+    fileprivate var customAnimations: [CustomAnimation] = []
+    fileprivate var controllerCheck: ControllerCheckClosure!
+    fileprivate let fromTypes: [AnyClass]
+    fileprivate let toTypes: [AnyClass]
     
     fileprivate func runDefaultAnimation(context: UIViewControllerContextTransitioning) {
         guard let toView = context.view(forKey: .to),
@@ -237,6 +280,7 @@ class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
         view.backgroundColor = UIColor.init(white: white, alpha: alpha)
     }
 }
+
 
 extension TransitionAnimator: TransitionPercentAnimatorDelegate {
     internal func transitionPercentChanged(_ percent: CGFloat) {

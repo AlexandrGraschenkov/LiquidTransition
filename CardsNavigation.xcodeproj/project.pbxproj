@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA0B4F63215F520D00C18F26 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B4F62215F520D00C18F26 /* Polygon.swift */; };
 		FA0D98842122341000602071 /* UIImage+Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D98832122341000602071 /* UIImage+Decoder.swift */; };
 		FA0D9886212375E100602071 /* CardsAnimationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D9885212375E100602071 /* CardsAnimationTransition.swift */; };
 		FA1E8161212D3383001DA432 /* LiquidTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E8160212D3383001DA432 /* LiquidTransition.swift */; };
@@ -15,6 +16,7 @@
 		FA2B5D922128BAAB00B38B1C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D912128BAAB00B38B1C /* Extensions.swift */; };
 		FA2B5D942128BAED00B38B1C /* RestoreTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D932128BAED00B38B1C /* RestoreTransition.swift */; };
 		FA2B5D962128BBCD00B38B1C /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D952128BBCD00B38B1C /* GlobalFunctions.swift */; };
+		FA31F79F21559B6F008AAD1B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA31F79E21559B6F008AAD1B /* CustomView.swift */; };
 		FA4A2EA2212B2060003E414C /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */; };
 		FA4A2EA4212B2594003E414C /* DisplayLinkAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */; };
 		FA94878B2135F23400DAE280 /* LiCardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878A2135F23400DAE280 /* LiCardTransition.swift */; };
@@ -35,9 +37,45 @@
 		FAAE26E9211B79A30047CECD /* CardControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26E8211B79A30047CECD /* CardControllerProtocol.swift */; };
 		FAAE26EB211B7AF70047CECD /* CardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26EA211B7AF70047CECD /* CardInfo.swift */; };
 		FAAE26EE211B84CF0047CECD /* UIImageRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26ED211B84CE0047CECD /* UIImageRetriever.swift */; };
+		FAC2F6F121558F47003B3E0A /* Voronoi.h in Headers */ = {isa = PBXBuildFile; fileRef = FAC2F6EF21558F47003B3E0A /* Voronoi.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FAC2F6F421558F47003B3E0A /* Voronoi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC2F6ED21558F47003B3E0A /* Voronoi.framework */; };
+		FAC2F6F521558F47003B3E0A /* Voronoi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FAC2F6ED21558F47003B3E0A /* Voronoi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FAC2F70021558F60003B3E0A /* Parabola.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FA21558F60003B3E0A /* Parabola.swift */; };
+		FAC2F70121558F60003B3E0A /* Edge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FB21558F60003B3E0A /* Edge.swift */; };
+		FAC2F70221558F60003B3E0A /* PriorityQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FC21558F60003B3E0A /* PriorityQueue.swift */; };
+		FAC2F70321558F60003B3E0A /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FD21558F60003B3E0A /* Point.swift */; };
+		FAC2F70421558F60003B3E0A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FE21558F60003B3E0A /* Event.swift */; };
+		FAC2F70521558F60003B3E0A /* Voronoi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FF21558F60003B3E0A /* Voronoi.swift */; };
+		FAC2F70A215599E9003B3E0A /* TestBrokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F708215599E9003B3E0A /* TestBrokenViewController.swift */; };
+		FAC2F70B215599E9003B3E0A /* TestBrokenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC2F709215599E9003B3E0A /* TestBrokenViewController.xib */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		FAC2F6F221558F47003B3E0A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAAE26BA211A1A430047CECD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FAC2F6EC21558F47003B3E0A;
+			remoteInfo = Voronoi;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FAC2F6F921558F47003B3E0A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FAC2F6F521558F47003B3E0A /* Voronoi.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		FA0B4F62215F520D00C18F26 /* Polygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
 		FA0D98832122341000602071 /* UIImage+Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Decoder.swift"; sourceTree = "<group>"; };
 		FA0D9885212375E100602071 /* CardsAnimationTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAnimationTransition.swift; sourceTree = "<group>"; };
 		FA1E8160212D3383001DA432 /* LiquidTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidTransition.swift; sourceTree = "<group>"; };
@@ -46,6 +84,7 @@
 		FA2B5D912128BAAB00B38B1C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FA2B5D932128BAED00B38B1C /* RestoreTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoreTransition.swift; sourceTree = "<group>"; };
 		FA2B5D952128BBCD00B38B1C /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		FA31F79E21559B6F008AAD1B /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimator.swift; sourceTree = "<group>"; };
 		FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLinkAnimator.swift; sourceTree = "<group>"; };
 		FA94878A2135F23400DAE280 /* LiCardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiCardTransition.swift; sourceTree = "<group>"; };
@@ -68,6 +107,17 @@
 		FAAE26E8211B79A30047CECD /* CardControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardControllerProtocol.swift; sourceTree = "<group>"; };
 		FAAE26EA211B7AF70047CECD /* CardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfo.swift; sourceTree = "<group>"; };
 		FAAE26ED211B84CE0047CECD /* UIImageRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageRetriever.swift; sourceTree = "<group>"; };
+		FAC2F6ED21558F47003B3E0A /* Voronoi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Voronoi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAC2F6EF21558F47003B3E0A /* Voronoi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Voronoi.h; sourceTree = "<group>"; };
+		FAC2F6F021558F47003B3E0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAC2F6FA21558F60003B3E0A /* Parabola.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parabola.swift; sourceTree = "<group>"; };
+		FAC2F6FB21558F60003B3E0A /* Edge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Edge.swift; sourceTree = "<group>"; };
+		FAC2F6FC21558F60003B3E0A /* PriorityQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PriorityQueue.swift; sourceTree = "<group>"; };
+		FAC2F6FD21558F60003B3E0A /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		FAC2F6FE21558F60003B3E0A /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		FAC2F6FF21558F60003B3E0A /* Voronoi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Voronoi.swift; sourceTree = "<group>"; };
+		FAC2F708215599E9003B3E0A /* TestBrokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBrokenViewController.swift; sourceTree = "<group>"; };
+		FAC2F709215599E9003B3E0A /* TestBrokenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestBrokenViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +126,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAAE26E5211A48540047CECD /* WebKit.framework in Frameworks */,
+				FAC2F6F421558F47003B3E0A /* Voronoi.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAC2F6E921558F47003B3E0A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				FAAE26C4211A1A430047CECD /* CardsNavigation */,
+				FAC2F6EE21558F47003B3E0A /* Voronoi */,
 				FAAE26C3211A1A430047CECD /* Products */,
 				FAAE26E3211A48540047CECD /* Frameworks */,
 			);
@@ -117,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				FAAE26C2211A1A430047CECD /* CardsNavigation.app */,
+				FAC2F6ED21558F47003B3E0A /* Voronoi.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,6 +189,9 @@
 				FA2B5D952128BBCD00B38B1C /* GlobalFunctions.swift */,
 				FA2B5D912128BAAB00B38B1C /* Extensions.swift */,
 				FAAE26DB211A1D430047CECD /* WebViewController.swift */,
+				FAC2F708215599E9003B3E0A /* TestBrokenViewController.swift */,
+				FA31F79E21559B6F008AAD1B /* CustomView.swift */,
+				FAC2F709215599E9003B3E0A /* TestBrokenViewController.xib */,
 				FA9487892135F17500DAE280 /* Transitions */,
 				FA1E816A212FD93D001DA432 /* LiTransitions */,
 				FAAE26EC211B7AFC0047CECD /* Cards */,
@@ -166,7 +229,34 @@
 			path = Cards;
 			sourceTree = "<group>";
 		};
+		FAC2F6EE21558F47003B3E0A /* Voronoi */ = {
+			isa = PBXGroup;
+			children = (
+				FAC2F6EF21558F47003B3E0A /* Voronoi.h */,
+				FAC2F6FB21558F60003B3E0A /* Edge.swift */,
+				FAC2F6FE21558F60003B3E0A /* Event.swift */,
+				FAC2F6FA21558F60003B3E0A /* Parabola.swift */,
+				FAC2F6FD21558F60003B3E0A /* Point.swift */,
+				FAC2F6FC21558F60003B3E0A /* PriorityQueue.swift */,
+				FAC2F6FF21558F60003B3E0A /* Voronoi.swift */,
+				FA0B4F62215F520D00C18F26 /* Polygon.swift */,
+				FAC2F6F021558F47003B3E0A /* Info.plist */,
+			);
+			path = Voronoi;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		FAC2F6EA21558F47003B3E0A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC2F6F121558F47003B3E0A /* Voronoi.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		FAAE26C1211A1A430047CECD /* CardsNavigation */ = {
@@ -176,15 +266,35 @@
 				FAAE26BE211A1A430047CECD /* Sources */,
 				FAAE26BF211A1A430047CECD /* Frameworks */,
 				FAAE26C0211A1A430047CECD /* Resources */,
+				FAC2F6F921558F47003B3E0A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FAC2F6F321558F47003B3E0A /* PBXTargetDependency */,
 			);
 			name = CardsNavigation;
 			productName = CardsNavigation;
 			productReference = FAAE26C2211A1A430047CECD /* CardsNavigation.app */;
 			productType = "com.apple.product-type.application";
+		};
+		FAC2F6EC21558F47003B3E0A /* Voronoi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAC2F6F821558F47003B3E0A /* Build configuration list for PBXNativeTarget "Voronoi" */;
+			buildPhases = (
+				FAC2F6E821558F47003B3E0A /* Sources */,
+				FAC2F6E921558F47003B3E0A /* Frameworks */,
+				FAC2F6EA21558F47003B3E0A /* Headers */,
+				FAC2F6EB21558F47003B3E0A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Voronoi;
+			productName = Voronoi;
+			productReference = FAC2F6ED21558F47003B3E0A /* Voronoi.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -198,6 +308,10 @@
 				TargetAttributes = {
 					FAAE26C1211A1A430047CECD = {
 						CreatedOnToolsVersion = 9.4.1;
+					};
+					FAC2F6EC21558F47003B3E0A = {
+						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 0940;
 					};
 				};
 			};
@@ -215,6 +329,7 @@
 			projectRoot = "";
 			targets = (
 				FAAE26C1211A1A430047CECD /* CardsNavigation */,
+				FAC2F6EC21558F47003B3E0A /* Voronoi */,
 			);
 		};
 /* End PBXProject section */
@@ -225,9 +340,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAAE26D0211A1A450047CECD /* LaunchScreen.storyboard in Resources */,
+				FAC2F70B215599E9003B3E0A /* TestBrokenViewController.xib in Resources */,
 				FAAE26CD211A1A450047CECD /* Assets.xcassets in Resources */,
 				FAAE26CB211A1A430047CECD /* Main.storyboard in Resources */,
 				FAAE26DE211A1E000047CECD /* WebViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAC2F6EB21558F47003B3E0A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,8 +378,10 @@
 				FA94878D2135F5ED00DAE280 /* LiquidRuntimeHelper.swift in Sources */,
 				FA1E8161212D3383001DA432 /* LiquidTransition.swift in Sources */,
 				FA2B5D942128BAED00B38B1C /* RestoreTransition.swift in Sources */,
+				FAC2F70A215599E9003B3E0A /* TestBrokenViewController.swift in Sources */,
 				FAAE26EE211B84CF0047CECD /* UIImageRetriever.swift in Sources */,
 				FA2B5D8D2128B43C00B38B1C /* CardCells.swift in Sources */,
+				FA31F79F21559B6F008AAD1B /* CustomView.swift in Sources */,
 				FAAB21DC214630C500AAFF48 /* LiTiming.swift in Sources */,
 				FA4A2EA4212B2594003E414C /* DisplayLinkAnimator.swift in Sources */,
 				FAAE26E9211B79A30047CECD /* CardControllerProtocol.swift in Sources */,
@@ -264,7 +389,29 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FAC2F6E821558F47003B3E0A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAC2F70321558F60003B3E0A /* Point.swift in Sources */,
+				FAC2F70121558F60003B3E0A /* Edge.swift in Sources */,
+				FAC2F70021558F60003B3E0A /* Parabola.swift in Sources */,
+				FAC2F70221558F60003B3E0A /* PriorityQueue.swift in Sources */,
+				FAC2F70521558F60003B3E0A /* Voronoi.swift in Sources */,
+				FAC2F70421558F60003B3E0A /* Event.swift in Sources */,
+				FA0B4F63215F520D00C18F26 /* Polygon.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FAC2F6F321558F47003B3E0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FAC2F6EC21558F47003B3E0A /* Voronoi */;
+			targetProxy = FAC2F6F221558F47003B3E0A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FAAE26C9211A1A430047CECD /* Main.storyboard */ = {
@@ -403,6 +550,7 @@
 		FAAE26D5211A1A450047CECD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RE82W8HD52;
@@ -422,6 +570,7 @@
 		FAAE26D6211A1A450047CECD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RE82W8HD52;
@@ -435,6 +584,67 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		FAC2F6F621558F47003B3E0A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = RE82W8HD52;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Voronoi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = alex.Voronoi;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FAC2F6F721558F47003B3E0A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = RE82W8HD52;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Voronoi/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = alex.Voronoi;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -455,6 +665,15 @@
 			buildConfigurations = (
 				FAAE26D5211A1A450047CECD /* Debug */,
 				FAAE26D6211A1A450047CECD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAC2F6F821558F47003B3E0A /* Build configuration list for PBXNativeTarget "Voronoi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAC2F6F621558F47003B3E0A /* Debug */,
+				FAC2F6F721558F47003B3E0A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

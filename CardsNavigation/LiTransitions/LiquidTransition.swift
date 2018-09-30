@@ -13,14 +13,12 @@ class LiquidTransition: NSObject {
 
     static var shared = LiquidTransition()
     
-    public enum Direction: String {
-        case present = ">"
-        case dismiss = "<"
-        case both = "◇"
-    }
-    
-    static func generateKey(fromVC: Any, toVC: Any, direction: Direction) -> String {
-        return String(describing: fromVC) + " -> " + String(describing: toVC) + " |" + direction.rawValue
+    public struct Direction: OptionSet {
+        let rawValue: UInt
+        
+        static let present = Direction(rawValue: 1 << 0)
+        static let dismiss = Direction(rawValue: 1 << 1)
+        static let both: Direction = [.present, .dismiss]
     }
     
     func update(progress: CGFloat) {
@@ -34,25 +32,17 @@ class LiquidTransition: NSObject {
     }
     
     func addTransition(transition: LiquidTransitionProtocol) {
-        transitions[transition.key] = transition
+        transitions.append(transition)
     }
     
     func transitionForPresent(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
-        let key = LiquidTransition.generateKey
-        let fromType = type(of: from)
-        let toType = type(of: to)
-        let transition = transitions[key(fromType, toType, .present)] ??
-                transitions[key(fromType, toType, .both)]
+        let transition = transitions.first(where: {$0.canAnimate(from: from, to: to, direction: .present)})
         transition?.isPresenting = true
         return transition
     }
     
     func transitionForDismiss(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
-        let key = LiquidTransition.generateKey
-        let fromType = type(of: from)
-        let toType = type(of: to)
-        let transition = transitions[key(fromType, toType, .dismiss)] ??
-                transitions[key(toType, fromType, .both)]
+        let transition = transitions.first(where: {$0.canAnimate(from: from, to: to, direction: .dismiss)})
         transition?.isPresenting = false
         return transition
     }
@@ -79,7 +69,7 @@ class LiquidTransition: NSObject {
     }
     
     internal var currentTransition: LiquidTransitionProtocol?
-    fileprivate var transitions: [String: LiquidTransitionProtocol] = [:]
+    fileprivate var transitions: [LiquidTransitionProtocol] = []
 }
 
 extension UIViewController {

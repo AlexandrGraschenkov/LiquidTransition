@@ -16,7 +16,7 @@ class LiCardTransition: TransitionAnimator<CardsNavigationController, WebViewCon
         super.init(from: CardsNavigationController.self, to: WebViewController.self, direction: .both)
         
         duration = 0.7
-        addCustomAnimation(closure: animateCornerRadius)
+        addCustomAnimation(animateCornerRadius)
     }
     
     
