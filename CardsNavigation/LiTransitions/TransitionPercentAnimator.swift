@@ -34,7 +34,7 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
     fileprivate(set) var lastUpdateTime: TimeInterval = 0
     weak var context: UIViewControllerContextTransitioning?
     var totalDuration: Double = 0
-    lazy var timing: LiTiming = LiTiming.easeOutBounce
+    lazy var timing: LiTiming = LiTiming.easeOutQuart
     var isCanceled: Bool = false
     
     weak var delegate: TransitionPercentAnimatorDelegate?

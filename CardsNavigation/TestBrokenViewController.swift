@@ -13,6 +13,8 @@ class TestBrokenViewController: UIViewController {
 
     let voronoi = Voronoi()
     
+    @IBOutlet var brokeSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,7 +35,10 @@ class TestBrokenViewController: UIViewController {
     @IBAction func onTap(tap: UITapGestureRecognizer) {
         let p = tap.location(in: self.view)
         let custView = self.view as! CustomView
-        if !custView.points.contains(p) {
+        
+        if brokeSwitch.isOn {
+            custView.geneareBorenWindow(fromPoint: p)
+        } else if !custView.points.contains(p) {
             custView.points.append(p)
         }
     }

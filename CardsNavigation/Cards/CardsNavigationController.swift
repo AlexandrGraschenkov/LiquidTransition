@@ -22,7 +22,7 @@ class CardsNavigationController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        transitioningDelegate = self
+//        transitioningDelegate = self
         layout = collection.collectionViewLayout as! CenteredCollectionViewFlowLayout
         layout.itemSize = CGSize(
             width: view.bounds.width * scaleDown,
@@ -40,9 +40,9 @@ class CardsNavigationController: UIViewController {
         
         if (lastOpenedCardIdx >= 0) {
             let idx = lastOpenedCardIdx
-            cards[idx].controller?.getContentView().snapshotImage(scale: scaleDown, completion: { (img) in
+            if let img = cards[idx].controller?.getContentView().snapshotImage(scale: scaleDown) {
                 self.updateSnapshot(idx: idx, img: img)
-            })
+            }
             
             lastOpenedCardIdx = -1
         }
@@ -55,7 +55,7 @@ class CardsNavigationController: UIViewController {
     
     func addNewPage() {
         let vc = WebViewController()
-        vc.transitioningDelegate = self
+//        vc.transitioningDelegate = self
         let url = URL(string: "https://ya.ru/")!
         vc.loadURL(url: url)
         present(vc, animated: true) {
@@ -70,7 +70,7 @@ class CardsNavigationController: UIViewController {
     func openPage() {
         lastOpenedCardIdx = selectedIndex.item
         if let vc = cards[lastOpenedCardIdx].vc {
-            vc.transitioningDelegate = self
+//            vc.transitioningDelegate = self
             present(vc, animated: true, completion: nil)
         }
     }
@@ -109,7 +109,7 @@ class CardsNavigationController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let dst = segue.destination as? WebViewController {
-            dst.transitioningDelegate = self
+//            dst.transitioningDelegate = self
         }
     }
 }
@@ -149,8 +149,8 @@ extension CardsNavigationController: UICollectionViewDelegateFlowLayout, UIColle
     }
 }
 
-extension CardsNavigationController: UIViewControllerTransitioningDelegate {
-    
+//extension CardsNavigationController: UIViewControllerTransitioningDelegate {
+
 //    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 //        return CardsAnimationTransition()
 //    }
@@ -165,4 +165,4 @@ extension CardsNavigationController: UIViewControllerTransitioningDelegate {
 //    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
 //        return nil
 //    }
-}
+//}

@@ -85,6 +85,14 @@
                                     <action selector="testController" destination="BYZ-38-t0r" eventType="touchUpInside" id="yyy-OA-lKz"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="VUf-i4-AXU">
+                                <rect key="frame" x="78" y="637" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="PCP-0C-zqA" kind="modal" id="FWr-NQ-NCa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
@@ -96,5 +104,40 @@
             </objects>
             <point key="canvasLocation" x="85.5" y="148.5"/>
         </scene>
+        <!--Test Broken Animation Controller-->
+        <scene sceneID="qjK-zG-xf5">
+            <objects>
+                <viewController id="PCP-0C-zqA" customClass="TestBrokenAnimationController" customModule="CardsNavigation" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UTn-fQ-Qra">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="kamila" id="PJo-4f-Xau">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="qjr-41-Ubm" appends="YES" id="ICP-LS-coT"/>
+                                </connections>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <connections>
+                        <outlet property="imgView" destination="PJo-4f-Xau" id="xB8-7I-EPY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VqG-ix-B5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="qjr-41-Ubm">
+                    <connections>
+                        <action selector="onPanWithPan:" destination="PCP-0C-zqA" id="xjI-ZW-0zh"/>
+                    </connections>
+                </panGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="543.5" y="148.5"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="kamila" width="960" height="1280"/>
+    </resources>
 </document>

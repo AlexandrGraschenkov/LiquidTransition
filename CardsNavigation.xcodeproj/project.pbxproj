@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		FA0B4F63215F520D00C18F26 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B4F62215F520D00C18F26 /* Polygon.swift */; };
+		FA0B4F652161FF8A00C18F26 /* BrokenViewTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B4F642161FF8A00C18F26 /* BrokenViewTransition.swift */; };
+		FA0B4F6A2162BA4700C18F26 /* TestBrokenAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B4F692162BA4700C18F26 /* TestBrokenAnimationController.swift */; };
 		FA0D98842122341000602071 /* UIImage+Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D98832122341000602071 /* UIImage+Decoder.swift */; };
 		FA0D9886212375E100602071 /* CardsAnimationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D9885212375E100602071 /* CardsAnimationTransition.swift */; };
 		FA1E8161212D3383001DA432 /* LiquidTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E8160212D3383001DA432 /* LiquidTransition.swift */; };
@@ -76,6 +78,8 @@
 
 /* Begin PBXFileReference section */
 		FA0B4F62215F520D00C18F26 /* Polygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
+		FA0B4F642161FF8A00C18F26 /* BrokenViewTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokenViewTransition.swift; sourceTree = "<group>"; };
+		FA0B4F692162BA4700C18F26 /* TestBrokenAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBrokenAnimationController.swift; sourceTree = "<group>"; };
 		FA0D98832122341000602071 /* UIImage+Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Decoder.swift"; sourceTree = "<group>"; };
 		FA0D9885212375E100602071 /* CardsAnimationTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAnimationTransition.swift; sourceTree = "<group>"; };
 		FA1E8160212D3383001DA432 /* LiquidTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidTransition.swift; sourceTree = "<group>"; };
@@ -158,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				FA94878A2135F23400DAE280 /* LiCardTransition.swift */,
+				FA0B4F642161FF8A00C18F26 /* BrokenViewTransition.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 				FA2B5D912128BAAB00B38B1C /* Extensions.swift */,
 				FAAE26DB211A1D430047CECD /* WebViewController.swift */,
 				FAC2F708215599E9003B3E0A /* TestBrokenViewController.swift */,
+				FA0B4F692162BA4700C18F26 /* TestBrokenAnimationController.swift */,
 				FA31F79E21559B6F008AAD1B /* CustomView.swift */,
 				FAC2F709215599E9003B3E0A /* TestBrokenViewController.xib */,
 				FA9487892135F17500DAE280 /* Transitions */,
@@ -366,7 +372,9 @@
 				FAAE26E0211A1E9B0047CECD /* CardsNavigationController.swift in Sources */,
 				FAAE26EB211B7AF70047CECD /* CardInfo.swift in Sources */,
 				FAAE26C8211A1A430047CECD /* ViewController.swift in Sources */,
+				FA0B4F6A2162BA4700C18F26 /* TestBrokenAnimationController.swift in Sources */,
 				FAAE26E2211A46E60047CECD /* GradientView.swift in Sources */,
+				FA0B4F652161FF8A00C18F26 /* BrokenViewTransition.swift in Sources */,
 				FA0D9886212375E100602071 /* CardsAnimationTransition.swift in Sources */,
 				FA4A2EA2212B2060003E414C /* TransitionAnimator.swift in Sources */,
 				FAAE26DA211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift in Sources */,

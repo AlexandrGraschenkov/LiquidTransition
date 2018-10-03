@@ -67,12 +67,41 @@ class CustomView: UIView {
         }
     }
     
+    func rand() -> CGFloat {
+        return CGFloat(arc4random() % 1000) / 1000.0
+    }
+    
+    func geneareBorenWindow(fromPoint point: CGPoint) {
+        var pointsToAdd: [CGPoint] = []
+        
+        let circleCount = 12
+        let minStep = 1.0 / CGFloat(circleCount)
+        let radius: CGFloat = 20
+        for i in [Int](0...circleCount) {
+            var angle = CGFloat(i) / CGFloat(circleCount)
+            angle += (rand() - 0.5) * 0.4 * minStep
+            angle = .pi * 2 * angle
+            let r: CGFloat = radius * ((rand() - 0.5) * 0.01 + 1)
+            let p = CGPoint(x: point.x + cos(angle) * r,
+                            y: point.y + sin(angle) * r)
+            pointsToAdd.append(p)
+        }
+        
+        while pointsToAdd.count < 50 {
+            let p = CGPoint(x: rand() * bounds.width, y: rand() * bounds.height)
+            let dist = sqrt(pow(point.x - p.x, 2) + pow(point.y - p.y, 2))
+            if dist < radius * 1.5 { continue }
+            pointsToAdd.append(p)
+        }
+        
+        points = pointsToAdd
+    }
+    
  
     fileprivate func generateColor(forPoint point: Point) -> UIColor {
-        let rand01: ()->(CGFloat) = { return CGFloat(arc4random() % 1000) / 1000.0 }
-        let hue : CGFloat = rand01()
-        let saturation : CGFloat = rand01() * 0.5 + 0.5 // from 0.5 to 1.0 to stay away from white
-        let brightness : CGFloat = rand01() * 0.5 + 0.5 // from 0.5 to 1.0 to stay away from black
+        let hue : CGFloat = rand()
+        let saturation : CGFloat = rand() * 0.5 + 0.5 // from 0.5 to 1.0 to stay away from white
+        let brightness : CGFloat = rand() * 0.5 + 0.5 // from 0.5 to 1.0 to stay away from black
         
         return UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: 1)
     }

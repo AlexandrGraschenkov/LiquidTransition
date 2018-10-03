@@ -104,16 +104,16 @@ class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
             return false
         }
         
-        var fromType = type(of: from)
-        var toType = type(of: to)
-        
+        var from = from
+        var to = to
         // check is backward
         if direction.contains(.both) && animDirection.contains(.dismiss) {
-            swap(&fromType, &toType)
+            swap(&from, &to)
         }
+//        напистать isKindOfClass
         
-        if fromTypes.contains(where: {fromType === $0}) &&
-            toTypes.contains(where: {toType === $0}) {
+        if fromTypes.contains(where: {from.isKind(of: $0)}) &&
+            toTypes.contains(where: {to.isKind(of: $0)}) {
             return true
         }
         return false
