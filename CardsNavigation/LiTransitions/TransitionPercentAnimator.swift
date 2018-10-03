@@ -34,8 +34,13 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
     fileprivate(set) var lastUpdateTime: TimeInterval = 0
     weak var context: UIViewControllerContextTransitioning?
     var totalDuration: Double = 0
-    lazy var timing: LiTiming = LiTiming.easeOutQuart
+    var maxDurationFactor: Double = 2.0
+    lazy var timing: LiTiming = LiTiming.default
     var isCanceled: Bool = false
+    
+    var enableSmothInteractive: Bool = false
+    var smothInteractiveDuration: TimeInterval = 0.2
+    fileprivate lazy var smothInteractive = SmothInteractive()
     
     weak var delegate: TransitionPercentAnimatorDelegate?
     
@@ -46,7 +51,9 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
         if speed > 0 {
             speedUp = speed
         }
-        let animDuration = duration * abs(toPercent - fromPercent) / speedUp
+        var animDuration = duration * abs(toPercent - fromPercent) / speedUp
+        // duration must be not too long
+        animDuration =  min(duration * CGFloat(maxDurationFactor), animDuration)
         return animDuration
     }
     
@@ -85,12 +92,16 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
     }
     
     override func update(_ percentComplete: CGFloat) {
+        let isAnimated = (cancelAnimation != nil)
         cancelAnimation?()
         cancelAnimation = nil
         
-        updateSpeedWith(percentComplete: percentComplete)
-        super.update(percentComplete)
-        delegate?.transitionPercentChanged(percent)
+        let isSmothInteractive = performSmothInteractive(percent: percentComplete, canInitalize: isAnimated)
+        if isSmothInteractive {
+            // animation control take SmothInteractive class
+        } else {
+            internalUpdate(percentComplete)
+        }
     }
     
     func needFinish() -> Bool {
@@ -99,6 +110,32 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
         } else {
             return lastSpeed > 0
         }
+    }
+    
+    
+    // MARK: - private
+    
+    fileprivate func internalUpdate(_ percentComplete: CGFloat) {
+        updateSpeedWith(percentComplete: percentComplete)
+        super.update(percentComplete)
+        delegate?.transitionPercentChanged(percent)
+    }
+    
+    fileprivate func performSmothInteractive(percent percentComplete: CGFloat, canInitalize: Bool) -> Bool {
+        if !enableSmothInteractive { return false }
+        
+        if canInitalize && percentComplete > 0.05 {
+            smothInteractive.run(duration: smothInteractiveDuration) {[weak self] (val) in
+                self?.internalUpdate(val)
+            }
+        }
+        
+        if smothInteractive.isRunning {
+            smothInteractive.update(val: percentComplete)
+            return true
+        }
+        
+        return false
     }
     
     fileprivate func updateSpeedWith(percentComplete: CGFloat) {

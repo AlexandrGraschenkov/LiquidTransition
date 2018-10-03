@@ -39,6 +39,7 @@
 		FAAE26E9211B79A30047CECD /* CardControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26E8211B79A30047CECD /* CardControllerProtocol.swift */; };
 		FAAE26EB211B7AF70047CECD /* CardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26EA211B7AF70047CECD /* CardInfo.swift */; };
 		FAAE26EE211B84CF0047CECD /* UIImageRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26ED211B84CE0047CECD /* UIImageRetriever.swift */; };
+		FAAF4557216567200032C2A9 /* SmothInteractive.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF4556216567200032C2A9 /* SmothInteractive.swift */; };
 		FAC2F6F121558F47003B3E0A /* Voronoi.h in Headers */ = {isa = PBXBuildFile; fileRef = FAC2F6EF21558F47003B3E0A /* Voronoi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FAC2F6F421558F47003B3E0A /* Voronoi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC2F6ED21558F47003B3E0A /* Voronoi.framework */; };
 		FAC2F6F521558F47003B3E0A /* Voronoi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FAC2F6ED21558F47003B3E0A /* Voronoi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -111,6 +112,7 @@
 		FAAE26E8211B79A30047CECD /* CardControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardControllerProtocol.swift; sourceTree = "<group>"; };
 		FAAE26EA211B7AF70047CECD /* CardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfo.swift; sourceTree = "<group>"; };
 		FAAE26ED211B84CE0047CECD /* UIImageRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageRetriever.swift; sourceTree = "<group>"; };
+		FAAF4556216567200032C2A9 /* SmothInteractive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmothInteractive.swift; sourceTree = "<group>"; };
 		FAC2F6ED21558F47003B3E0A /* Voronoi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Voronoi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC2F6EF21558F47003B3E0A /* Voronoi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Voronoi.h; sourceTree = "<group>"; };
 		FAC2F6F021558F47003B3E0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */,
 				FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */,
 				FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */,
+				FAAF4556216567200032C2A9 /* SmothInteractive.swift */,
 				FAAB21DB214630C500AAFF48 /* LiTiming.swift */,
 			);
 			path = LiTransitions;
@@ -389,6 +392,7 @@
 				FAC2F70A215599E9003B3E0A /* TestBrokenViewController.swift in Sources */,
 				FAAE26EE211B84CF0047CECD /* UIImageRetriever.swift in Sources */,
 				FA2B5D8D2128B43C00B38B1C /* CardCells.swift in Sources */,
+				FAAF4557216567200032C2A9 /* SmothInteractive.swift in Sources */,
 				FA31F79F21559B6F008AAD1B /* CustomView.swift in Sources */,
 				FAAB21DC214630C500AAFF48 /* LiTiming.swift in Sources */,
 				FA4A2EA4212B2594003E414C /* DisplayLinkAnimator.swift in Sources */,

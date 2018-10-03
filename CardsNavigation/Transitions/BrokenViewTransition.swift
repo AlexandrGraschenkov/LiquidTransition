@@ -15,6 +15,7 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
         super.init(from: TestBrokenAnimationController.self, to: UIViewController.self, direction: .dismiss)
         
         duration = 0.7
+        timing = .linear
     }
     
     
@@ -105,6 +106,10 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
         let brokenPieces = broke(view: vc1.view, fromPoint: point)
         for view in brokenPieces {
             container.addSubview(view)
+            var transform = CATransform3DIdentity
+            transform.m34 = 1/100000
+            transform = CATransform3DTranslate(transform, 0, 0, 100)
+            view.layer.transform = transform
         }
         
         vc1.view.isHidden = true
@@ -112,10 +117,21 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
             for view in brokenPieces {
                 let offset = (view.center - point).norm() * vc1.view.bounds.height
                 view.center = offset + view.center
-//                view.ka
+                
+                var transform = CATransform3DIdentity
+                transform.m34 = 1/100000
+                transform = CATransform3DTranslate(transform, 0, 0, 100)
+                transform = CATransform3DRotate(transform, self.rand(from: -.pi, to: .pi), 1, 0, 0)
+                transform = CATransform3DRotate(transform, self.rand(from: -.pi, to: .pi), 0, 1, 0)
+                transform = CATransform3DRotate(transform, self.rand(from: -.pi, to: .pi), 0, 0, 1)
+                
+                view.layer.transform = transform
             }
         }) { (_) in
             vc1.view.isHidden = false
+            for view in brokenPieces {
+                view.removeFromSuperview()
+            }
         }
     }
 }

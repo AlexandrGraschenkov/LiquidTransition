@@ -12,11 +12,14 @@ class TestBrokenAnimationController: UIViewController {
 
     @IBOutlet var imgView: UIImageView!
     var dismissFromPoint: CGPoint = CGPoint(x: 100, y: 100)
+    var animator = BrokenViewTransition()
+    @IBOutlet var smothInteractiveSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        transitioningDelegate = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +31,8 @@ class TestBrokenAnimationController: UIViewController {
     @IBAction func onPan(pan: UIPanGestureRecognizer) {
         if pan.state == .began {
             dismissFromPoint = pan.location(in: pan.view)
+            animator.interactive.enableSmothInteractive = smothInteractiveSwitch.isOn
+            
             dismiss(animated: true, completion: nil)
         } else if pan.state == .changed {
             let offset = pan.translation(in: pan.view)
@@ -39,3 +44,14 @@ class TestBrokenAnimationController: UIViewController {
     }
 
 }
+
+extension TestBrokenAnimationController: UIViewControllerTransitioningDelegate {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return animator
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return self.animator.interactive
+    }
+}
+

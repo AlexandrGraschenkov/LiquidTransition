@@ -34,7 +34,10 @@ class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
     
     public var duration: CGFloat = 1.0
     public let direction: Direction
-    public lazy var timing: LiTiming = LiTiming.default
+    public var timing: LiTiming {
+        get { return interactive.timing }
+        set { interactive.timing = newValue }
+    }
     public let interactive = TransitionPercentAnimator()
     public internal(set) var isPresenting: Bool = true
     
