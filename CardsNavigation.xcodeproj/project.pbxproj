@@ -18,16 +18,18 @@
 		FA2B5D922128BAAB00B38B1C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D912128BAAB00B38B1C /* Extensions.swift */; };
 		FA2B5D942128BAED00B38B1C /* RestoreTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D932128BAED00B38B1C /* RestoreTransition.swift */; };
 		FA2B5D962128BBCD00B38B1C /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D952128BBCD00B38B1C /* GlobalFunctions.swift */; };
-		FA31F79F21559B6F008AAD1B /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA31F79E21559B6F008AAD1B /* CustomView.swift */; };
 		FA4A2EA2212B2060003E414C /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */; };
 		FA4A2EA4212B2594003E414C /* DisplayLinkAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */; };
+		FA92B848216870750095C126 /* PhotosDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B847216870750095C126 /* PhotosDetailViewController.swift */; };
+		FA92B84A216870D10095C126 /* PhotoPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B849216870D10095C126 /* PhotoPreviewController.swift */; };
+		FA92B84E216878870095C126 /* UIImage+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B84D216878870095C126 /* UIImage+Ex.swift */; };
+		FA92B85121687E6C0095C126 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA92B85021687E6C0095C126 /* Assets.xcassets */; };
 		FA94878B2135F23400DAE280 /* LiCardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878A2135F23400DAE280 /* LiCardTransition.swift */; };
 		FA94878D2135F5ED00DAE280 /* LiquidRuntimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878C2135F5ED00DAE280 /* LiquidRuntimeHelper.swift */; };
 		FAAB21DC214630C500AAFF48 /* LiTiming.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB21DB214630C500AAFF48 /* LiTiming.swift */; };
 		FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C5211A1A430047CECD /* AppDelegate.swift */; };
 		FAAE26C8211A1A430047CECD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C7211A1A430047CECD /* ViewController.swift */; };
 		FAAE26CB211A1A430047CECD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAE26C9211A1A430047CECD /* Main.storyboard */; };
-		FAAE26CD211A1A450047CECD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FAAE26CC211A1A450047CECD /* Assets.xcassets */; };
 		FAAE26D0211A1A450047CECD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAE26CE211A1A450047CECD /* LaunchScreen.storyboard */; };
 		FAAE26DA211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26D9211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift */; };
 		FAAE26DC211A1D430047CECD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26DB211A1D430047CECD /* WebViewController.swift */; };
@@ -40,6 +42,10 @@
 		FAAE26EB211B7AF70047CECD /* CardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26EA211B7AF70047CECD /* CardInfo.swift */; };
 		FAAE26EE211B84CF0047CECD /* UIImageRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26ED211B84CE0047CECD /* UIImageRetriever.swift */; };
 		FAAF4557216567200032C2A9 /* SmothInteractive.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF4556216567200032C2A9 /* SmothInteractive.swift */; };
+		FAAF455B2165FA890032C2A9 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF455A2165FA890032C2A9 /* PhotosViewController.swift */; };
+		FAAF455D2165FAB50032C2A9 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF455C2165FAB50032C2A9 /* PhotoCell.swift */; };
+		FAAF45622166BE130032C2A9 /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF45612166BE130032C2A9 /* PhotoInfo.swift */; };
+		FAAF4569216740490032C2A9 /* ThumbCaches.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF4568216740490032C2A9 /* ThumbCaches.swift */; };
 		FAC2F6F121558F47003B3E0A /* Voronoi.h in Headers */ = {isa = PBXBuildFile; fileRef = FAC2F6EF21558F47003B3E0A /* Voronoi.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FAC2F6F421558F47003B3E0A /* Voronoi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAC2F6ED21558F47003B3E0A /* Voronoi.framework */; };
 		FAC2F6F521558F47003B3E0A /* Voronoi.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FAC2F6ED21558F47003B3E0A /* Voronoi.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -49,8 +55,6 @@
 		FAC2F70321558F60003B3E0A /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FD21558F60003B3E0A /* Point.swift */; };
 		FAC2F70421558F60003B3E0A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FE21558F60003B3E0A /* Event.swift */; };
 		FAC2F70521558F60003B3E0A /* Voronoi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FF21558F60003B3E0A /* Voronoi.swift */; };
-		FAC2F70A215599E9003B3E0A /* TestBrokenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F708215599E9003B3E0A /* TestBrokenViewController.swift */; };
-		FAC2F70B215599E9003B3E0A /* TestBrokenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAC2F709215599E9003B3E0A /* TestBrokenViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,9 +93,12 @@
 		FA2B5D912128BAAB00B38B1C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FA2B5D932128BAED00B38B1C /* RestoreTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestoreTransition.swift; sourceTree = "<group>"; };
 		FA2B5D952128BBCD00B38B1C /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
-		FA31F79E21559B6F008AAD1B /* CustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
 		FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimator.swift; sourceTree = "<group>"; };
 		FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLinkAnimator.swift; sourceTree = "<group>"; };
+		FA92B847216870750095C126 /* PhotosDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosDetailViewController.swift; sourceTree = "<group>"; };
+		FA92B849216870D10095C126 /* PhotoPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewController.swift; sourceTree = "<group>"; };
+		FA92B84D216878870095C126 /* UIImage+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ex.swift"; sourceTree = "<group>"; };
+		FA92B85021687E6C0095C126 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA94878A2135F23400DAE280 /* LiCardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiCardTransition.swift; sourceTree = "<group>"; };
 		FA94878C2135F5ED00DAE280 /* LiquidRuntimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidRuntimeHelper.swift; sourceTree = "<group>"; };
 		FAAB21DB214630C500AAFF48 /* LiTiming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiTiming.swift; sourceTree = "<group>"; };
@@ -99,7 +106,6 @@
 		FAAE26C5211A1A430047CECD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAAE26C7211A1A430047CECD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FAAE26CA211A1A430047CECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		FAAE26CC211A1A450047CECD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FAAE26CF211A1A450047CECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAAE26D1211A1A450047CECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAAE26D9211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CenteredCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
@@ -113,6 +119,10 @@
 		FAAE26EA211B7AF70047CECD /* CardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfo.swift; sourceTree = "<group>"; };
 		FAAE26ED211B84CE0047CECD /* UIImageRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageRetriever.swift; sourceTree = "<group>"; };
 		FAAF4556216567200032C2A9 /* SmothInteractive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmothInteractive.swift; sourceTree = "<group>"; };
+		FAAF455A2165FA890032C2A9 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		FAAF455C2165FAB50032C2A9 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		FAAF45612166BE130032C2A9 /* PhotoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfo.swift; sourceTree = "<group>"; };
+		FAAF4568216740490032C2A9 /* ThumbCaches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbCaches.swift; sourceTree = "<group>"; };
 		FAC2F6ED21558F47003B3E0A /* Voronoi.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Voronoi.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC2F6EF21558F47003B3E0A /* Voronoi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Voronoi.h; sourceTree = "<group>"; };
 		FAC2F6F021558F47003B3E0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -122,8 +132,6 @@
 		FAC2F6FD21558F60003B3E0A /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		FAC2F6FE21558F60003B3E0A /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		FAC2F6FF21558F60003B3E0A /* Voronoi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Voronoi.swift; sourceTree = "<group>"; };
-		FAC2F708215599E9003B3E0A /* TestBrokenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBrokenViewController.swift; sourceTree = "<group>"; };
-		FAC2F709215599E9003B3E0A /* TestBrokenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestBrokenViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,7 +154,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FA1E816A212FD93D001DA432 /* LiTransitions */ = {
+		FA1E816A212FD93D001DA432 /* LiquidTransitions */ = {
 			isa = PBXGroup;
 			children = (
 				FA2B5D932128BAED00B38B1C /* RestoreTransition.swift */,
@@ -158,7 +166,18 @@
 				FAAF4556216567200032C2A9 /* SmothInteractive.swift */,
 				FAAB21DB214630C500AAFF48 /* LiTiming.swift */,
 			);
-			path = LiTransitions;
+			path = LiquidTransitions;
+			sourceTree = "<group>";
+		};
+		FA92B84F21687C440095C126 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FAAE26E6211B6EC80047CECD /* UIView+Ex.swift */,
+				FA92B84D216878870095C126 /* UIImage+Ex.swift */,
+				FA2B5D952128BBCD00B38B1C /* GlobalFunctions.swift */,
+				FA2B5D912128BAAB00B38B1C /* Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		FA9487892135F17500DAE280 /* Transitions */ = {
@@ -194,23 +213,18 @@
 			children = (
 				FAAE26C5211A1A430047CECD /* AppDelegate.swift */,
 				FAAE26C7211A1A430047CECD /* ViewController.swift */,
-				FA2B5D952128BBCD00B38B1C /* GlobalFunctions.swift */,
-				FA2B5D912128BAAB00B38B1C /* Extensions.swift */,
-				FAAE26DB211A1D430047CECD /* WebViewController.swift */,
-				FAC2F708215599E9003B3E0A /* TestBrokenViewController.swift */,
-				FA0B4F692162BA4700C18F26 /* TestBrokenAnimationController.swift */,
-				FA31F79E21559B6F008AAD1B /* CustomView.swift */,
-				FAC2F709215599E9003B3E0A /* TestBrokenViewController.xib */,
+				FA92B84F21687C440095C126 /* Extensions */,
 				FA9487892135F17500DAE280 /* Transitions */,
-				FA1E816A212FD93D001DA432 /* LiTransitions */,
+				FA1E816A212FD93D001DA432 /* LiquidTransitions */,
 				FAAE26EC211B7AFC0047CECD /* Cards */,
-				FAAE26E6211B6EC80047CECD /* UIView+Ex.swift */,
+				FAAF45582165FA330032C2A9 /* BrokenView */,
+				FAAF45592165FA670032C2A9 /* Photos */,
 				FAAE26E1211A46E60047CECD /* GradientView.swift */,
 				FAAE26DD211A1E000047CECD /* WebViewController.xib */,
 				FAAE26D9211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift */,
 				FAAE26C9211A1A430047CECD /* Main.storyboard */,
-				FAAE26CC211A1A450047CECD /* Assets.xcassets */,
 				FAAE26CE211A1A450047CECD /* LaunchScreen.storyboard */,
+				FA92B85021687E6C0095C126 /* Assets.xcassets */,
 				FAAE26D1211A1A450047CECD /* Info.plist */,
 			);
 			path = CardsNavigation;
@@ -227,6 +241,7 @@
 		FAAE26EC211B7AFC0047CECD /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				FAAE26DB211A1D430047CECD /* WebViewController.swift */,
 				FAAE26DF211A1E9B0047CECD /* CardsNavigationController.swift */,
 				FA2B5D8C2128B43C00B38B1C /* CardCells.swift */,
 				FA0D9885212375E100602071 /* CardsAnimationTransition.swift */,
@@ -236,6 +251,27 @@
 				FA0D98832122341000602071 /* UIImage+Decoder.swift */,
 			);
 			path = Cards;
+			sourceTree = "<group>";
+		};
+		FAAF45582165FA330032C2A9 /* BrokenView */ = {
+			isa = PBXGroup;
+			children = (
+				FA0B4F692162BA4700C18F26 /* TestBrokenAnimationController.swift */,
+			);
+			path = BrokenView;
+			sourceTree = "<group>";
+		};
+		FAAF45592165FA670032C2A9 /* Photos */ = {
+			isa = PBXGroup;
+			children = (
+				FA92B849216870D10095C126 /* PhotoPreviewController.swift */,
+				FA92B847216870750095C126 /* PhotosDetailViewController.swift */,
+				FAAF455A2165FA890032C2A9 /* PhotosViewController.swift */,
+				FAAF455C2165FAB50032C2A9 /* PhotoCell.swift */,
+				FAAF45612166BE130032C2A9 /* PhotoInfo.swift */,
+				FAAF4568216740490032C2A9 /* ThumbCaches.swift */,
+			);
+			path = Photos;
 			sourceTree = "<group>";
 		};
 		FAC2F6EE21558F47003B3E0A /* Voronoi */ = {
@@ -349,9 +385,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAAE26D0211A1A450047CECD /* LaunchScreen.storyboard in Resources */,
-				FAC2F70B215599E9003B3E0A /* TestBrokenViewController.xib in Resources */,
-				FAAE26CD211A1A450047CECD /* Assets.xcassets in Resources */,
 				FAAE26CB211A1A430047CECD /* Main.storyboard in Resources */,
+				FA92B85121687E6C0095C126 /* Assets.xcassets in Resources */,
 				FAAE26DE211A1E000047CECD /* WebViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,25 +410,30 @@
 				FAAE26E0211A1E9B0047CECD /* CardsNavigationController.swift in Sources */,
 				FAAE26EB211B7AF70047CECD /* CardInfo.swift in Sources */,
 				FAAE26C8211A1A430047CECD /* ViewController.swift in Sources */,
+				FAAF45622166BE130032C2A9 /* PhotoInfo.swift in Sources */,
 				FA0B4F6A2162BA4700C18F26 /* TestBrokenAnimationController.swift in Sources */,
+				FA92B84A216870D10095C126 /* PhotoPreviewController.swift in Sources */,
 				FAAE26E2211A46E60047CECD /* GradientView.swift in Sources */,
 				FA0B4F652161FF8A00C18F26 /* BrokenViewTransition.swift in Sources */,
 				FA0D9886212375E100602071 /* CardsAnimationTransition.swift in Sources */,
 				FA4A2EA2212B2060003E414C /* TransitionAnimator.swift in Sources */,
 				FAAE26DA211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift in Sources */,
 				FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */,
+				FA92B84E216878870095C126 /* UIImage+Ex.swift in Sources */,
 				FA1E8163212D44E3001DA432 /* TransitionPercentAnimator.swift in Sources */,
 				FAAE26DC211A1D430047CECD /* WebViewController.swift in Sources */,
+				FAAF455B2165FA890032C2A9 /* PhotosViewController.swift in Sources */,
 				FAAE26E7211B6EC80047CECD /* UIView+Ex.swift in Sources */,
+				FAAF455D2165FAB50032C2A9 /* PhotoCell.swift in Sources */,
 				FA2B5D962128BBCD00B38B1C /* GlobalFunctions.swift in Sources */,
+				FAAF4569216740490032C2A9 /* ThumbCaches.swift in Sources */,
 				FA94878D2135F5ED00DAE280 /* LiquidRuntimeHelper.swift in Sources */,
 				FA1E8161212D3383001DA432 /* LiquidTransition.swift in Sources */,
 				FA2B5D942128BAED00B38B1C /* RestoreTransition.swift in Sources */,
-				FAC2F70A215599E9003B3E0A /* TestBrokenViewController.swift in Sources */,
+				FA92B848216870750095C126 /* PhotosDetailViewController.swift in Sources */,
 				FAAE26EE211B84CF0047CECD /* UIImageRetriever.swift in Sources */,
 				FA2B5D8D2128B43C00B38B1C /* CardCells.swift in Sources */,
 				FAAF4557216567200032C2A9 /* SmothInteractive.swift in Sources */,
-				FA31F79F21559B6F008AAD1B /* CustomView.swift in Sources */,
 				FAAB21DC214630C500AAFF48 /* LiTiming.swift in Sources */,
 				FA4A2EA4212B2594003E414C /* DisplayLinkAnimator.swift in Sources */,
 				FAAE26E9211B79A30047CECD /* CardControllerProtocol.swift in Sources */,

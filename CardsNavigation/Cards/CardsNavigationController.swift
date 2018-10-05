@@ -48,11 +48,6 @@ class CardsNavigationController: UIViewController {
         }
     }
     
-    @IBAction func testController() {
-        let vc = TestBrokenViewController()
-        present(vc, animated: true, completion: nil)
-    }
-    
     func addNewPage() {
         let vc = WebViewController()
 //        vc.transitioningDelegate = self

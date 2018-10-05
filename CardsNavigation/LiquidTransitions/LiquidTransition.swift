@@ -54,21 +54,6 @@ class LiquidTransition: NSObject {
         let sel1 = #selector(UIViewController.viewDidLoad)
         let liSel1 = #selector(UIViewController.li_viewDidLoad)
         LiquidRuntimeHelper.addOrReplaceMethod(class: UIViewController.self, original: sel1, swizzled: liSel1)
-//        let sel1 = #selector(UIViewControllerTransitioningDelegate.animationController(forPresented:presenting:source:))
-//        let liSel1 = #selector(UIViewController.li_animationController(forPresented:presenting:source:))
-//        LiquidRuntimeHelper.addOrReplaceMethod(class: UIViewController.self, original: sel1, swizzled: liSel1)
-//
-//        let sel2 = #selector(UIViewControllerTransitioningDelegate.animationController(forDismissed:))
-//        let liSel2 = #selector(UIViewController.li_animationController(forDismissed:))
-//        LiquidRuntimeHelper.addOrReplaceMethod(class: UIViewController.self, original: sel2, swizzled: liSel2)
-//
-//        let sel3 = #selector(UIViewControllerTransitioningDelegate.interactionControllerForDismissal(using:))
-//        let liSel3 = #selector(UIViewController.li_interactionControllerForDismissal(using:))
-//        LiquidRuntimeHelper.addOrReplaceMethod(class: UIViewController.self, original: sel3, swizzled: liSel3)
-//
-//        let sel4 = #selector(UIViewControllerTransitioningDelegate.interactionControllerForPresentation(using:))
-//        let liSel4 = #selector(UIViewController.li_interactionControllerForPresentation(using:))
-//        LiquidRuntimeHelper.addOrReplaceMethod(class: UIViewController.self, original: sel4, swizzled: liSel4)
     }
     
     internal var currentTransition: LiquidTransitionProtocol?

@@ -11,7 +11,7 @@ import UIKit
 class LiTiming {
 
     public static let `default`: LiTiming = LiTiming(function: CAMediaTimingFunction(name: kCAMediaTimingFunctionDefault))
-    public static let linear: LiTiming = LiTiming(function: CAMediaTimingFunction(name: kCAMediaTimingFunctionLinear))
+    public static let linear: LiTiming = LiTiming(closure: {$0})
     public static let easeIn: LiTiming = LiTiming(function: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn))
     public static let easeOut: LiTiming = LiTiming(function: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut))
     public static let easeInOut: LiTiming = LiTiming(function: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))

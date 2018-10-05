@@ -30,6 +30,14 @@ class TestBrokenAnimationController: UIViewController {
 
     @IBAction func onPan(pan: UIPanGestureRecognizer) {
         if pan.state == .began {
+            let offset = pan.translation(in: pan.view)
+            if (abs(offset.x) > offset.y) {
+                pan.isEnabled = false
+                pan.isEnabled = true
+                // allow only swipe down dismiss
+                return
+            }
+            
             dismissFromPoint = pan.location(in: pan.view)
             animator.interactive.enableSmothInteractive = smothInteractiveSwitch.isOn
             
