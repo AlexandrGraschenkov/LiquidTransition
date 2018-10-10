@@ -12,21 +12,27 @@
 		FA0B4F6A2162BA4700C18F26 /* TestBrokenAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B4F692162BA4700C18F26 /* TestBrokenAnimationController.swift */; };
 		FA0D98842122341000602071 /* UIImage+Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D98832122341000602071 /* UIImage+Decoder.swift */; };
 		FA0D9886212375E100602071 /* CardsAnimationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D9885212375E100602071 /* CardsAnimationTransition.swift */; };
-		FA1E8161212D3383001DA432 /* LiquidTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E8160212D3383001DA432 /* LiquidTransition.swift */; };
-		FA1E8163212D44E3001DA432 /* TransitionPercentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */; };
 		FA2B5D8D2128B43C00B38B1C /* CardCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D8C2128B43C00B38B1C /* CardCells.swift */; };
 		FA2B5D922128BAAB00B38B1C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D912128BAAB00B38B1C /* Extensions.swift */; };
-		FA2B5D942128BAED00B38B1C /* RestoreTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D932128BAED00B38B1C /* RestoreTransition.swift */; };
 		FA2B5D962128BBCD00B38B1C /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D952128BBCD00B38B1C /* GlobalFunctions.swift */; };
-		FA4A2EA2212B2060003E414C /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */; };
-		FA4A2EA4212B2594003E414C /* DisplayLinkAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */; };
+		FA6203E1216E9CFE002EFE71 /* Liquid.h in Headers */ = {isa = PBXBuildFile; fileRef = FA6203DF216E9CFE002EFE71 /* Liquid.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA6203E4216E9CFE002EFE71 /* Liquid.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA6203DD216E9CFE002EFE71 /* Liquid.framework */; };
+		FA6203E5216E9CFE002EFE71 /* Liquid.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA6203DD216E9CFE002EFE71 /* Liquid.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA6203E9216E9D1F002EFE71 /* RuntimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878C2135F5ED00DAE280 /* RuntimeHelper.swift */; };
+		FA6203EA216E9D1F002EFE71 /* DisplayLinkAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */; };
+		FA6203EB216E9D1F002EFE71 /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */; };
+		FA6203EC216E9D1F002EFE71 /* Timing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB21DB214630C500AAFF48 /* Timing.swift */; };
+		FA6203ED216E9D1F002EFE71 /* SmothInteractive.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF4556216567200032C2A9 /* SmothInteractive.swift */; };
+		FA6203EE216E9D1F002EFE71 /* LiquidTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E8160212D3383001DA432 /* LiquidTransition.swift */; };
+		FA6203EF216E9D1F002EFE71 /* RestoreTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D932128BAED00B38B1C /* RestoreTransition.swift */; };
+		FA6203F0216E9D1F002EFE71 /* TransitionPercentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */; };
+		FA6203F2216E9DF2002EFE71 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6203F1216E9DF2002EFE71 /* Helpers.swift */; };
 		FA92B848216870750095C126 /* PhotosDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B847216870750095C126 /* PhotosDetailViewController.swift */; };
 		FA92B84A216870D10095C126 /* PhotoPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B849216870D10095C126 /* PhotoPreviewController.swift */; };
 		FA92B84E216878870095C126 /* UIImage+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B84D216878870095C126 /* UIImage+Ex.swift */; };
 		FA92B85121687E6C0095C126 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA92B85021687E6C0095C126 /* Assets.xcassets */; };
-		FA94878B2135F23400DAE280 /* LiCardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878A2135F23400DAE280 /* LiCardTransition.swift */; };
-		FA94878D2135F5ED00DAE280 /* LiquidRuntimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878C2135F5ED00DAE280 /* LiquidRuntimeHelper.swift */; };
-		FAAB21DC214630C500AAFF48 /* LiTiming.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB21DB214630C500AAFF48 /* LiTiming.swift */; };
+		FA92B859216BFD7E0095C126 /* PhotoOpenTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B858216BFD7E0095C126 /* PhotoOpenTransition.swift */; };
+		FA94878B2135F23400DAE280 /* CardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878A2135F23400DAE280 /* CardTransition.swift */; };
 		FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C5211A1A430047CECD /* AppDelegate.swift */; };
 		FAAE26C8211A1A430047CECD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C7211A1A430047CECD /* ViewController.swift */; };
 		FAAE26CB211A1A430047CECD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAE26C9211A1A430047CECD /* Main.storyboard */; };
@@ -41,7 +47,6 @@
 		FAAE26E9211B79A30047CECD /* CardControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26E8211B79A30047CECD /* CardControllerProtocol.swift */; };
 		FAAE26EB211B7AF70047CECD /* CardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26EA211B7AF70047CECD /* CardInfo.swift */; };
 		FAAE26EE211B84CF0047CECD /* UIImageRetriever.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26ED211B84CE0047CECD /* UIImageRetriever.swift */; };
-		FAAF4557216567200032C2A9 /* SmothInteractive.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF4556216567200032C2A9 /* SmothInteractive.swift */; };
 		FAAF455B2165FA890032C2A9 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF455A2165FA890032C2A9 /* PhotosViewController.swift */; };
 		FAAF455D2165FAB50032C2A9 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF455C2165FAB50032C2A9 /* PhotoCell.swift */; };
 		FAAF45622166BE130032C2A9 /* PhotoInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF45612166BE130032C2A9 /* PhotoInfo.swift */; };
@@ -58,6 +63,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		FA6203E2216E9CFE002EFE71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FAAE26BA211A1A430047CECD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA6203DC216E9CFE002EFE71;
+			remoteInfo = Liquid;
+		};
 		FAC2F6F221558F47003B3E0A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FAAE26BA211A1A430047CECD /* Project object */;
@@ -74,6 +86,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				FA6203E5216E9CFE002EFE71 /* Liquid.framework in Embed Frameworks */,
 				FAC2F6F521558F47003B3E0A /* Voronoi.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -95,13 +108,18 @@
 		FA2B5D952128BBCD00B38B1C /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimator.swift; sourceTree = "<group>"; };
 		FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLinkAnimator.swift; sourceTree = "<group>"; };
+		FA6203DD216E9CFE002EFE71 /* Liquid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Liquid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA6203DF216E9CFE002EFE71 /* Liquid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Liquid.h; sourceTree = "<group>"; };
+		FA6203E0216E9CFE002EFE71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA6203F1216E9DF2002EFE71 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		FA92B847216870750095C126 /* PhotosDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosDetailViewController.swift; sourceTree = "<group>"; };
 		FA92B849216870D10095C126 /* PhotoPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewController.swift; sourceTree = "<group>"; };
 		FA92B84D216878870095C126 /* UIImage+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ex.swift"; sourceTree = "<group>"; };
 		FA92B85021687E6C0095C126 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FA94878A2135F23400DAE280 /* LiCardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiCardTransition.swift; sourceTree = "<group>"; };
-		FA94878C2135F5ED00DAE280 /* LiquidRuntimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidRuntimeHelper.swift; sourceTree = "<group>"; };
-		FAAB21DB214630C500AAFF48 /* LiTiming.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiTiming.swift; sourceTree = "<group>"; };
+		FA92B858216BFD7E0095C126 /* PhotoOpenTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOpenTransition.swift; sourceTree = "<group>"; };
+		FA94878A2135F23400DAE280 /* CardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransition.swift; sourceTree = "<group>"; };
+		FA94878C2135F5ED00DAE280 /* RuntimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeHelper.swift; sourceTree = "<group>"; };
+		FAAB21DB214630C500AAFF48 /* Timing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timing.swift; sourceTree = "<group>"; };
 		FAAE26C2211A1A430047CECD /* CardsNavigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardsNavigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAE26C5211A1A430047CECD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAAE26C7211A1A430047CECD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -135,11 +153,19 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		FA6203DA216E9CFE002EFE71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAAE26BF211A1A430047CECD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FAAE26E5211A48540047CECD /* WebKit.framework in Frameworks */,
+				FA6203E4216E9CFE002EFE71 /* Liquid.framework in Frameworks */,
 				FAC2F6F421558F47003B3E0A /* Voronoi.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -154,19 +180,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FA1E816A212FD93D001DA432 /* LiquidTransitions */ = {
+		FA6203DE216E9CFE002EFE71 /* Liquid */ = {
 			isa = PBXGroup;
 			children = (
 				FA2B5D932128BAED00B38B1C /* RestoreTransition.swift */,
+				FA6203F1216E9DF2002EFE71 /* Helpers.swift */,
 				FA1E8160212D3383001DA432 /* LiquidTransition.swift */,
-				FA94878C2135F5ED00DAE280 /* LiquidRuntimeHelper.swift */,
+				FA94878C2135F5ED00DAE280 /* RuntimeHelper.swift */,
 				FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */,
 				FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */,
 				FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */,
 				FAAF4556216567200032C2A9 /* SmothInteractive.swift */,
-				FAAB21DB214630C500AAFF48 /* LiTiming.swift */,
+				FAAB21DB214630C500AAFF48 /* Timing.swift */,
+				FA6203DF216E9CFE002EFE71 /* Liquid.h */,
+				FA6203E0216E9CFE002EFE71 /* Info.plist */,
 			);
-			path = LiquidTransitions;
+			path = Liquid;
 			sourceTree = "<group>";
 		};
 		FA92B84F21687C440095C126 /* Extensions */ = {
@@ -183,8 +212,9 @@
 		FA9487892135F17500DAE280 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
-				FA94878A2135F23400DAE280 /* LiCardTransition.swift */,
+				FA94878A2135F23400DAE280 /* CardTransition.swift */,
 				FA0B4F642161FF8A00C18F26 /* BrokenViewTransition.swift */,
+				FA92B858216BFD7E0095C126 /* PhotoOpenTransition.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -194,6 +224,7 @@
 			children = (
 				FAAE26C4211A1A430047CECD /* CardsNavigation */,
 				FAC2F6EE21558F47003B3E0A /* Voronoi */,
+				FA6203DE216E9CFE002EFE71 /* Liquid */,
 				FAAE26C3211A1A430047CECD /* Products */,
 				FAAE26E3211A48540047CECD /* Frameworks */,
 			);
@@ -204,6 +235,7 @@
 			children = (
 				FAAE26C2211A1A430047CECD /* CardsNavigation.app */,
 				FAC2F6ED21558F47003B3E0A /* Voronoi.framework */,
+				FA6203DD216E9CFE002EFE71 /* Liquid.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -215,7 +247,6 @@
 				FAAE26C7211A1A430047CECD /* ViewController.swift */,
 				FA92B84F21687C440095C126 /* Extensions */,
 				FA9487892135F17500DAE280 /* Transitions */,
-				FA1E816A212FD93D001DA432 /* LiquidTransitions */,
 				FAAE26EC211B7AFC0047CECD /* Cards */,
 				FAAF45582165FA330032C2A9 /* BrokenView */,
 				FAAF45592165FA670032C2A9 /* Photos */,
@@ -293,6 +324,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		FA6203D8216E9CFE002EFE71 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA6203E1216E9CFE002EFE71 /* Liquid.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAC2F6EA21558F47003B3E0A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -304,6 +343,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		FA6203DC216E9CFE002EFE71 /* Liquid */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA6203E8216E9CFE002EFE71 /* Build configuration list for PBXNativeTarget "Liquid" */;
+			buildPhases = (
+				FA6203D8216E9CFE002EFE71 /* Headers */,
+				FA6203D9216E9CFE002EFE71 /* Sources */,
+				FA6203DA216E9CFE002EFE71 /* Frameworks */,
+				FA6203DB216E9CFE002EFE71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Liquid;
+			productName = Liquid;
+			productReference = FA6203DD216E9CFE002EFE71 /* Liquid.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		FAAE26C1211A1A430047CECD /* CardsNavigation */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FAAE26D4211A1A450047CECD /* Build configuration list for PBXNativeTarget "CardsNavigation" */;
@@ -317,6 +374,7 @@
 			);
 			dependencies = (
 				FAC2F6F321558F47003B3E0A /* PBXTargetDependency */,
+				FA6203E3216E9CFE002EFE71 /* PBXTargetDependency */,
 			);
 			name = CardsNavigation;
 			productName = CardsNavigation;
@@ -351,6 +409,9 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Alex Development";
 				TargetAttributes = {
+					FA6203DC216E9CFE002EFE71 = {
+						CreatedOnToolsVersion = 10.0;
+					};
 					FAAE26C1211A1A430047CECD = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
@@ -375,11 +436,19 @@
 			targets = (
 				FAAE26C1211A1A430047CECD /* CardsNavigation */,
 				FAC2F6EC21558F47003B3E0A /* Voronoi */,
+				FA6203DC216E9CFE002EFE71 /* Liquid */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		FA6203DB216E9CFE002EFE71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAAE26C0211A1A430047CECD /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,11 +470,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		FA6203D9216E9CFE002EFE71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA6203ED216E9D1F002EFE71 /* SmothInteractive.swift in Sources */,
+				FA6203F0216E9D1F002EFE71 /* TransitionPercentAnimator.swift in Sources */,
+				FA6203E9216E9D1F002EFE71 /* RuntimeHelper.swift in Sources */,
+				FA6203EF216E9D1F002EFE71 /* RestoreTransition.swift in Sources */,
+				FA6203F2216E9DF2002EFE71 /* Helpers.swift in Sources */,
+				FA6203EE216E9D1F002EFE71 /* LiquidTransition.swift in Sources */,
+				FA6203EA216E9D1F002EFE71 /* DisplayLinkAnimator.swift in Sources */,
+				FA6203EC216E9D1F002EFE71 /* Timing.swift in Sources */,
+				FA6203EB216E9D1F002EFE71 /* TransitionAnimator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		FAAE26BE211A1A430047CECD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA94878B2135F23400DAE280 /* LiCardTransition.swift in Sources */,
+				FA94878B2135F23400DAE280 /* CardTransition.swift in Sources */,
 				FA0D98842122341000602071 /* UIImage+Decoder.swift in Sources */,
 				FAAE26E0211A1E9B0047CECD /* CardsNavigationController.swift in Sources */,
 				FAAE26EB211B7AF70047CECD /* CardInfo.swift in Sources */,
@@ -416,26 +501,19 @@
 				FAAE26E2211A46E60047CECD /* GradientView.swift in Sources */,
 				FA0B4F652161FF8A00C18F26 /* BrokenViewTransition.swift in Sources */,
 				FA0D9886212375E100602071 /* CardsAnimationTransition.swift in Sources */,
-				FA4A2EA2212B2060003E414C /* TransitionAnimator.swift in Sources */,
 				FAAE26DA211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift in Sources */,
 				FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */,
 				FA92B84E216878870095C126 /* UIImage+Ex.swift in Sources */,
-				FA1E8163212D44E3001DA432 /* TransitionPercentAnimator.swift in Sources */,
 				FAAE26DC211A1D430047CECD /* WebViewController.swift in Sources */,
 				FAAF455B2165FA890032C2A9 /* PhotosViewController.swift in Sources */,
 				FAAE26E7211B6EC80047CECD /* UIView+Ex.swift in Sources */,
 				FAAF455D2165FAB50032C2A9 /* PhotoCell.swift in Sources */,
 				FA2B5D962128BBCD00B38B1C /* GlobalFunctions.swift in Sources */,
 				FAAF4569216740490032C2A9 /* ThumbCaches.swift in Sources */,
-				FA94878D2135F5ED00DAE280 /* LiquidRuntimeHelper.swift in Sources */,
-				FA1E8161212D3383001DA432 /* LiquidTransition.swift in Sources */,
-				FA2B5D942128BAED00B38B1C /* RestoreTransition.swift in Sources */,
 				FA92B848216870750095C126 /* PhotosDetailViewController.swift in Sources */,
+				FA92B859216BFD7E0095C126 /* PhotoOpenTransition.swift in Sources */,
 				FAAE26EE211B84CF0047CECD /* UIImageRetriever.swift in Sources */,
 				FA2B5D8D2128B43C00B38B1C /* CardCells.swift in Sources */,
-				FAAF4557216567200032C2A9 /* SmothInteractive.swift in Sources */,
-				FAAB21DC214630C500AAFF48 /* LiTiming.swift in Sources */,
-				FA4A2EA4212B2594003E414C /* DisplayLinkAnimator.swift in Sources */,
 				FAAE26E9211B79A30047CECD /* CardControllerProtocol.swift in Sources */,
 				FA2B5D922128BAAB00B38B1C /* Extensions.swift in Sources */,
 			);
@@ -458,6 +536,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		FA6203E3216E9CFE002EFE71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA6203DC216E9CFE002EFE71 /* Liquid */;
+			targetProxy = FA6203E2216E9CFE002EFE71 /* PBXContainerItemProxy */;
+		};
 		FAC2F6F321558F47003B3E0A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FAC2F6EC21558F47003B3E0A /* Voronoi */;
@@ -485,6 +568,67 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		FA6203E6216E9CFE002EFE71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = RE82W8HD52;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Liquid/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = alex.Liquid;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FA6203E7216E9CFE002EFE71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = RE82W8HD52;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = Liquid/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = alex.Liquid;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		FAAE26D2211A1A450047CECD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -614,7 +758,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = alex.CardsNavigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -634,7 +778,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = alex.CardsNavigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -663,7 +807,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -693,7 +837,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = alex.Voronoi;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -703,6 +847,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		FA6203E8216E9CFE002EFE71 /* Build configuration list for PBXNativeTarget "Liquid" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA6203E6216E9CFE002EFE71 /* Debug */,
+				FA6203E7216E9CFE002EFE71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		FAAE26BD211A1A430047CECD /* Build configuration list for PBXProject "CardsNavigation" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

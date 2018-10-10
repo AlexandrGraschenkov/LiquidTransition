@@ -24,7 +24,7 @@ public class Event:Comparable,Hashable{
     public var hashValue: Int {
         var hash = point.hashValue ^ pe.hashValue
         if(arch != nil){
-            hash ^ 13
+            hash = hash ^ 13
         }
         return hash
     }

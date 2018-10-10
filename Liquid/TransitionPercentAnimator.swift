@@ -12,14 +12,14 @@ protocol TransitionPercentAnimatorDelegate: class {
     func transitionPercentChanged(_ percent: CGFloat)
 }
 
-class InvertableInteractiveTransition: UIPercentDrivenInteractiveTransition {
+public class InvertableInteractiveTransition: UIPercentDrivenInteractiveTransition {
     var backward = false
     private(set) var percent: CGFloat = 0
     
-    override var percentComplete: CGFloat {
+    override public var percentComplete: CGFloat {
         get { return backward ? 1.0-super.percentComplete : super.percentComplete }
     }
-    override func update(_ percentComplete: CGFloat) {
+    override public func update(_ percentComplete: CGFloat) {
         percent = percentComplete
         var val = backward ? 1.0-percent : percent
         val = min(val, 1)
@@ -27,19 +27,19 @@ class InvertableInteractiveTransition: UIPercentDrivenInteractiveTransition {
     }
 }
 
-class TransitionPercentAnimator: InvertableInteractiveTransition {
+public class TransitionPercentAnimator: InvertableInteractiveTransition {
     
     fileprivate var cancelAnimation: Cancelable?
     fileprivate(set) var lastSpeed: CGFloat = 0
     fileprivate(set) var lastUpdateTime: TimeInterval = 0
     weak var context: UIViewControllerContextTransitioning?
     var totalDuration: Double = 0
-    var maxDurationFactor: Double = 2.0
-    lazy var timing: LiTiming = LiTiming.default
+    public var maxDurationFactor: Double = 2.0
+    lazy var timing: Timing = Timing.default
     var isCanceled: Bool = false
     
-    var enableSmothInteractive: Bool = false
-    var smothInteractiveDuration: TimeInterval = 0.2
+    public var enableSmothInteractive: Bool = false
+    public var smothInteractiveDuration: TimeInterval = 0.2
     fileprivate lazy var smothInteractive = SmothInteractive()
     
     weak var delegate: TransitionPercentAnimatorDelegate?
@@ -74,6 +74,7 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
             if (percent == 1) {
                 print((finish ? "finished" : "canceled"))
                 if finish {
+                    super.update(0)
                     self.finish()
                 } else {
                     self.backward = false
@@ -91,7 +92,7 @@ class TransitionPercentAnimator: InvertableInteractiveTransition {
         cancelAnimation = nil
     }
     
-    override func update(_ percentComplete: CGFloat) {
+    override public func update(_ percentComplete: CGFloat) {
         let isAnimated = (cancelAnimation != nil)
         cancelAnimation?()
         cancelAnimation = nil

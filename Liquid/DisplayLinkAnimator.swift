@@ -8,8 +8,8 @@
 
 import UIKit
 
-class DisplayLinkAnimator: NSObject {
-    static func animate(duration: Double, closure: @escaping (CGFloat)->()) -> Cancelable {
+public class DisplayLinkAnimator: NSObject {
+    public static func animate(duration: Double, closure: @escaping (CGFloat)->()) -> Cancelable {
         let anim = DisplayLinkAnimator(duration: duration, closure: closure)
         anim.retainSelf = anim
         return anim.cancel
@@ -22,7 +22,7 @@ class DisplayLinkAnimator: NSObject {
         super.init()
         
         link = CADisplayLink.init(target: self, selector: #selector(step(link:)))
-        link.add(to: .current, forMode: .defaultRunLoopMode)
+        link.add(to: .current, forMode: .default)
     }
     
     fileprivate func cancel() {

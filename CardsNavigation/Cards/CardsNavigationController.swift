@@ -23,7 +23,7 @@ class CardsNavigationController: UIViewController {
         super.viewDidLoad()
         
 //        transitioningDelegate = self
-        layout = collection.collectionViewLayout as! CenteredCollectionViewFlowLayout
+        layout = collection.collectionViewLayout as? CenteredCollectionViewFlowLayout
         layout.itemSize = CGSize(
             width: view.bounds.width * scaleDown,
             height: view.bounds.height * scaleDown * 0.9
@@ -103,9 +103,9 @@ class CardsNavigationController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let dst = segue.destination as? WebViewController {
+//        if let dst = segue.destination as? WebViewController {
 //            dst.transitioningDelegate = self
-        }
+//        }
     }
 }
 

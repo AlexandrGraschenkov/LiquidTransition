@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Liquid
 
-class LiCardTransition: TransitionAnimator<CardsNavigationController, WebViewController> {
+class CardTransition: TransitionAnimator<CardsNavigationController, WebViewController> {
     var clipContainer: UIView!
     var scaleFactor: CGFloat = 1.0
     

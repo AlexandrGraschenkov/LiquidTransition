@@ -8,23 +8,25 @@
 
 import UIKit
 
-protocol LiquidTransitionProtocol: UIViewControllerAnimatedTransitioning {
+public protocol LiquidTransitionProtocol: UIViewControllerAnimatedTransitioning {
     var progress: CGFloat { get set }
     var duration: CGFloat { get set }
     var interactive: TransitionPercentAnimator { get }
-    var isPresenting: Bool { get set }
+    var isPresenting: Bool { get }
     
     func completeInteractive(complete: Bool?, animated: Bool)
     func canAnimate(from: UIViewController, to: UIViewController, direction: LiquidTransition.Direction) -> Bool
 }
 
-fileprivate var _animators: [LiquidTransitionProtocol] = []
+internal protocol LiquidTransitionProtocolInternal: LiquidTransitionProtocol {
+    var isPresenting: Bool { get set }
+}
 
-class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
+open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInternal  {
     
     public typealias CustomAnimation = (_ progress: CGFloat)->()
     public typealias ControllerCheckClosure = (_ vc1: UIViewController, _ vc2: UIViewController, _ dir: Direction) -> Bool
-    typealias Direction = LiquidTransition.Direction
+    public typealias Direction = LiquidTransition.Direction
     
     
     public var progress: CGFloat {
@@ -34,7 +36,7 @@ class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
     
     public var duration: CGFloat = 1.0
     public let direction: Direction
-    public var timing: LiTiming {
+    public var timing: Timing {
         get { return interactive.timing }
         set { interactive.timing = newValue }
     }
@@ -143,7 +145,7 @@ class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
             toView.frame = transitionContext.containerView.bounds
             transitionContext.containerView.addSubview(toView)
             if !isPresenting && direction == .both {
-                transitionContext.containerView.sendSubview(toBack: toView)
+                transitionContext.containerView.sendSubviewToBack(toView)
             }
         }
         
@@ -188,7 +190,7 @@ class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocol  {
         }
     }
     
-    internal func completeInteractive(complete: Bool?, animated: Bool) {
+    public func completeInteractive(complete: Bool?, animated: Bool) {
         if (animated) {
             var finish = true
             var speed: CGFloat = 0

@@ -8,6 +8,7 @@
 
 import UIKit
 import Voronoi
+import Liquid
 
 class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UIViewController> {
 

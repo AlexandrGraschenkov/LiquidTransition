@@ -23,11 +23,6 @@ class PhotosDetailViewController: UIPageViewController {
             setViewControllers([vc], direction: .forward, animated: false, completion: nil)
         }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
 }
 
@@ -53,5 +48,11 @@ extension PhotosDetailViewController: UIPageViewControllerDelegate, UIPageViewCo
         return getViewController(forIndex: vc.index + 1)
     }
     
-    
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if completed {
+            if let newIndex = (viewControllers?.first as? PhotoPreviewController)?.index {
+                index = newIndex
+            }
+        }
+    }
 }

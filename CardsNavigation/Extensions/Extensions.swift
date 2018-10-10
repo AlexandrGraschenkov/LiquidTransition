@@ -76,7 +76,7 @@ extension CGRect {
     }
     
     func inset(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) -> CGRect {
-        return UIEdgeInsetsInsetRect(self, UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
+        return self.inset(by: UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
     }
 }
 

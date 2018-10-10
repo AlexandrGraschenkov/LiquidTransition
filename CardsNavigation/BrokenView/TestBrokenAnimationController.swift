@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Liquid
 
 class TestBrokenAnimationController: UIViewController {
 

@@ -31,7 +31,7 @@ class ThumbCaches: NSObject {
         var isCanceled = false
         queue.async {
             let img = self.prepareImage(name: name, size: size, corners: corners)
-            self.cache.setObject(img, forKey: key as! NSString)
+            self.cache.setObject(img, forKey: key as NSString)
             DispatchQueue.main.async {
                 if !isCanceled {
                     completion(img)

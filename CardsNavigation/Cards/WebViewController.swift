@@ -8,6 +8,7 @@
 
 import UIKit
 import WebKit
+import Liquid
 
 class WebViewController: UIViewController {
     
@@ -54,13 +55,6 @@ class WebViewController: UIViewController {
         dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func testFunc() {
-        toolbar.layer.masksToBounds = true
-        _ = DisplayLinkAnimator.animate(duration: 2.0) { (progress) in
-            self.toolbar.layer.cornerRadius = 20.0 * progress
-        }
-    }
-    
     @objc func onEdgePan(pan: UIScreenEdgePanGestureRecognizer) {
         switch pan.state {
         case .began:
@@ -70,7 +64,7 @@ class WebViewController: UIViewController {
             let translation = pan.translation(in: v)
             let progress = max(0, min(1, translation.x / 150.0))
             print(progress)
-            let pos = pan.location(in: v)
+//            _ = pan.location(in: v)
             LiquidTransition.shared.update(progress: progress)
         case .ended:
             LiquidTransition.shared.finish()

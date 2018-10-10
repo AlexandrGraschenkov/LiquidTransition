@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Photos View Controller-->
+        <!--Photos collection-->
         <scene sceneID="kQj-6E-FdH">
             <objects>
                 <collectionViewController id="JMI-EV-03d" customClass="PhotosViewController" customModule="CardsNavigation" customModuleProvider="target" sceneMemberID="viewController">
@@ -53,7 +53,9 @@
                             <outlet property="delegate" destination="JMI-EV-03d" id="1ZZ-k8-nhR"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="Jvw-cY-Gmf"/>
+                    <navigationItem key="navigationItem" title="Photos collection" id="Jvw-cY-Gmf">
+                        <barButtonItem key="backBarButtonItem" title="Back to photos" id="CJp-Oi-Org"/>
+                    </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2vn-du-Flj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -89,11 +91,11 @@
             </objects>
             <point key="canvasLocation" x="1051.5" y="-634.5"/>
         </scene>
-        <!--Photos Detail View Controller-->
+        <!--Photo-->
         <scene sceneID="6vm-Ym-fEt">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="OEJ-SW-pu1" customClass="PhotosDetailViewController" customModule="CardsNavigation" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="4cM-uy-E7x"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" title="Photo" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="OEJ-SW-pu1" customClass="PhotosDetailViewController" customModule="CardsNavigation" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Photo" id="4cM-uy-E7x"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NmW-rl-gSf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -257,7 +259,9 @@
                             <outlet property="delegate" destination="ZaM-W0-Drk" id="Xfs-Pc-k9d"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="IQv-Gi-B8b"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="IQv-Gi-B8b">
+                        <barButtonItem key="backBarButtonItem" title="Back to root" id="H5u-iw-6Tw"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rRw-Rr-fwa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

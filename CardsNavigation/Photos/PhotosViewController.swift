@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Liquid
 
 private let reuseIdentifier = "PhotoCell"
 
@@ -26,8 +27,15 @@ class PhotosViewController: UICollectionViewController {
         let prefferedCellSize = floor((UIScreen.main.bounds.width - 10 * 4) / 3.0)
         let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
         flowLayout?.itemSize = CGSize(width: prefferedCellSize, height: prefferedCellSize)
+        
+        
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        navigationController?.delegate = LiquidTransition.shared
+    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let detailVC = segue.destination as? PhotosDetailViewController {
