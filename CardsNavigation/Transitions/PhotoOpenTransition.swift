@@ -54,19 +54,10 @@ class PhotoOpenTransition: TransitionAnimator<PhotosViewController, PhotosDetail
         
         container.addSubview(animImageView)
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
-            self.animImageView.frame = self.getAspectFit(frame: vc2.view.bounds, viewSize: self.animImageView.image!.size)
+            self.animImageView.frame = vc2.view.bounds.getAspectFit(viewSize: self.animImageView.image!.size)
             vc2.view.alpha = 1
         }) { (_) in
             restore.restore()
         }
-    }
-    
-    fileprivate func getAspectFit(frame: CGRect, viewSize size: CGSize) -> CGRect {
-        let scale = min(frame.width / size.width, frame.height / size.height)
-        let scaledSize = CGSize(width: scale * size.width, height: scale * size.height)
-        return CGRect(x: frame.midX - scaledSize.width / 2.0,
-                      y: frame.midY - scaledSize.height / 2.0,
-                      width: scaledSize.width,
-                      height: scaledSize.height)
     }
 }

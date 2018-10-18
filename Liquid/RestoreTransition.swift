@@ -1,9 +1,9 @@
 //
 //  RestoreTransition.swift
-//  Salam
+//  Liquid
 //
-//  Created by Alexander on 27.03.17.
-//
+//  Created by Alexander Graschenkov on 10.09.2018.
+//  Copyright © 2018 Alex Development. All rights reserved.
 //
 
 import UIKit
@@ -15,13 +15,19 @@ fileprivate struct ViewState {
     let frame: CGRect
     let transform: CGAffineTransform
     let superview: UIView?
+    var keyPaths: [String: Any?] = [:]
     
-    static func generateWithView(view: UIView) -> ViewState {
+    static func generateWithView(view: UIView, keyPaths: [String]) -> ViewState {
+        var dic: [String: Any?] = [:]
+        for path in keyPaths {
+            dic[path] = view.value(forKeyPath: path)
+        }
         return ViewState(view: view,
                          alpha: view.alpha,
                          frame: view.frame,
                          transform: view.transform,
-                         superview: view.superview)
+                         superview: view.superview,
+                         keyPaths: dic)
     }
 }
 
@@ -29,17 +35,22 @@ public class RestoreTransition: NSObject {
     
     fileprivate var restoreViews: [ViewState] = []
     fileprivate var removeViews: [UIView] = []
+    fileprivate var keyPaths: [String]
+    
+    public init(keyPaths: [String] = []) {
+        self.keyPaths = keyPaths
+    }
     
     public func addRestore(_ views: UIView...) {
         for v in views {
-            let state = ViewState.generateWithView(view: v)
+            let state = ViewState.generateWithView(view: v, keyPaths: keyPaths)
             restoreViews.append(state)
         }
     }
     
     public func addRestore(_ views: [UIView]) {
         for v in views {
-            let state = ViewState.generateWithView(view: v)
+            let state = ViewState.generateWithView(view: v, keyPaths: keyPaths)
             restoreViews.append(state)
         }
     }
@@ -93,6 +104,9 @@ public class RestoreTransition: NSObject {
             }
             if v.view.isHidden {
                 v.view.isHidden = false
+            }
+            for (path, val) in v.keyPaths {
+                v.view.setValue(val, forKey: path)
             }
         }
         for v in removeViews {

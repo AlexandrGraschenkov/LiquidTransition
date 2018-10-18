@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Liquid
 
 class PhotosDetailViewController: UIPageViewController {
 
     var photos: [PhotoInfo] = []
     var index: Int = 0
+    var animTransition: PhotoCloseInteractiveTransition?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +24,68 @@ class PhotosDetailViewController: UIPageViewController {
         if let vc = getViewController(forIndex: index) {
             setViewControllers([vc], direction: .forward, animated: false, completion: nil)
         }
+        
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(onPan(pan:)))
+        pan.delegate = self
+        view.addGestureRecognizer(pan)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let controllers = self.navigationController?.viewControllers,
+            let prev = controllers[controllers.count-2] as? PhotosViewController {
+            animTransition = LiquidTransition.shared.transitionForDismiss(from: self, to: prev) as? PhotoCloseInteractiveTransition
+            animTransition?.isEnabled = false
+        }
+    }
+    
+    @objc func onPan(pan: UIPanGestureRecognizer) {
+        let offset = pan.translation(in: view)
+        
+        if pan.state == .began {
+            if (offset.y < abs(offset.x)) {
+                pan.isEnabled = false
+                pan.isEnabled = true
+                return
+            }
+            animTransition?.isEnabled = true
+            if let nav = navigationController {
+                nav.popViewController(animated: true)
+                transitionCoordinator?.animate(alongsideTransition: nil, completion: { (_) in
+                    self.animTransition?.isEnabled = false
+                })
+            } else {
+                dismiss(animated: true) {
+                    self.animTransition?.isEnabled = false
+                }
+            }
+            
+        } else if pan.state == .changed {
+            LiquidTransition.shared.update(progress: min(0.7, max(0, offset.y / 200.0)))
+            animTransition?.updateInteractive(offset: CGPoint(x: 0, y: offset.y))
+        } else {
+            LiquidTransition.shared.finish()
+        }
+    }
+    
+}
+
+extension PhotosDetailViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let offset = (gestureRecognizer as? UIPanGestureRecognizer)?.translation(in: view) else {
+            return false
+        }
+        if (offset.y < abs(offset.x)) {
+//            gestureRecognizer.isEnabled = false
+//            gestureRecognizer.isEnabled = true
+            return false
+        } else {
+            otherGestureRecognizer.isEnabled = false
+            otherGestureRecognizer.isEnabled = true
+            return true
+        }
+    }
 }
 
 extension PhotosDetailViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
@@ -31,6 +93,9 @@ extension PhotosDetailViewController: UIPageViewControllerDelegate, UIPageViewCo
         if index < 0 || index >= photos.count {
             return nil
         }
+//        if LiquidTransition.shared.currentTransition != nil {
+//            return nil
+//        }
         return PhotoPreviewController.controller(photo: photos[index], index: index)
     }
     

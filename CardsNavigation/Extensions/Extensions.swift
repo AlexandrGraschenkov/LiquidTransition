@@ -72,11 +72,21 @@ extension CGRect {
     }
     
     var mid: CGPoint {
-        return CGPoint(x: midX, y: midY)
+        set { origin = CGPoint(x: newValue.x - size.width / 2.0, y: newValue.y - size.height / 2.0) }
+        get { return CGPoint(x: midX, y: midY) }
     }
     
     func inset(top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) -> CGRect {
         return self.inset(by: UIEdgeInsets(top: top, left: left, bottom: bottom, right: right))
+    }
+    
+    func getAspectFit(viewSize size: CGSize) -> CGRect {
+        let scale = min(self.width / size.width, self.height / size.height)
+        let scaledSize = CGSize(width: scale * size.width, height: scale * size.height)
+        return CGRect(x: self.midX - scaledSize.width / 2.0,
+                      y: self.midY - scaledSize.height / 2.0,
+                      width: scaledSize.width,
+                      height: scaledSize.height)
     }
 }
 

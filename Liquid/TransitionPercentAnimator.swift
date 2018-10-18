@@ -40,6 +40,8 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
     
     public var enableSmothInteractive: Bool = false
     public var smothInteractiveDuration: TimeInterval = 0.2
+    public var maxSpeed: CGFloat = 1.0
+    public var minSpeed: CGFloat = 1.0
     fileprivate lazy var smothInteractive = SmothInteractive()
     
     weak var delegate: TransitionPercentAnimatorDelegate?
@@ -68,13 +70,18 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
         cancelAnimation = DisplayLinkAnimator.animate(duration: Double(animDuration), closure: { (percent) in
             var percentMaped = self.timing.getValue(x: percent)
             percentMaped = (toPercent - fromPercent) * percentMaped + fromPercent
-            super.update(percentMaped)
+            
+            if percent == 1 && self.backward && finish {
+                // finished backward animation
+                // we need move to last step of animation to finish it
+                super.update(0)
+            } else {
+                super.update(percentMaped)
+            }
             self.delegate?.transitionPercentChanged(percentMaped)
             
             if (percent == 1) {
-                print((finish ? "finished" : "canceled"))
                 if finish {
-                    super.update(0)
                     self.finish()
                 } else {
                     self.backward = false
@@ -141,6 +148,9 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
     
     fileprivate func updateSpeedWith(percentComplete: CGFloat) {
         let currTime = CACurrentMediaTime()
+        if (percentComplete - self.percentComplete) == 0 {
+            return // nothing to update
+        }
         if lastUpdateTime == 0 {
             if (percentComplete - self.percentComplete) > 0 {
                 lastSpeed = 1.0 / duration
@@ -149,6 +159,12 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
             }
         } else {
             lastSpeed = (percentComplete - self.percentComplete) / CGFloat(currTime - lastUpdateTime)
+        }
+        if abs(lastSpeed) > maxSpeed {
+            lastSpeed = maxSpeed * (lastSpeed > 0 ? 1 : -1)
+        }
+        if abs(lastSpeed) < minSpeed {
+            lastSpeed = minSpeed * (lastSpeed > 0 ? 1 : -1)
         }
         lastUpdateTime = currTime
     }

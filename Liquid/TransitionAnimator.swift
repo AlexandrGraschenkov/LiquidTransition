@@ -13,6 +13,7 @@ public protocol LiquidTransitionProtocol: UIViewControllerAnimatedTransitioning 
     var duration: CGFloat { get set }
     var interactive: TransitionPercentAnimator { get }
     var isPresenting: Bool { get }
+    var isEnabled: Bool { get }
     
     func completeInteractive(complete: Bool?, animated: Bool)
     func canAnimate(from: UIViewController, to: UIViewController, direction: LiquidTransition.Direction) -> Bool
@@ -34,6 +35,7 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
         set { interactive.update(newValue) }
     }
     
+    public var isEnabled: Bool = true
     public var duration: CGFloat = 1.0
     public let direction: Direction
     public var timing: Timing {
@@ -144,13 +146,14 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
             toView.transform = .identity
             toView.frame = transitionContext.containerView.bounds
             transitionContext.containerView.addSubview(toView)
-            if !isPresenting && direction == .both {
+            if !isPresenting {
                 transitionContext.containerView.sendSubviewToBack(toView)
             }
         }
         
         // we need to catch end of the animation, to propertly complete transition
-        UIView.animate(withDuration: interactive.totalDuration, animations: {
+        print("Orig duration", TimeInterval(duration))
+        UIView.animate(withDuration: TimeInterval(duration), animations: {
             self.makeNonVisibleChanges(view: transitionContext.containerView)
         }) { (_) in
             if transitionContext.transitionWasCancelled {

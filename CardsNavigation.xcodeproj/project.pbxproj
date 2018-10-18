@@ -60,6 +60,7 @@
 		FAC2F70321558F60003B3E0A /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FD21558F60003B3E0A /* Point.swift */; };
 		FAC2F70421558F60003B3E0A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FE21558F60003B3E0A /* Event.swift */; };
 		FAC2F70521558F60003B3E0A /* Voronoi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FF21558F60003B3E0A /* Voronoi.swift */; };
+		FAEB331E2175305100F61B5C /* PhotoCloseInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB331D2175305100F61B5C /* PhotoCloseInteractiveTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +151,7 @@
 		FAC2F6FD21558F60003B3E0A /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		FAC2F6FE21558F60003B3E0A /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		FAC2F6FF21558F60003B3E0A /* Voronoi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Voronoi.swift; sourceTree = "<group>"; };
+		FAEB331D2175305100F61B5C /* PhotoCloseInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCloseInteractiveTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 				FA94878A2135F23400DAE280 /* CardTransition.swift */,
 				FA0B4F642161FF8A00C18F26 /* BrokenViewTransition.swift */,
 				FA92B858216BFD7E0095C126 /* PhotoOpenTransition.swift */,
+				FAEB331D2175305100F61B5C /* PhotoCloseInteractiveTransition.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -500,6 +503,7 @@
 				FA92B84A216870D10095C126 /* PhotoPreviewController.swift in Sources */,
 				FAAE26E2211A46E60047CECD /* GradientView.swift in Sources */,
 				FA0B4F652161FF8A00C18F26 /* BrokenViewTransition.swift in Sources */,
+				FAEB331E2175305100F61B5C /* PhotoCloseInteractiveTransition.swift in Sources */,
 				FA0D9886212375E100602071 /* CardsAnimationTransition.swift in Sources */,
 				FAAE26DA211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift in Sources */,
 				FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */,

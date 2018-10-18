@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         // Override point for customization after application launch.
         LiquidTransition.shared.addTransitions([CardTransition(),
+                                                PhotoCloseInteractiveTransition(),
                                                 PhotoOpenTransition(),
                                                 BrokenViewTransition()])
         

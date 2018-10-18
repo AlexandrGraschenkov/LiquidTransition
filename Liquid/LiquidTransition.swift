@@ -20,8 +20,8 @@ public class LiquidTransition: NSObject {
             self.rawValue = rawValue
         }
         
-        public static let present = Direction(rawValue: 1 << 0)
-        public static let dismiss = Direction(rawValue: 1 << 1)
+        public static let present = Direction(rawValue: 1 << 1)
+        public static let dismiss = Direction(rawValue: 1 << 2)
         public static let both: Direction = [.present, .dismiss]
     }
     
@@ -51,15 +51,14 @@ public class LiquidTransition: NSObject {
         transition.completeInteractive(complete: complete, animated: animated)
     }
     
+    
     public func transitionForPresent(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
         let transition = transitions.first(where: {$0.canAnimate(from: from, to: to, direction: .present)})
-        transition?.isPresenting = true
         return transition
     }
     
     public func transitionForDismiss(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
         let transition = transitions.first(where: {$0.canAnimate(from: from, to: to, direction: .dismiss)})
-        transition?.isPresenting = false
         return transition
     }
     
@@ -72,7 +71,19 @@ public class LiquidTransition: NSObject {
         LiquidRuntimeHelper.addOrReplaceMethod(class: UIViewController.self, original: sel1, swizzled: liSel1)
     }
     
-    internal var currentTransition: LiquidTransitionProtocol?
+    func presentTransition(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
+        let transition = transitions.first(where: {$0.canAnimate(from: from, to: to, direction: .present)})
+        transition?.isPresenting = true
+        return transition
+    }
+    
+    func dismissTransition(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
+        let transition = transitions.first(where: {$0.isEnabled && $0.canAnimate(from: from, to: to, direction: .dismiss)})
+        transition?.isPresenting = false
+        return transition
+    }
+    
+    public internal(set) var currentTransition: LiquidTransitionProtocol?
     fileprivate var transitions: [LiquidTransitionProtocolInternal] = []
 }
 
@@ -90,11 +101,11 @@ extension UIViewController {
 
 extension LiquidTransition: UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return LiquidTransition.shared.transitionForPresent(from: presenting, to: presented)
+        return LiquidTransition.shared.presentTransition(from: presenting, to: presented)
     }
 
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return LiquidTransition.shared.transitionForDismiss(from: dismissed, to: dismissed.presentingViewController!)
+        return LiquidTransition.shared.dismissTransition(from: dismissed, to: dismissed.presentingViewController!)
     }
 
     public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
@@ -112,9 +123,9 @@ extension LiquidTransition: UIViewControllerTransitioningDelegate, UINavigationC
     
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .push {
-            return LiquidTransition.shared.transitionForPresent(from: fromVC, to: toVC)
+            return LiquidTransition.shared.presentTransition(from: fromVC, to: toVC)
         } else if operation == .pop {
-            return LiquidTransition.shared.transitionForDismiss(from: fromVC, to: toVC)
+            return LiquidTransition.shared.dismissTransition(from: fromVC, to: toVC)
         }
         return nil
     }
