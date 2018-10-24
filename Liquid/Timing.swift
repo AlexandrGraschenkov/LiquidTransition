@@ -9,10 +9,6 @@
 import UIKit
 
 public class Timing {
-
-    // WARN
-    // If we use CAMediaTimingFunction on application startup, app fails
-    // seams core animation is not prepared, and something went wrong
     
     public static let `default`: Timing = Timing(functionName: .default)
     public static let linear: Timing = Timing(closure: {$0})

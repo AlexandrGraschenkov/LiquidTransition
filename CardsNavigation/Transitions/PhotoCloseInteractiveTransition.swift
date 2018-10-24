@@ -20,7 +20,7 @@ class PhotoCloseInteractiveTransition: TransitionAnimator<PhotosDetailViewContro
         super.init(from: PhotosDetailViewController.self, to: PhotosViewController.self, direction: .dismiss)
         
         duration = 0.4
-        timing = Timing.easeOutSine
+        timing = Timing.easeOutExpo
         addCustomAnimation { [weak self] (progress) in
             guard let `self` = self else { return }
             self.animImageView?.layer.cornerRadius = self.corners * min(1, 2.0 * progress)
@@ -51,7 +51,8 @@ class PhotoCloseInteractiveTransition: TransitionAnimator<PhotosDetailViewContro
         animImageView.layer.masksToBounds = true
         animImageView.layer.cornerRadius = cell.corners
         
-        restore.addRestore(vc1.view, cell.imgView)
+        restore.addRestore(cell.imgView)
+        restore.addRestore(vc1.view, keyPaths: [], ignoreFields: [.superview])
         
         cell.imgView.isHidden = true
         
@@ -69,7 +70,16 @@ class PhotoCloseInteractiveTransition: TransitionAnimator<PhotosDetailViewContro
         }, completion: nil)
     }
     
-    func updateInteractive(offset: CGPoint) {
-        self.animImageView.frame.mid = fromFrame.mid.add(offset)
+    func updateInteractive(offset: CGPoint, progress: CGFloat) {
+        let mid = fromFrame.mid.add(offset)
+        let size = fromFrame.size.interpolation(to: toFrame.size, progress: progress)
+        self.animImageView.frame = CGRect(mid: mid, size: size)
+    }
+}
+
+fileprivate extension CGSize {
+    func interpolation(to: CGSize, progress: CGFloat) -> CGSize {
+        return CGSize(width: (to.width - width) * progress + width,
+                      height: (to.height - height) * progress + height)
     }
 }

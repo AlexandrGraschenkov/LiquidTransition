@@ -10,6 +10,7 @@ import UIKit
 
 protocol TransitionPercentAnimatorDelegate: class {
     func transitionPercentChanged(_ percent: CGFloat)
+    func transitionCompleted(context: UIViewControllerContextTransitioning)
 }
 
 public class InvertableInteractiveTransition: UIPercentDrivenInteractiveTransition {
@@ -65,7 +66,6 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
         let fromPercent = percent
         let toPercent: CGFloat = finish ? 1.0 : 0.0
         let animDuration = getDurationToState(finish: finish, speed:  speed)
-        print("Animate " + (finish ? "finish" : "cancel"))
         
         cancelAnimation = DisplayLinkAnimator.animate(duration: Double(animDuration), closure: { (percent) in
             var percentMaped = self.timing.getValue(x: percent)
@@ -88,8 +88,10 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
                     super.update(0)
                     self.cancel()
                 }
-                
-                self.context?.completeTransition(finish)
+                if let context = self.context {
+                    context.completeTransition(finish)
+                    self.delegate?.transitionCompleted(context: context)
+                }
             }
         })
     }

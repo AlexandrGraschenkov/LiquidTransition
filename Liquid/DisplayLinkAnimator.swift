@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Timer on **DisplayLink**
 public class DisplayLinkAnimator: NSObject {
     public static func animate(duration: Double, closure: @escaping (CGFloat)->()) -> Cancelable {
         let anim = DisplayLinkAnimator(duration: duration, closure: closure)

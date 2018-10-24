@@ -9,6 +9,24 @@
 import UIKit
 import Liquid
 
+extension CATransform3D {
+    static let perspectiveIdentity: CATransform3D = {
+        var transform = CATransform3DIdentity
+        transform.m34 = -0.006
+        return transform
+    }()
+}
+
+struct AnimationHelper {
+    static func xRotation(_ angle: Double) -> CATransform3D {
+        return CATransform3DRotate(.perspectiveIdentity, CGFloat(angle), 1, 0, 0)
+    }
+    
+    static func perspectiveTransform(for containerView: UIView) {
+        containerView.layer.sublayerTransform = .perspectiveIdentity
+    }
+}
+
 class CardTransition: TransitionAnimator<CardsNavigationController, WebViewController> {
     var clipContainer: UIView!
     var scaleFactor: CGFloat = 1.0
@@ -22,13 +40,16 @@ class CardTransition: TransitionAnimator<CardsNavigationController, WebViewContr
     
     
     override func animation(vc1: CardsNavigationController, vc2: WebViewController, container: UIView, duration: Double) {
+        let restore = RestoreTransition()
         let content = vc2.getContentView()
         let startContentFrame = content.frame
         let card = vc1.getTransitionCell()
         
+        restore.addRestore(content)
         let cardFrame = card.convert(card.bounds, to: container)
         
-        let scale = cardFrame.width / content.bounds.width
+        let scale = max(cardFrame.width / content.bounds.width,
+                        cardFrame.height / content.bounds.height)
         scaleFactor = scale
         content.transform = CGAffineTransform(scaleX: scale, y: scale)
         content.center = CGPoint(x: cardFrame.midX, y: cardFrame.midY)
@@ -40,24 +61,32 @@ class CardTransition: TransitionAnimator<CardsNavigationController, WebViewContr
         clipContainer.backgroundColor = UIColor.white
         content.mask = clipContainer
         
-        if let toolbar = vc2.getToolbarView() {
-            let frame = toolbar.frame
-            toolbar.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
-            toolbar.frame = frame
-            toolbar.layer.transform = AnimationHelper.xRotation(-.pi / 2.0)
-        }
+        let toolbar = vc2.toolbar!
+        restore.addRestore(toolbar)
+        let toolbarFrame = toolbar.frame
+        toolbar.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
+        toolbar.frame = toolbarFrame
+        toolbar.layer.transform = AnimationHelper.xRotation(.pi * 0.6)
+        
+        let status = vc2.statusBarView!
+        restore.addRestore(status)
+        let statusFrame = status.frame
+        status.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
+        status.frame = statusFrame
+        status.layer.transform = AnimationHelper.xRotation(-.pi * 0.6)
         
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
             content.transform = .identity
             self.clipContainer.frame = content.bounds
             content.frame = startContentFrame
-            vc2.getToolbarView()?.layer.transform = CATransform3DIdentity
+            toolbar.layer.transform = CATransform3DIdentity
+            status.layer.transform = CATransform3DIdentity
         }) { (finished) in
             content.mask = nil
-            content.transform = .identity
-            content.frame = startContentFrame
-            vc2.getToolbarView()?.layer.transform = CATransform3DIdentity
+            toolbar.layer.transform = CATransform3DIdentity
+            status.layer.transform = CATransform3DIdentity
             self.clipContainer = nil
+            restore.restore()
         }
     }
     

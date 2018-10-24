@@ -62,10 +62,11 @@ class PhotosDetailViewController: UIPageViewController {
             }
             
         } else if pan.state == .changed {
-            LiquidTransition.shared.update(progress: min(0.7, max(0, offset.y / 200.0)))
-            animTransition?.updateInteractive(offset: CGPoint(x: 0, y: offset.y))
+            let progress = min(0.7, max(0, offset.y / 200.0))
+            LiquidTransition.shared.update(progress: progress)
+            animTransition?.updateInteractive(offset: CGPoint(x: 0, y: offset.y), progress: progress)
         } else {
-            LiquidTransition.shared.finish()
+            LiquidTransition.shared.complete()
         }
     }
     

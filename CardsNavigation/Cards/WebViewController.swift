@@ -13,6 +13,7 @@ import Liquid
 class WebViewController: UIViewController {
     
     var web: WKWebView!
+    @IBOutlet weak var statusBarView: UIView!
     @IBOutlet weak var toolbar: UIView!
     
     
@@ -22,7 +23,13 @@ class WebViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        web = WKWebView(frame: view.bounds.inset(top: 20, bottom: toolbar.bounds.height))
+        if #available(iOS 11.0, *), let statusHeight = UIApplication.shared.keyWindow?.safeAreaInsets.top {
+            statusBarView.frame.size.height = statusHeight
+        }
+        if #available(iOS 11.0, *), let botInset = UIApplication.shared.keyWindow?.safeAreaInsets.top {
+            toolbar.frame = toolbar.frame.inset(top: -botInset)
+        }
+        web = WKWebView(frame: view.bounds.inset(top: statusBarView.frame.size.height, bottom: toolbar.bounds.height))
         web.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         view.addSubview(web)
         
@@ -67,7 +74,7 @@ class WebViewController: UIViewController {
 //            _ = pan.location(in: v)
             LiquidTransition.shared.update(progress: progress)
         case .ended:
-            LiquidTransition.shared.finish()
+            LiquidTransition.shared.complete()
         default:
             break
         }
@@ -88,7 +95,11 @@ extension WebViewController: CardControllerProtocol {
         return web
     }
     
-    func getToolbarView() -> UIView? {
+    func getToolbarView() -> UIView {
+        return toolbar
+    }
+    
+    func getStatusView() -> UIView {
         return toolbar
     }
 }

@@ -25,6 +25,20 @@ public class LiquidTransition: NSObject {
         public static let both: Direction = [.present, .dismiss]
     }
     
+    /**
+     Automaticly becomes delegate for all transitions, that not defined manually
+     
+     Performs swizzle **viewDidLoad** for **UIViewController**s
+     */
+    public func becomeDelegate() {
+        if isSwizzled { return }
+        
+        isSwizzled = true
+        let sel1 = #selector(UIViewController.viewDidLoad)
+        let liSel1 = #selector(UIViewController.li_viewDidLoad)
+        LiquidRuntimeHelper.addOrReplaceMethod(class: UIViewController.self, original: sel1, swizzled: liSel1)
+    }
+    
     public func addTransitions(_ arr: [LiquidTransitionProtocol]) {
         let arrInternal = arr.compactMap({$0 as? LiquidTransitionProtocolInternal})
         transitions.append(contentsOf: arrInternal)
@@ -41,14 +55,24 @@ public class LiquidTransition: NSObject {
         }
     }
     
+    /**
+     Performs interactive transition
+     
+     You can call update right after transition was startded
+     */
     public func update(progress: CGFloat) {
         currentTransition?.progress = progress
     }
     
-    public func finish(complete: Bool? = nil, animated: Bool = true) {
+    /**
+     Completes interactive transition
+     
+     By default finish or cancel transition desides automaticly
+     */
+    public func complete(finish: Bool? = nil, animated: Bool = true) {
         guard let transition = currentTransition else { return }
         
-        transition.completeInteractive(complete: complete, animated: animated)
+        transition.completeInteractive(complete: finish, animated: animated)
     }
     
     
@@ -65,10 +89,6 @@ public class LiquidTransition: NSObject {
     // MARK: - private
     fileprivate override init() {
         super.init()
-        
-        let sel1 = #selector(UIViewController.viewDidLoad)
-        let liSel1 = #selector(UIViewController.li_viewDidLoad)
-        LiquidRuntimeHelper.addOrReplaceMethod(class: UIViewController.self, original: sel1, swizzled: liSel1)
     }
     
     func presentTransition(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
@@ -85,6 +105,7 @@ public class LiquidTransition: NSObject {
     
     public internal(set) var currentTransition: LiquidTransitionProtocol?
     fileprivate var transitions: [LiquidTransitionProtocolInternal] = []
+    fileprivate var isSwizzled: Bool = false
 }
 
 extension UIViewController {

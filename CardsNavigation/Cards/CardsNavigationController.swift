@@ -48,6 +48,10 @@ class CardsNavigationController: UIViewController {
         }
     }
     
+    @IBAction func closePressed() {
+        dismiss(animated: true, completion: nil)
+    }
+    
     func addNewPage() {
         let vc = WebViewController()
 //        vc.transitioningDelegate = self

@@ -48,7 +48,7 @@ class TestBrokenAnimationController: UIViewController {
             let progress = min(1, max(offset.y / 300.0, 0))
             LiquidTransition.shared.update(progress: progress)
         } else if pan.state == .ended {
-            LiquidTransition.shared.finish()
+            LiquidTransition.shared.complete()
         }
     }
 

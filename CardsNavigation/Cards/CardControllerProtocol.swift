@@ -12,7 +12,7 @@ protocol CardControllerProtocol {
 
     func getContentView() -> UIView
     
-    func getToolbarView() -> UIView?
+    func getToolbarView() -> UIView
     
     func getState() -> Codable?
     

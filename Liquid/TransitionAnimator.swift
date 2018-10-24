@@ -71,6 +71,7 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
         interactive.delegate = self
     }
     
+    /// You can animate non animatable properties
     public func addCustomAnimation(_ closure: @escaping CustomAnimation) {
         customAnimations.append(closure)
     }
@@ -78,13 +79,12 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
     // -------------------------------
     //       MARK: - Overrides
     // -------------------------------
-    
+    /// Override to move information between controllers
     open func prepareAnimation(vc1: VC1, vc2: VC2, isPresenting: Bool) {
-        // override to move information between controllers
     }
     
+    /// Perform here you animation
     open func animation(vc1: VC1, vc2: VC2, container: UIView, duration: Double) {
-        // perform here you animation
         let className = String(describing: self)
         print("LiquidTransition warning: override \(className).animation(vc1: VC1, vc2: VC2, container: UIView, duration: Double) method")
         
@@ -102,7 +102,7 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
         // override to animate interactive view to destanation location
     }
     
-    //// You can override to perform more complex logic
+    /// You can override to perform more complex logic
     open func canAnimate(from: UIViewController, to: UIViewController, direction animDirection: Direction) -> Bool {
         if !direction.contains(animDirection) { return false }
         if fromTypes.count == 0 || toTypes.count == 0 {
@@ -117,7 +117,6 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
         if direction.contains(.both) && animDirection.contains(.dismiss) {
             swap(&from, &to)
         }
-//        напистать isKindOfClass
         
         if fromTypes.contains(where: {from.isKind(of: $0)}) &&
             toTypes.contains(where: {to.isKind(of: $0)}) {
@@ -148,18 +147,6 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
             transitionContext.containerView.addSubview(toView)
             if !isPresenting {
                 transitionContext.containerView.sendSubviewToBack(toView)
-            }
-        }
-        
-        // we need to catch end of the animation, to propertly complete transition
-        print("Orig duration", TimeInterval(duration))
-        UIView.animate(withDuration: TimeInterval(duration), animations: {
-            self.makeNonVisibleChanges(view: transitionContext.containerView)
-        }) { (_) in
-            if transitionContext.transitionWasCancelled {
-                transitionContext.view(forKey: .to)?.removeFromSuperview()
-            } else {
-                transitionContext.view(forKey: .from)?.removeFromSuperview()
             }
         }
         
@@ -296,6 +283,14 @@ extension TransitionAnimator: TransitionPercentAnimatorDelegate {
         let animPercent = isBackwardAnimation ? 1-percent : percent
         for closure in customAnimations {
             closure(animPercent)
+        }
+    }
+    
+    func transitionCompleted(context: UIViewControllerContextTransitioning) {
+        if context.transitionWasCancelled {
+            context.view(forKey: .to)?.removeFromSuperview()
+        } else {
+            context.view(forKey: .from)?.removeFromSuperview()
         }
     }
 }

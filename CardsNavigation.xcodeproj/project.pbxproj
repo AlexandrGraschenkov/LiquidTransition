@@ -11,7 +11,6 @@
 		FA0B4F652161FF8A00C18F26 /* BrokenViewTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B4F642161FF8A00C18F26 /* BrokenViewTransition.swift */; };
 		FA0B4F6A2162BA4700C18F26 /* TestBrokenAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B4F692162BA4700C18F26 /* TestBrokenAnimationController.swift */; };
 		FA0D98842122341000602071 /* UIImage+Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D98832122341000602071 /* UIImage+Decoder.swift */; };
-		FA0D9886212375E100602071 /* CardsAnimationTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0D9885212375E100602071 /* CardsAnimationTransition.swift */; };
 		FA2B5D8D2128B43C00B38B1C /* CardCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D8C2128B43C00B38B1C /* CardCells.swift */; };
 		FA2B5D922128BAAB00B38B1C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D912128BAAB00B38B1C /* Extensions.swift */; };
 		FA2B5D962128BBCD00B38B1C /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D952128BBCD00B38B1C /* GlobalFunctions.swift */; };
@@ -100,7 +99,6 @@
 		FA0B4F642161FF8A00C18F26 /* BrokenViewTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokenViewTransition.swift; sourceTree = "<group>"; };
 		FA0B4F692162BA4700C18F26 /* TestBrokenAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBrokenAnimationController.swift; sourceTree = "<group>"; };
 		FA0D98832122341000602071 /* UIImage+Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Decoder.swift"; sourceTree = "<group>"; };
-		FA0D9885212375E100602071 /* CardsAnimationTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsAnimationTransition.swift; sourceTree = "<group>"; };
 		FA1E8160212D3383001DA432 /* LiquidTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidTransition.swift; sourceTree = "<group>"; };
 		FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionPercentAnimator.swift; sourceTree = "<group>"; };
 		FA2B5D8C2128B43C00B38B1C /* CardCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCells.swift; sourceTree = "<group>"; };
@@ -254,7 +252,6 @@
 				FAAF45582165FA330032C2A9 /* BrokenView */,
 				FAAF45592165FA670032C2A9 /* Photos */,
 				FAAE26E1211A46E60047CECD /* GradientView.swift */,
-				FAAE26DD211A1E000047CECD /* WebViewController.xib */,
 				FAAE26D9211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift */,
 				FAAE26C9211A1A430047CECD /* Main.storyboard */,
 				FAAE26CE211A1A450047CECD /* LaunchScreen.storyboard */,
@@ -275,10 +272,10 @@
 		FAAE26EC211B7AFC0047CECD /* Cards */ = {
 			isa = PBXGroup;
 			children = (
+				FAAE26DD211A1E000047CECD /* WebViewController.xib */,
 				FAAE26DB211A1D430047CECD /* WebViewController.swift */,
 				FAAE26DF211A1E9B0047CECD /* CardsNavigationController.swift */,
 				FA2B5D8C2128B43C00B38B1C /* CardCells.swift */,
-				FA0D9885212375E100602071 /* CardsAnimationTransition.swift */,
 				FAAE26EA211B7AF70047CECD /* CardInfo.swift */,
 				FAAE26E8211B79A30047CECD /* CardControllerProtocol.swift */,
 				FAAE26ED211B84CE0047CECD /* UIImageRetriever.swift */,
@@ -504,7 +501,6 @@
 				FAAE26E2211A46E60047CECD /* GradientView.swift in Sources */,
 				FA0B4F652161FF8A00C18F26 /* BrokenViewTransition.swift in Sources */,
 				FAEB331E2175305100F61B5C /* PhotoCloseInteractiveTransition.swift in Sources */,
-				FA0D9886212375E100602071 /* CardsAnimationTransition.swift in Sources */,
 				FAAE26DA211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift in Sources */,
 				FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */,
 				FA92B84E216878870095C126 /* UIImage+Ex.swift in Sources */,
