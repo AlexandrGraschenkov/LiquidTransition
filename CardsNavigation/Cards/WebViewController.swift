@@ -26,9 +26,6 @@ class WebViewController: UIViewController {
         if #available(iOS 11.0, *), let statusHeight = UIApplication.shared.keyWindow?.safeAreaInsets.top {
             statusBarView.frame.size.height = statusHeight
         }
-        if #available(iOS 11.0, *), let botInset = UIApplication.shared.keyWindow?.safeAreaInsets.top {
-            toolbar.frame = toolbar.frame.inset(top: -botInset)
-        }
         web = WKWebView(frame: view.bounds.inset(top: statusBarView.frame.size.height, bottom: toolbar.bounds.height))
         web.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         view.addSubview(web)
