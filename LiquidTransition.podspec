@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
-  s.name         = "Liquid"
+  s.name         = "LiquidTransition"
   s.version      = "1.0.0"
   s.summary      = "Animated transitions make simple"
   s.description  = <<-DESC
-                    Liquid helps to you build transition between view controllers. 
+                    LiquidTransition helps to you build transition between view controllers. 
                     You still perform animation like before and have full manual acces for animation.
                     Liqud 
                    DESC
