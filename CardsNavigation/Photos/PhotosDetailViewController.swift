@@ -35,7 +35,7 @@ class PhotosDetailViewController: UIPageViewController {
         
         if let controllers = self.navigationController?.viewControllers,
             let prev = controllers[controllers.count-2] as? PhotosViewController {
-            animTransition = LiquidTransition.shared.transitionForDismiss(from: self, to: prev) as? PhotoCloseInteractiveTransition
+            animTransition = Liquid.shared.transitionForDismiss(from: self, to: prev) as? PhotoCloseInteractiveTransition
             animTransition?.isEnabled = false
         }
     }
@@ -63,10 +63,10 @@ class PhotosDetailViewController: UIPageViewController {
             
         } else if pan.state == .changed {
             let progress = min(0.7, max(0, offset.y / 200.0))
-            LiquidTransition.shared.update(progress: progress)
+            Liquid.shared.update(progress: progress)
             animTransition?.updateInteractive(offset: CGPoint(x: 0, y: offset.y), progress: progress)
         } else {
-            LiquidTransition.shared.complete()
+            Liquid.shared.complete()
         }
     }
     

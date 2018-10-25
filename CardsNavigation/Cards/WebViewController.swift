@@ -69,9 +69,9 @@ class WebViewController: UIViewController {
             let progress = max(0, min(1, translation.x / 150.0))
             print(progress)
 //            _ = pan.location(in: v)
-            LiquidTransition.shared.update(progress: progress)
+            Liquid.shared.update(progress: progress)
         case .ended:
-            LiquidTransition.shared.complete()
+            Liquid.shared.complete()
         default:
             break
         }

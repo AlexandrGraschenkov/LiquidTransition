@@ -16,7 +16,7 @@ public protocol LiquidTransitionProtocol: UIViewControllerAnimatedTransitioning 
     var isEnabled: Bool { get }
     
     func completeInteractive(complete: Bool?, animated: Bool)
-    func canAnimate(from: UIViewController, to: UIViewController, direction: LiquidTransition.Direction) -> Bool
+    func canAnimate(from: UIViewController, to: UIViewController, direction: Liquid.Direction) -> Bool
 }
 
 internal protocol LiquidTransitionProtocolInternal: LiquidTransitionProtocol {
@@ -27,7 +27,7 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
     
     public typealias CustomAnimation = (_ progress: CGFloat)->()
     public typealias ControllerCheckClosure = (_ vc1: UIViewController, _ vc2: UIViewController, _ dir: Direction) -> Bool
-    public typealias Direction = LiquidTransition.Direction
+    public typealias Direction = Liquid.Direction
     
     
     public var progress: CGFloat {
@@ -152,7 +152,7 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
         
         
         if let (vc1, vc2, backward) = getControllers(context: transitionContext) {
-            LiquidTransition.shared.currentTransition = self
+            Liquid.shared.currentTransition = self
             interactive.reset()
             interactive.backward = backward
             

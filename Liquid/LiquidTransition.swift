@@ -9,9 +9,9 @@
 import UIKit
 
 
-public class LiquidTransition: NSObject {
+public class Liquid: NSObject {
 
-    public static var shared = LiquidTransition()
+    public static var shared = Liquid()
     
     public struct Direction: OptionSet {
         public let rawValue: UInt
@@ -111,22 +111,22 @@ public class LiquidTransition: NSObject {
 extension UIViewController {
     @objc func li_viewDidLoad() {
         if self.transitioningDelegate == nil {
-            self.transitioningDelegate = LiquidTransition.shared
+            self.transitioningDelegate = Liquid.shared
         }
         if let nav = self as? UINavigationController, nav.delegate == nil {
-            nav.delegate = LiquidTransition.shared
+            nav.delegate = Liquid.shared
         }
         self.li_viewDidLoad()
     }
 }
 
-extension LiquidTransition: UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
+extension Liquid: UIViewControllerTransitioningDelegate, UINavigationControllerDelegate {
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return LiquidTransition.shared.presentTransition(from: presenting, to: presented)
+        return Liquid.shared.presentTransition(from: presenting, to: presented)
     }
 
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return LiquidTransition.shared.dismissTransition(from: dismissed, to: dismissed.presentingViewController!)
+        return Liquid.shared.dismissTransition(from: dismissed, to: dismissed.presentingViewController!)
     }
 
     public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
@@ -144,9 +144,9 @@ extension LiquidTransition: UIViewControllerTransitioningDelegate, UINavigationC
     
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .push {
-            return LiquidTransition.shared.presentTransition(from: fromVC, to: toVC)
+            return Liquid.shared.presentTransition(from: fromVC, to: toVC)
         } else if operation == .pop {
-            return LiquidTransition.shared.dismissTransition(from: fromVC, to: toVC)
+            return Liquid.shared.dismissTransition(from: fromVC, to: toVC)
         }
         return nil
     }

@@ -34,7 +34,7 @@ class PhotosViewController: UICollectionViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        navigationController?.delegate = LiquidTransition.shared
+        navigationController?.delegate = Liquid.shared
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
