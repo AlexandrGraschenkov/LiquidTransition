@@ -29,6 +29,8 @@ public class Liquid: NSObject {
      Automaticly becomes delegate for all transitions, that not defined manually
      
      Performs swizzle **viewDidLoad** for **UIViewController**s
+     
+     Don't worry, at every time you can ovveride delegate for specific controller to perform animation manually
      */
     public func becomeDelegate() {
         if isSwizzled { return }

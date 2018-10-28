@@ -15,7 +15,7 @@ import UIKit
  let restore = RestoreTransition()
  restore.addRestore(imgView, label, view)
  restore.moveView(avatarView, to: containerView) // it helps move move view to another superview, and restore it when animation is finished
- restore.addRestore(imgView2, keyPaths: ["layer.cornerRadius"]) // you can restore any custom property
+ restore.addRestore(imgView2, keyPaths: ["layer.cornerRadius"]) // **not works yet, only KVO** you can restore any custom property
  
  UIView.animate(withDuration: 0.2, animations: {
     avatarView.frame.center.y += 200;
@@ -34,18 +34,18 @@ public class RestoreTransition: NSObject {
     }
     
     /**
-     - Parameter keyPaths: add custom keys restore for all added views
+     - Parameter keyPaths: add custom keys restore for all added views (**Only KVO properties**)
      */
     public init(keyPaths: [String] = []) {
-        self.keyPaths = keyPaths
+        self.keyPaths = []
     }
     
     /**
      Saves view state, and allow you to restore view state after changes
      - Parameter keyPaths: custom key path that saved for restore
      */
-    public func addRestore(_ view: UIView, keyPaths: [String], ignoreFields: [Fields] = []) {
-        let keyPaths = keyPaths + self.keyPaths
+    public func addRestore(_ view: UIView, ignoreFields: [Fields]) {
+//        let keyPaths = keyPaths + self.keyPaths
         var state = ViewState.generateWithView(view: view, keyPaths: keyPaths)
         state.ignoreFields = ignoreFields
         restoreViews.append(state)

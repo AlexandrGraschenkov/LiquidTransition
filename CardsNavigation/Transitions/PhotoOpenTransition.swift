@@ -44,7 +44,7 @@ class PhotoOpenTransition: TransitionAnimator<PhotosViewController, PhotosDetail
         let contentVC = vc2.viewControllers?.first as? PhotoPreviewController
         let detailContentView = contentVC?.imageView
         restore.addRestore(animImageView, cell.imgView)
-        restore.addRestore(vc2.view, keyPaths: [], ignoreFields: [.superview])
+        restore.addRestore(vc2.view, ignoreFields: [.superview])
         if let content = detailContentView {
             restore.addRestore(content)
         }

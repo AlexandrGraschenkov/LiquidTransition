@@ -21,10 +21,6 @@ struct AnimationHelper {
     static func xRotation(_ angle: Double) -> CATransform3D {
         return CATransform3DRotate(.perspectiveIdentity, CGFloat(angle), 1, 0, 0)
     }
-    
-    static func perspectiveTransform(for containerView: UIView) {
-        containerView.layer.sublayerTransform = .perspectiveIdentity
-    }
 }
 
 class CardTransition: TransitionAnimator<CardsNavigationController, WebViewController> {
@@ -39,7 +35,10 @@ class CardTransition: TransitionAnimator<CardsNavigationController, WebViewContr
     }
     
     
-    override func animation(vc1: CardsNavigationController, vc2: WebViewController, container: UIView, duration: Double) {
+    override func animation(vc1: CardsNavigationController,
+                            vc2: WebViewController,
+                            container: UIView,
+                            duration: Double) {
         let restore = RestoreTransition()
         let content = vc2.getContentView()
         let startContentFrame = content.frame
@@ -55,7 +54,10 @@ class CardTransition: TransitionAnimator<CardsNavigationController, WebViewContr
         content.center = CGPoint(x: cardFrame.midX, y: cardFrame.midY)
         
         
-        clipContainer = UIView(frame: CGRect(x: 0, y: 0, width: cardFrame.width / scale, height: cardFrame.height / scale))
+        clipContainer = UIView(frame: CGRect(x: 0,
+                                             y: 0,
+                                             width: cardFrame.width / scale,
+                                             height: cardFrame.height / scale))
         clipContainer.center = CGPoint(x: content.bounds.midX, y: content.bounds.midY)
         clipContainer.clipsToBounds = true
         clipContainer.backgroundColor = UIColor.white

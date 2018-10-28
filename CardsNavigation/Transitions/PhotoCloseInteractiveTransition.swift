@@ -52,7 +52,7 @@ class PhotoCloseInteractiveTransition: TransitionAnimator<PhotosDetailViewContro
         animImageView.layer.cornerRadius = cell.corners
         
         restore.addRestore(cell.imgView)
-        restore.addRestore(vc1.view, keyPaths: [], ignoreFields: [.superview])
+        restore.addRestore(vc1.view, ignoreFields: [.superview])
         
         cell.imgView.isHidden = true
         

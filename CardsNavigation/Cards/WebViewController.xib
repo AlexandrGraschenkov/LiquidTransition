@@ -58,17 +58,6 @@
                                 <action selector="showCards" destination="-1" eventType="touchUpInside" id="FUc-yh-LHH"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ljj-V0-RMZ">
-                            <rect key="frame" x="120" y="0.0" width="60" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                            <state key="normal" title="Test">
-                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </state>
-                            <connections>
-                                <action selector="testFunc" destination="-1" eventType="touchUpInside" id="okQ-na-qjy"/>
-                            </connections>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.80011334196891193" green="0.16708670314632004" blue="0.30044661031684089" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
