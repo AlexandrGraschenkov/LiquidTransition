@@ -123,7 +123,7 @@ class ExampleTransition: TransitionAnimator<SampleController, CardsNavigationCon
 - [x] Restore view state helper class
 - [x] Support Cocoapods
 - [ ] Support Carthage
-- [ ] Add custom save keys for `RestoreTransition`
+- [x] Add custom save keys for `RestoreTransition`
 - [ ] Add some default animations
 
 ## Notes

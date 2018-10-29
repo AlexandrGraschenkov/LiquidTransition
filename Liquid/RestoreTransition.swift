@@ -8,6 +8,62 @@
 
 import UIKit
 
+
+public protocol StateRestoreViewProtocol {
+    func restore()
+    func cloneAndSet(view: UIView?) -> StateRestoreViewProtocol
+    func setObject(_ obj: UIView)
+}
+
+public class SaveViewState<Value> : StateRestoreViewProtocol {
+    public init(path: ReferenceWritableKeyPath<UIView, Value>) {
+        self.keyPath = path
+    }
+    
+    public func setObject(_ obj: UIView) {
+        self.obj = obj
+        self.value = obj[keyPath: keyPath]
+    }
+    
+    public func restore() {
+        if let obj = obj, let value = value {
+            obj[keyPath: keyPath] = value
+        }
+    }
+    
+    public func cloneAndSet(view: UIView?) -> StateRestoreViewProtocol {
+        let state = SaveViewState(path: keyPath)
+        if let view = view {
+            state.setObject(view)
+        }
+        return state
+    }
+    
+    var obj: UIView? = nil
+    var value: Value? = nil
+    let keyPath: ReferenceWritableKeyPath<UIView, Value>
+}
+
+protocol RestoreProtocol {
+    func restore()
+}
+
+class SaveState<Root, Value>: RestoreProtocol {
+    init(_ obj: Root, keyPath: ReferenceWritableKeyPath<Root, Value>) {
+        self.obj = obj
+        self.val = obj[keyPath: keyPath]
+        self.keyPath = keyPath
+    }
+    
+    func restore() {
+        obj[keyPath: keyPath] = val
+    }
+    
+    let obj: Root
+    let val: Value
+    let keyPath: ReferenceWritableKeyPath<Root, Value>
+}
+
 /**
  Restore `view` state after transition
  # Example:
@@ -15,7 +71,7 @@ import UIKit
  let restore = RestoreTransition()
  restore.addRestore(imgView, label, view)
  restore.moveView(avatarView, to: containerView) // it helps move move view to another superview, and restore it when animation is finished
- restore.addRestore(imgView2, keyPaths: ["layer.cornerRadius"]) // **not works yet, only KVO** you can restore any custom property
+ restore.addRestore(imgView2, keyPaths: [SaveViewState(path: \.layer.cornerRadius)]) // you can restore any custom property from UIView
  
  UIView.animate(withDuration: 0.2, animations: {
     avatarView.frame.center.y += 200;
@@ -36,7 +92,11 @@ public class RestoreTransition: NSObject {
     /**
      - Parameter keyPaths: add custom keys restore for all added views (**Only KVO properties**)
      */
-    public init(keyPaths: [String] = []) {
+    public init(keyPaths: StateRestoreViewProtocol...) {
+        self.keyPaths = keyPaths
+    }
+    
+    public override init() {
         self.keyPaths = []
     }
     
@@ -45,23 +105,33 @@ public class RestoreTransition: NSObject {
      - Parameter keyPaths: custom key path that saved for restore
      */
     public func addRestore(_ view: UIView, ignoreFields: [Fields]) {
-//        let keyPaths = keyPaths + self.keyPaths
-        var state = ViewState.generateWithView(view: view, keyPaths: keyPaths)
-        state.ignoreFields = ignoreFields
-        restoreViews.append(state)
+        restoreViews.append(ViewState.generateWithView(view: view,
+                                                       keyPaths: keyPaths,
+                                                       ignoreFields: ignoreFields))
+    }
+    
+    public func addRestore(_ view: UIView, keyPaths: [StateRestoreViewProtocol], ignoreFields: [Fields] = []) {
+        restoreViews.append(ViewState.generateWithView(view: view,
+                                                       keyPaths: self.keyPaths + keyPaths,
+                                                       ignoreFields: ignoreFields))
+    }
+    
+    /**
+     Save state only specific field and restores only this field
+     */
+    public func addRestoreKeyPath<Root, Value>(_ view: Root, keyPath: ReferenceWritableKeyPath<Root, Value>) {
+        customSavedValues.append(SaveState(view, keyPath: keyPath))
     }
     
     public func addRestore(_ views: UIView...) {
         for v in views {
-            let state = ViewState.generateWithView(view: v, keyPaths: keyPaths)
-            restoreViews.append(state)
+            restoreViews.append(ViewState.generateWithView(view: v, keyPaths: keyPaths))
         }
     }
     
     public func addRestore(_ views: [UIView]) {
         for v in views {
-            let state = ViewState.generateWithView(view: v, keyPaths: keyPaths)
-            restoreViews.append(state)
+            restoreViews.append(ViewState.generateWithView(view: v, keyPaths: keyPaths))
         }
     }
     
@@ -122,20 +192,26 @@ public class RestoreTransition: NSObject {
             if v.view.isHidden != v.isHidden && !v.ignoreFields.contains(.isHidden)  {
                 v.view.isHidden = v.isHidden
             }
-            for (path, val) in v.keyPaths {
-                v.view.setValue(val, forKey: path)
-            }
+            
+            v.keyPaths.forEach({$0.restore()})
         }
+        
         for v in removeViews {
             v.removeFromSuperview()
         }
         restoreViews.removeAll()
+        
+        for r in customSavedValues {
+            r.restore()
+        }
+        customSavedValues.removeAll()
     }
     // MARK: - private
     
     fileprivate var restoreViews: [ViewState] = []
     fileprivate var removeViews: [UIView] = []
-    fileprivate var keyPaths: [String]
+    fileprivate var keyPaths: [StateRestoreViewProtocol]
+    fileprivate var customSavedValues: [RestoreProtocol] = []
 }
 
 
@@ -146,21 +222,19 @@ fileprivate struct ViewState {
     let transform: CGAffineTransform
     let superview: UIView?
     let isHidden: Bool
-    var keyPaths: [String: Any?] = [:]
+    var keyPaths: [StateRestoreViewProtocol] = []
     var ignoreFields: [RestoreTransition.Fields] = []
     
-    static func generateWithView(view: UIView, keyPaths: [String]) -> ViewState {
-        var dic: [String: Any?] = [:]
-        for path in keyPaths {
-            dic[path] = view.value(forKeyPath: path)
-        }
+    static func generateWithView(view: UIView,
+                                 keyPaths: [StateRestoreViewProtocol] = [],
+                                 ignoreFields: [RestoreTransition.Fields] = []) -> ViewState {
         return ViewState(view: view,
                          alpha: view.alpha,
                          frame: view.frame,
                          transform: view.transform,
                          superview: view.superview,
                          isHidden: view.isHidden,
-                         keyPaths: dic,
-                         ignoreFields: [])
+                         keyPaths: keyPaths.map({$0.cloneAndSet(view: view)}),
+                         ignoreFields: ignoreFields)
     }
 }

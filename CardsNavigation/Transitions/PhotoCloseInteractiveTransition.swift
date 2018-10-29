@@ -42,7 +42,7 @@ class PhotoCloseInteractiveTransition: TransitionAnimator<PhotosDetailViewContro
         fromFrame = vc2.view.bounds.getAspectFit(viewSize: imgView.image!.size)
         corners = cell.corners
         
-        let restore = RestoreTransition(keyPaths: ["contentMode"])
+        let restore = RestoreTransition(keyPaths: SaveViewState(path: \.contentMode))
         restore.moveView(imgView, to: container)
         
         animImageView = imgView
