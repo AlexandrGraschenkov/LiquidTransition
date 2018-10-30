@@ -16,8 +16,8 @@ Features:
 * Helper class for restore views state
 * Animation of custom properties *(or `CALayer` properties)*
 
-![Web browser](/../screenshots/gif/web_browser.gif?raw=true "Web browser")<br>
-![Photo browser](/../screenshots/gif/photo_browser.gif?raw=true "Photo browser")<br>
+![Web browser](/../screenshots/gif/web_browser.gif?raw=true "Web browser") &nbsp;
+![Photo browser](/../screenshots/gif/photo_browser.gif?raw=true "Photo browser") &nbsp;
 ![Complex animation](/../screenshots/gif/complex_animation.gif?raw=true "Complex animation")
 
 ## Instalation
@@ -67,7 +67,7 @@ class FadeTransition: TransitionAnimator<UIViewController, CardsNavigationContro
     }
 }
 ```
-That it! Easy enought?! :)
+That it! Easy enough?! :)
 
 Also there some advantages over standart approach:
 - You don't need to write boilerplate code for animation transition setup
@@ -153,7 +153,7 @@ and define your conditions
 
 LiquidTransition controls animation percent completion. So if you define animation in one direction, it can run animation backward. In backward animation run from 1 to 0. So if you works with `NSNavigationController` with `navigationBar`, you can see that `navigationBar` animates backward (see example with photos). In this case better to define animation in both directions.
 
-LiquidTransition 'inspired' by [Hero](https://github.com/HeroTransitions/Hero). We have complex UI with custom animation. Several weaks we try to implement performance animation in `Hero`. When nothing works with `Hero`, we check manual implementation of transition. It works much faster. Cause `Hero` do a lot of snapshots, performs transition becomes laggy. In real project `Hero` showed not enought performance and require a lot of code to say what you really want. So in real app manual transition looks more suitable. `Hero` was removed from project and we move to transitions with manual control. Some pieces of new library start appear in our project. Now some ideas and code was moved and refactored for common usage in one library.
+LiquidTransition 'inspired' by [Hero](https://github.com/HeroTransitions/Hero). We have complex UI with custom animation. Several weaks we try to implement performance animation in `Hero`. When nothing works with `Hero`, we check manual implementation of transition. It works much faster. Cause `Hero` do a lot of snapshots, performs transition becomes laggy. In real project `Hero` showed not enough performance and require a lot of code to say what you really want. So in real app manual transition looks more suitable. `Hero` was removed from project and we move to transitions with manual control. Some pieces of new library start appear in our project. Now some ideas and code was moved and refactored for common usage in one library.
 
 If you look for something similar, take a look on [Transition](https://github.com/Touchwonders/Transition). I found this project after finish `LiquidTransition` and it have good ideas behind. It less convenient, but still good lib.
 
