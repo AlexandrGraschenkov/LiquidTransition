@@ -13,8 +13,8 @@ LiquidTransition provide new API for transition creation.
 Features: 
 * Easy and convinient API
 * Animate backward
-* Interapt transition at any time to continue interactive
-* Helper class for restore state
+* Interrupt transition at any time to continue interactive
+* Helper class for restore views state
 * Animation of custom properties *(or `CALayer` properties)*
 
 ![Web browser](/../screenshots/gif/web_browser.gif?raw=true "Web browser")<br>
