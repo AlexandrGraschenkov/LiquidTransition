@@ -73,7 +73,7 @@ Also there some advantages over standart approach:
 - You don't need to write boiletplate code for backward animation (**less code by 2 times**)
 - You can animate not animatable properties (like `cornerRadius` or watewer you want, look at `transtion.addCustomAnimation(...)`)
 
-#### Example customization
+#### Customization
 
 ```Swift
 import Liquid
@@ -115,6 +115,27 @@ class ExampleTransition: TransitionAnimator<SampleController, CardsNavigationCon
 }
 ```
 
+Sometimes we need that one transition work for multiple controllers. In this case you can define `UIViewController` as template classes and call init method with multiple classes defined:
+
+```Swift
+class FadeTransition: TransitionAnimator<UIViewController, UIViewController> {
+
+init() {
+    super.init(from: [VC1.self, VC2.self, VC3.self], to: [VC4.self, VC5.self], direction: .both)
+    duration = 0.3
+}
+
+override func animation(vc1: UIViewController, vc2: UIViewController, container: UIView, duration: Double) {
+// animation
+}
+```
+
+Or use protocol, to have access to common views. If it's not your case, you can ovverride `canAnimate` function
+```Swift
+open func canAnimate(from: UIViewController, to: UIViewController, direction animDirection: Direction) -> Bool
+```
+and define your conditions
+
 ## TODO
 
 - [x] Backward animation
@@ -129,6 +150,10 @@ class ExampleTransition: TransitionAnimator<SampleController, CardsNavigationCon
 ## Notes
 
 LiquidTransition controls animation percent completion. So if you define animation in one direction, it can run animation backward. In backward animation run from 1 to 0. So if you works with `NSNavigationController` with `navigationBar`, you can see that `navigationBar` animates backward (see example with photos). In this case better to define animation in both directions.
+
+LiquidTransition inspired by [Hero](https://github.com/HeroTransitions/Hero). We have complex UI with custom animation. Several weaks we try to implement performance animation in Hero. When nothing works we check manual implementation of transition. It works much faster. Cause Hero do a lot of snapshots and performing transition becomes laggy. In real project Hero showed not enoug performance and require a lot of code to say what you really want. So here manual transition looks more suitable. So Hero was removed from project and we move to manual control. Some pieces of new library start appear in our project. Some ideas and code was moved to this library and refactored for common usage.
+
+If you look for something similar, take a look on [Transition](https://github.com/Touchwonders/Transition). I found this project after finish `LiquidTransition` and it have good ideas behind. It less convenient, but still good lib.
 
 ## Credits
 
