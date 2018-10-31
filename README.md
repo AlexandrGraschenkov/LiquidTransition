@@ -32,13 +32,13 @@ pod 'LiquidTransition'
 
 Then run `pod install`.
 
-Don't forget to `import Liquid` in every file you'd like to use LiquidTransition.
+Don't forget to `import LiquidTransition` in every file you'd like to use LiquidTransition.
 
 ## Usage
 
 Like this you can create simple transition
 ``` Swift
-import Liquid
+import LiquidTransition
 
 class FadeTransition: TransitionAnimator<FromViewController, ToViewController> {
 
@@ -81,7 +81,7 @@ Also there some advantages over standart approach:
 #### Customization
 
 ```Swift
-import Liquid
+import LiquidTransition
 
 class ExampleTransition: TransitionAnimator<SampleController, CardsNavigationController> {
 
