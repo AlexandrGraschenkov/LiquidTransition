@@ -22,7 +22,7 @@
 		FA6203EA216E9D1F002EFE71 /* DisplayLinkAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */; };
 		FA6203EB216E9D1F002EFE71 /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */; };
 		FA6203EC216E9D1F002EFE71 /* Timing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB21DB214630C500AAFF48 /* Timing.swift */; };
-		FA6203ED216E9D1F002EFE71 /* SmothInteractive.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF4556216567200032C2A9 /* SmothInteractive.swift */; };
+		FA6203ED216E9D1F002EFE71 /* SmoothInteractive.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF4556216567200032C2A9 /* SmoothInteractive.swift */; };
 		FA6203EE216E9D1F002EFE71 /* LiquidTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E8160212D3383001DA432 /* LiquidTransition.swift */; };
 		FA6203EF216E9D1F002EFE71 /* RestoreTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D932128BAED00B38B1C /* RestoreTransition.swift */; };
 		FA6203F0216E9D1F002EFE71 /* TransitionPercentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */; };
@@ -138,7 +138,7 @@
 		FAAE26E8211B79A30047CECD /* CardControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardControllerProtocol.swift; sourceTree = "<group>"; };
 		FAAE26EA211B7AF70047CECD /* CardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfo.swift; sourceTree = "<group>"; };
 		FAAE26ED211B84CE0047CECD /* UIImageRetriever.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageRetriever.swift; sourceTree = "<group>"; };
-		FAAF4556216567200032C2A9 /* SmothInteractive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmothInteractive.swift; sourceTree = "<group>"; };
+		FAAF4556216567200032C2A9 /* SmoothInteractive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmoothInteractive.swift; sourceTree = "<group>"; };
 		FAAF455A2165FA890032C2A9 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		FAAF455C2165FAB50032C2A9 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		FAAF45612166BE130032C2A9 /* PhotoInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoInfo.swift; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 				FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */,
 				FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */,
 				FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */,
-				FAAF4556216567200032C2A9 /* SmothInteractive.swift */,
+				FAAF4556216567200032C2A9 /* SmoothInteractive.swift */,
 				FAAB21DB214630C500AAFF48 /* Timing.swift */,
 				FA6203DF216E9CFE002EFE71 /* Liquid.h */,
 				FA6203E0216E9CFE002EFE71 /* Info.plist */,
@@ -479,7 +479,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA6203ED216E9D1F002EFE71 /* SmothInteractive.swift in Sources */,
+				FA6203ED216E9D1F002EFE71 /* SmoothInteractive.swift in Sources */,
 				FA6203F0216E9D1F002EFE71 /* TransitionPercentAnimator.swift in Sources */,
 				FA6203E9216E9D1F002EFE71 /* RuntimeHelper.swift in Sources */,
 				FA6203EF216E9D1F002EFE71 /* RestoreTransition.swift in Sources */,

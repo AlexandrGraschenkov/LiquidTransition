@@ -14,7 +14,7 @@ class TestBrokenAnimationController: UIViewController {
     @IBOutlet var imgView: UIImageView!
     var dismissFromPoint: CGPoint = CGPoint(x: 100, y: 100)
     var animator = BrokenViewTransition()
-    @IBOutlet var smothInteractiveSwitch: UISwitch!
+    @IBOutlet var smoothInteractiveSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +40,7 @@ class TestBrokenAnimationController: UIViewController {
             }
             
             dismissFromPoint = pan.location(in: pan.view)
-            animator.interactive.enableSmothInteractive = smothInteractiveSwitch.isOn
+            animator.interactive.enableSmoothInteractive = smoothInteractiveSwitch.isOn
             
             dismiss(animated: true, completion: nil)
         } else if pan.state == .changed {

@@ -34,26 +34,21 @@ Don't forget to `import Liquid` in every file you'd like to use LiquidTransition
 
 ## Usage
 
-On app starts you can setup transitions
-``` Swift
-Liquid.shared.becomeDelegate() // Liquid automaticly becomes delegates for all animated transitions
-Liquid.shared.addTransitions([FadeTransition()])
-```
 Like this you can create simple transition
 ``` Swift
 import Liquid
 
-class FadeTransition: TransitionAnimator<UIViewController, CardsNavigationController> {
+class FadeTransition: TransitionAnimator<FromViewController, ToViewController> {
 
     init() {
-        super.init(from: UIViewController.self, to: CardsNavigationController.self, direction: .both)
+        super.init(from: FromViewController.self, to: ToViewController.self, direction: .both)
         
         duration = 0.3
         timing = Timing.default
         // do not perform here complex operations, cause it calls on app initialization
     }
     
-    override func animation(vc1: UIViewController, vc2: UIViewController, container: UIView, duration: Double) {
+    override func animation(vc1: FromViewController, vc2: ToViewController, container: UIView, duration: Double) {
         vc2.view.alpha = 0
         
         // perform linear animation and manage timing function with `self.timing`
@@ -65,6 +60,13 @@ class FadeTransition: TransitionAnimator<UIViewController, CardsNavigationContro
     }
 }
 ```
+
+On app starts you can setup transitions
+``` Swift
+Liquid.shared.becomeDelegate() // Liquid automaticly becomes delegates for all animated transitions
+Liquid.shared.addTransitions([FadeTransition()])
+```
+
 That it! Easy enought?! :)
 
 Also there some advantages over standart approach:
@@ -72,6 +74,7 @@ Also there some advantages over standart approach:
 - You have more easy control on timing function `transtion.timing`
 - You don't need to write boiletplate code for backward animation (**less code by 2 times**)
 - You can animate not animatable properties (like `cornerRadius` or watewer you want, look at `transtion.addCustomAnimation(...)`)
+- If you have complex prepare for transition, by enabling `self.interactive.enableSmoothInteractive` you can resolve 'jump' percent animation
 
 #### Customization
 
@@ -142,6 +145,7 @@ and define your conditions
 - [x] Custom timing function
 - [x] Allow custom animation
 - [x] Restore view state helper class
+- [x] Smooth interactive animation for complex prepare animation
 - [x] Support Cocoapods
 - [ ] Support Carthage
 - [x] Add custom save keys for `RestoreTransition`

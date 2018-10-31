@@ -39,11 +39,13 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
     lazy var timing: Timing = Timing.default
     var isCanceled: Bool = false
     
-    public var enableSmothInteractive: Bool = false
-    public var smothInteractiveDuration: TimeInterval = 0.2
-    public var maxSpeed: CGFloat = 1.0
-    public var minSpeed: CGFloat = 1.0
-    fileprivate lazy var smothInteractive = SmothInteractive()
+    public var enableSmoothInteractive: Bool = false
+    fileprivate lazy var smoothInteractive = SmoothInteractive()
+    
+    /// Max completion speed after interactive transition calls complete
+    public var maxCompleteionSpeed: CGFloat = 1.0
+    /// Min completion speed after interactive transition calls complete
+    public var minCompleteionSpeed: CGFloat = 1.0
     
     weak var delegate: TransitionPercentAnimatorDelegate?
     
@@ -106,9 +108,9 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
         cancelAnimation?()
         cancelAnimation = nil
         
-        let isSmothInteractive = performSmothInteractive(percent: percentComplete, canInitalize: isAnimated)
-        if isSmothInteractive {
-            // animation control take SmothInteractive class
+        let isSmoothInteractive = performSmoothInteractive(percent: percentComplete, canInitalize: isAnimated)
+        if isSmoothInteractive {
+            // animation control take SmoothInteractive class
         } else {
             internalUpdate(percentComplete)
         }
@@ -131,17 +133,17 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
         delegate?.transitionPercentChanged(percent)
     }
     
-    fileprivate func performSmothInteractive(percent percentComplete: CGFloat, canInitalize: Bool) -> Bool {
-        if !enableSmothInteractive { return false }
+    fileprivate func performSmoothInteractive(percent percentComplete: CGFloat, canInitalize: Bool) -> Bool {
+        if !enableSmoothInteractive { return false }
         
         if canInitalize && percentComplete > 0.05 {
-            smothInteractive.run(duration: smothInteractiveDuration) {[weak self] (val) in
+            smoothInteractive.run(duration: totalDuration * Double(percentComplete)) {[weak self] (val) in
                 self?.internalUpdate(val)
             }
         }
         
-        if smothInteractive.isRunning {
-            smothInteractive.update(val: percentComplete)
+        if smoothInteractive.isRunning {
+            smoothInteractive.update(val: percentComplete)
             return true
         }
         
@@ -162,11 +164,11 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
         } else {
             lastSpeed = (percentComplete - self.percentComplete) / CGFloat(currTime - lastUpdateTime)
         }
-        if abs(lastSpeed) > maxSpeed {
-            lastSpeed = maxSpeed * (lastSpeed > 0 ? 1 : -1)
+        if abs(lastSpeed) > maxCompleteionSpeed {
+            lastSpeed = maxCompleteionSpeed * (lastSpeed > 0 ? 1 : -1)
         }
-        if abs(lastSpeed) < minSpeed {
-            lastSpeed = minSpeed * (lastSpeed > 0 ? 1 : -1)
+        if abs(lastSpeed) < minCompleteionSpeed {
+            lastSpeed = minCompleteionSpeed * (lastSpeed > 0 ? 1 : -1)
         }
         lastUpdateTime = currTime
     }

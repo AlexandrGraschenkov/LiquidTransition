@@ -1,5 +1,5 @@
 //
-//  SmothInteractive.swift
+//  SmoothInteractive.swift
 //  CardsNavigation
 //
 //  Created by Alexander Graschenkov on 04.10.2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SmothInteractive: NSObject {
+class SmoothInteractive: NSObject {
     var isRunning: Bool { return self.cancelable != nil }
     fileprivate var cancelable: Cancelable?
     fileprivate var lastValue: CGFloat = 0
