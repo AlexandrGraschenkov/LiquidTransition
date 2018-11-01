@@ -57,6 +57,10 @@ public class Liquid: NSObject {
         }
     }
     
+    public func removeAllTransitions() {
+        transitions.removeAll()
+    }
+    
     /**
      Performs interactive transition
      

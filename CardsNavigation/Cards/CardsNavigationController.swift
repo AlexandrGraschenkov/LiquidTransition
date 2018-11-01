@@ -61,14 +61,14 @@ class CardsNavigationController: UIViewController {
             self.collection.insertItems(at: [IndexPath(item: self.cards.count, section: 0)])
         }
         
-        let newInfo = CardInfo(snapshot: nil, controller: vc, type: .WebPage, state: nil)
+        let newInfo = CardInfo(snapshot: nil, controller: vc)
         cards.append(newInfo)
         lastOpenedCardIdx = cards.count-1
     }
     
     func openPage() {
         lastOpenedCardIdx = selectedIndex.item
-        if let vc = cards[lastOpenedCardIdx].vc {
+        if let vc = cards[lastOpenedCardIdx].controller {
 //            vc.transitioningDelegate = self
             present(vc, animated: true, completion: nil)
         }
@@ -147,21 +147,3 @@ extension CardsNavigationController: UICollectionViewDelegateFlowLayout, UIColle
         openPage()
     }
 }
-
-//extension CardsNavigationController: UIViewControllerTransitioningDelegate {
-
-//    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        return CardsAnimationTransition()
-//    }
-////
-//    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-//        guard let _ = dismissed as? WebViewController else {
-//            return nil
-//        }
-//        return CardsAnimationTransition()
-//    }
-//
-//    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-//        return nil
-//    }
-//}

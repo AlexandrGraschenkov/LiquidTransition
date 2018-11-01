@@ -79,15 +79,7 @@ class WebViewController: UIViewController {
 
 }
 
-extension WebViewController: CardControllerProtocol {
-    
-    func getState() -> Codable? {
-        return nil
-    }
-    
-    func restoreFromState(state: Codable) {
-        
-    }
+extension WebViewController {
     func getContentView() -> UIView {
         return web
     }
@@ -97,6 +89,6 @@ extension WebViewController: CardControllerProtocol {
     }
     
     func getStatusView() -> UIView {
-        return toolbar
+        return statusBarView
     }
 }
