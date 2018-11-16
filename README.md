@@ -10,11 +10,12 @@
 LiquidTransition provide new API for transition creation. 
 
 Features: 
-* Easy and convinient API
+* Easy and convinient API (less boilerplate code)
 * Animate backward
 * Interrupt transition at any time to continue interactive
 * Helper class for restore views state
 * Animation of custom properties *(or `CALayer` properties)*
+* Complex transition without 'lag'
 
 ![Web browser](/../screenshots/gif/web_browser.gif?raw=true "Web browser") &nbsp;
 ![Photo browser](/../screenshots/gif/photo_browser.gif?raw=true "Photo browser") &nbsp;
@@ -69,14 +70,7 @@ Liquid.shared.becomeDelegate() // Liquid automaticly becomes delegates for all a
 Liquid.shared.addTransitions([FadeTransition()])
 ```
 
-That it! Easy enought?! :)
-
-Also there some advantages over standart approach:
-- You don't need to write boilerplate code for animation transition setup
-- You have more easy control on timing function `transtion.timing`
-- You don't need to write boiletplate code for backward animation (**less code by 2 times**)
-- You can animate not animatable properties (like `cornerRadius` or watewer you want, look at `transtion.addCustomAnimation(...)`)
-- If you have complex prepare for transition, by enabling `self.interactive.enableSmoothInteractive` you can resolve 'jump' percent animation
+That's it! Easy enought?! :)
 
 #### Customization
 
