@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 struct CardInfo {
     var snapshot: UIImage?
     var controller: WebViewController?

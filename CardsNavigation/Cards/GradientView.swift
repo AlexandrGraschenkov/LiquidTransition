@@ -17,20 +17,20 @@ class GradientView: UIView {
     fileprivate var gradientLayer: CAGradientLayer {
         return layer as! CAGradientLayer
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
-        
+
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     func setup() {
-        
+
         gradientLayer.locations = [0, 1]
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 1, y: 1)
@@ -39,7 +39,7 @@ class GradientView: UIView {
             UIColor(red: 1, green: 0.5764705882, blue: 0.462745098, alpha: 1).cgColor
         ]
     }
-    
+
     func setColors(from: UIColor, to: UIColor) {
         gradientLayer.colors = [from.cgColor, to.cgColor]
     }

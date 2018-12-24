@@ -8,11 +8,10 @@
 
 import UIKit
 
-
 class PhotoInfo {
     let assetName: String
     var cachedThumbImage: UIImage?
-    
+
     init(name: String) {
         assetName = name
         cachedThumbImage = nil

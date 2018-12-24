@@ -24,18 +24,18 @@ class LiquidTransitionTests: XCTestCase {
     var toVC: TVC2!
     var transition: Transition!
     var window: UIWindow!
-    
+
     override func setUp() {
         transition = Transition()
         Liquid.shared.addTransition(transition)
         fromVC = TVC1()
         toVC = TVC2()
-        
+
         // init window for test is animation is really works
         window = UIWindow(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         window.rootViewController = fromVC
         window.makeKeyAndVisible()
-        
+
         fromVC.loadView()
     }
 
@@ -45,14 +45,14 @@ class LiquidTransitionTests: XCTestCase {
     }
 
     func testBackwardAnimation() {
-        
+
         let callExpectation = expectation(description: "Presented")
         let operationExpectation = expectation(description: "Dismissed")
-        
+
         let testDuration: CGFloat = 0.2
         transition.duration = testDuration
         var appear = true
-        var prevVal: CGFloat? = nil
+        var prevVal: CGFloat?
         transition.addCustomAnimation { (val) in
             if prevVal == nil {
                 prevVal = val
@@ -62,20 +62,20 @@ class LiquidTransitionTests: XCTestCase {
             } else {
                 XCTAssert(prevVal! >= val)
             }
-            
+
             prevVal = val
         }
-        
+
         fromVC.present(toVC, animated: true, completion: {
             appear = false
             prevVal = nil
             callExpectation.fulfill()
-            
+
             self.toVC.dismiss(animated: true, completion: {
                 operationExpectation.fulfill()
             })
         })
-        
+
         waitForExpectations(timeout: 0.6) { (error) in
             print(error?.localizedDescription)
         }

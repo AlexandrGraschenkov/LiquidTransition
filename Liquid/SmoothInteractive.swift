@@ -13,8 +13,8 @@ final class SmoothInteractive: NSObject {
     private var cancelable: Cancelable?
     private var lastValue: CGFloat = 0
     private var lastProgress: CGFloat = 0
-    
-    func run(duration: TimeInterval, update: @escaping (CGFloat)->()) {
+
+    func run(duration: TimeInterval, update: @escaping (CGFloat)->Void) {
         cancelable = DisplayLinkAnimator.animate(duration: duration) {[weak self] (progress) in
             guard let `self` = self else { return }
             if progress == 1.0 { self.cancelable = nil }
@@ -22,16 +22,16 @@ final class SmoothInteractive: NSObject {
             update(self.getValue())
         }
     }
-    
+
     func cancel() {
         cancelable?()
         cancelable = nil
     }
-    
+
     func update(val: CGFloat) {
         self.lastValue = val
     }
-    
+
     func getValue() -> CGFloat {
         return lastValue * lastProgress
     }

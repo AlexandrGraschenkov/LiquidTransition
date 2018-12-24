@@ -13,10 +13,10 @@ class FadeTransition: TransitionAnimator<UIViewController, CardsNavigationContro
 
     init() {
         super.init(from: UIViewController.self, to: CardsNavigationController.self, direction: .both)
-        
+
         duration = 0.3
     }
-    
+
     override func animateTransition(from vc1: UIViewController, to vc2: CardsNavigationController, container: UIView, duration: Double) {
         vc2.view.alpha = 0
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {

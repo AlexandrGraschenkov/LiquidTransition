@@ -14,20 +14,19 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
 
     init() {
         super.init(from: TestBrokenAnimationController.self, to: UIViewController.self, direction: .dismiss)
-        
+
         duration = 0.7
         timing = .linear
     }
-    
-    
+
     func rand(from: CGFloat = 0, to: CGFloat = 1) -> CGFloat {
         let val = CGFloat(arc4random() % 10000) / 10000.0
         return val * (to - from) + from
     }
-    
+
     func generatePointsForVoroni(point: CGPoint, bounds: CGRect) -> [CGPoint] {
         var points: [CGPoint] = []
-        
+
         let circleCount = 12
         let minStep = 1.0 / CGFloat(circleCount)
         let radius: CGFloat = 20
@@ -40,7 +39,7 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
                             y: point.y + sin(angle) * r)
             points.append(p)
         }
-        
+
         while points.count < 50 {
             let p = CGPoint(x: rand() * bounds.width, y: rand() * bounds.height)
             let dist = sqrt(pow(point.x - p.x, 2) + pow(point.y - p.y, 2))
@@ -49,7 +48,7 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
         }
         return points
     }
-    
+
     func buildPolygons(fromPoint point: CGPoint, bounds: CGRect) -> [Polygon] {
         var polygons: [Polygon] = []
         let voronoi = Voronoi()
@@ -57,7 +56,7 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
             let points = generatePointsForVoroni(point: point, bounds: bounds)
             let edges = voronoi.getEdges(v: points.map({Point(x: $0.x, y: $0.y)}), w: bounds.size.width, h: bounds.size.height)
             polygons = Polygon.build(edges: edges, bounds: bounds)
-            
+
             var isAllOk = true
             for p in polygons {
                 if p.edges.count == 0 {
@@ -65,13 +64,13 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
                     break
                 }
             }
-            
+
             if isAllOk { break }
         }
-        
+
         return polygons
     }
-    
+
     func bringImageToPolygons(img: UIImage, polygons: [Polygon]) -> [UIView] {
         var views: [UIView] = []
         for p in polygons {
@@ -80,7 +79,7 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
             guard let ctx = UIGraphicsGetCurrentContext() else {
                 continue
             }
-            
+
             ctx.translateBy(x: -rect.minX, y: -rect.minY)
             p.bezierPath().addClip()
             img.draw(at: CGPoint.zero)
@@ -93,15 +92,14 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
         }
         return views
     }
-    
+
     func broke(view: UIView, fromPoint point: CGPoint) -> [UIView] {
         let img = view.snapshotImage(scale: 1.0)
         let polygons = self.buildPolygons(fromPoint: point, bounds: view.bounds)
         let views = self.bringImageToPolygons(img: img, polygons: polygons)
         return views
     }
-    
-    
+
     override func animateTransition(from vc1: TestBrokenAnimationController, to vc2: UIViewController, container: UIView, duration: Double) {
         let point = vc1.dismissFromPoint
         let brokenPieces = broke(view: vc1.view, fromPoint: point)
@@ -112,20 +110,20 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
             transform = CATransform3DTranslate(transform, 0, 0, 100)
             view.layer.transform = transform
         }
-        
+
         vc1.view.isHidden = true
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
             for view in brokenPieces {
                 let offset = (view.center - point).norm() * vc1.view.bounds.height
                 view.center = offset + view.center
-                
+
                 var transform = CATransform3DIdentity
                 transform.m34 = 1/100000
                 transform = CATransform3DTranslate(transform, 0, 0, 100)
                 transform = CATransform3DRotate(transform, self.rand(from: -.pi, to: .pi), 1, 0, 0)
                 transform = CATransform3DRotate(transform, self.rand(from: -.pi, to: .pi), 0, 1, 0)
                 transform = CATransform3DRotate(transform, self.rand(from: -.pi, to: .pi), 0, 0, 1)
-                
+
                 view.layer.transform = transform
             }
         }) { (_) in
@@ -144,7 +142,7 @@ fileprivate extension CGPoint {
     static func - (lhs: CGPoint, rhs: CGPoint) -> CGPoint {
         return CGPoint(x: lhs.x - rhs.x, y: lhs.y - rhs.y)
     }
-    
+
     static func * (lhs: CGPoint, rhs: CGFloat) -> CGPoint {
         return CGPoint(x: lhs.x * rhs, y: lhs.y * rhs)
     }
@@ -154,7 +152,7 @@ fileprivate extension CGPoint {
     static func / (lhs: CGPoint, rhs: CGFloat) -> CGPoint {
         return CGPoint(x: lhs.x / rhs, y: lhs.y / rhs)
     }
-    
+
     func norm() -> CGPoint {
         return self / distance()
     }

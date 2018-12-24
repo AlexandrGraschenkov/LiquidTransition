@@ -8,24 +8,22 @@
 
 import UIKit
 
-
-
 class PhotoPreviewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var indicator: UIActivityIndicatorView!
     var index: Int = 0
     var photo: PhotoInfo!
-    
+
     static func controller(photo: PhotoInfo, index: Int) -> PhotoPreviewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "PhotoPreviewController") as! PhotoPreviewController
         controller.photo = photo
         controller.index = index
-        
+
         return controller
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 

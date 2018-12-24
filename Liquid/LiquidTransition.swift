@@ -13,19 +13,19 @@ public final class Liquid: NSObject {
     public static var shared = Liquid()
 
     public internal(set) var currentTransition: LiquidTransitionProtocol?
-    
+
     public struct Direction: OptionSet {
         public let rawValue: UInt
-        
+
         public init(rawValue: UInt) {
             self.rawValue = rawValue
         }
-        
+
         public static let present = Direction(rawValue: 1 << 1)
         public static let dismiss = Direction(rawValue: 1 << 2)
         public static let both: Direction = [.present, .dismiss]
     }
-    
+
     /**
      Automaticly becomes delegate for all transitions, that not defined manually
      
@@ -35,13 +35,13 @@ public final class Liquid: NSObject {
      */
     public func becomeDelegate() {
         if isSwizzled { return }
-        
+
         isSwizzled = true
         let sel1 = #selector(UIViewController.viewDidLoad)
         let liSel1 = #selector(UIViewController.li_viewDidLoad)
         LiquidRuntimeHelper.addOrReplaceMethod(class: UIViewController.self, original: sel1, swizzled: liSel1)
     }
-    
+
     public func addTransitions(_ arr: [LiquidTransitionProtocol]) {
         let arrInternal = arr.compactMap({$0 as? LiquidTransitionProtocolInternal})
         transitions.append(contentsOf: arrInternal)
@@ -49,7 +49,7 @@ public final class Liquid: NSObject {
             print("Error: please inherit from Liquid.TransitionAnimator<VC1, VC2>")
         }
     }
-    
+
     public func addTransition(_ transition: LiquidTransitionProtocol) {
         if let transition = transition as? LiquidTransitionProtocolInternal {
             transitions.append(transition)
@@ -57,11 +57,11 @@ public final class Liquid: NSObject {
             print("Error: please inherit from Liquid.TransitionAnimator<VC1, VC2>")
         }
     }
-    
+
     public func removeAllTransitions() {
         transitions.removeAll()
     }
-    
+
     /**
      Performs interactive transition
      
@@ -70,7 +70,7 @@ public final class Liquid: NSObject {
     public func update(progress: CGFloat) {
         currentTransition?.progress = progress
     }
-    
+
     /**
      Completes interactive transition
      
@@ -78,37 +78,37 @@ public final class Liquid: NSObject {
      */
     public func complete(finish: Bool? = nil, animated: Bool = true) {
         guard let transition = currentTransition else { return }
-        
+
         transition.completeInteractive(complete: finish, animated: animated)
     }
-    
+
     public func transitionForPresent(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
         let transition = transitions.first(where: {$0.canAnimate(from: from, to: to, direction: .present)})
         return transition
     }
-    
+
     public func transitionForDismiss(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
         let transition = transitions.first(where: {$0.canAnimate(from: from, to: to, direction: .dismiss)})
         return transition
     }
-    
+
     // MARK: - private
     fileprivate override init() {
         super.init()
     }
-    
+
     func presentTransition(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
         let transition = transitions.first(where: {$0.canAnimate(from: from, to: to, direction: .present)})
         transition?.isPresenting = true
         return transition
     }
-    
+
     func dismissTransition(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
         let transition = transitions.first(where: {$0.isEnabled && $0.canAnimate(from: from, to: to, direction: .dismiss)})
         transition?.isPresenting = false
         return transition
     }
-    
+
     private var transitions: [LiquidTransitionProtocolInternal] = []
     private var isSwizzled: Bool = false
 }
@@ -141,11 +141,11 @@ extension Liquid: UIViewControllerTransitioningDelegate, UINavigationControllerD
     public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return (animator as? LiquidTransitionProtocol)?.percentAnimator
     }
-    
+
     public func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return (animationController as? LiquidTransitionProtocol)?.percentAnimator
     }
-    
+
     public func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         if operation == .push {
             return Liquid.shared.presentTransition(from: fromVC, to: toVC)

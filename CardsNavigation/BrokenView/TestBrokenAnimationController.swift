@@ -15,7 +15,7 @@ class TestBrokenAnimationController: UIViewController {
     var dismissFromPoint: CGPoint = CGPoint(x: 100, y: 100)
     var animator = BrokenViewTransition()
     @IBOutlet var smoothInteractiveSwitch: UISwitch!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,7 +27,6 @@ class TestBrokenAnimationController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     @IBAction func onPan(pan: UIPanGestureRecognizer) {
         if pan.state == .began {
@@ -38,10 +37,10 @@ class TestBrokenAnimationController: UIViewController {
                 // allow only swipe down dismiss
                 return
             }
-            
+
             dismissFromPoint = pan.location(in: pan.view)
             animator.percentAnimator.enableSmoothInteractive = smoothInteractiveSwitch.isOn
-            
+
             dismiss(animated: true, completion: nil)
         } else if pan.state == .changed {
             let offset = pan.translation(in: pan.view)
@@ -58,9 +57,8 @@ extension TestBrokenAnimationController: UIViewControllerTransitioningDelegate {
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return animator
     }
-    
+
     func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         return self.animator.percentAnimator
     }
 }
-

@@ -10,23 +10,23 @@ import UIKit
 
 extension UIView {
 
-    func snapshotImage(scale: CGFloat, completion: @escaping (UIImage)->(), queue: DispatchQueue? = DispatchQueue.main) {
+    func snapshotImage(scale: CGFloat, completion: @escaping (UIImage)->Void, queue: DispatchQueue? = DispatchQueue.main) {
         let selfSize = bounds.size
-        
+
         DispatchQueue.global(qos: .background).async {
-        
+
             let size = CGSize(width: floor(selfSize.width * scale),
                               height: floor(selfSize.height * scale))
             UIGraphicsBeginImageContextWithOptions(size, true, 0)
-            var img: UIImage? = nil
-            
+            var img: UIImage?
+
             if let ctx = UIGraphicsGetCurrentContext() {
                 ctx.scaleBy(x: scale, y: scale)
                 self.layer.render(in: ctx)
                 img = UIGraphicsGetImageFromCurrentImageContext()
             }
-            UIGraphicsEndImageContext();
-            
+            UIGraphicsEndImageContext()
+
             if let queue = queue {
                 queue.async { completion(img ?? UIImage()) }
             } else {
@@ -34,22 +34,22 @@ extension UIView {
             }
         }
     }
-    
+
     func snapshotImage(scale: CGFloat) -> UIImage {
         let selfSize = bounds.size
-        
+
         let size = CGSize(width: floor(selfSize.width * scale),
                           height: floor(selfSize.height * scale))
         UIGraphicsBeginImageContextWithOptions(size, true, 0)
-        var img: UIImage? = nil
-        
+        var img: UIImage?
+
         if let ctx = UIGraphicsGetCurrentContext() {
             ctx.scaleBy(x: scale, y: scale)
             self.layer.render(in: ctx)
             img = UIGraphicsGetImageFromCurrentImageContext()
         }
-        UIGraphicsEndImageContext();
-        
+        UIGraphicsEndImageContext()
+
         return img ?? UIImage()
     }
 }

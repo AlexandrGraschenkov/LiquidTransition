@@ -8,8 +8,7 @@
 
 import UIKit
 
-
-fileprivate struct Line {
+private struct Line {
     let p1: CGPoint
     let p2: CGPoint
     func bounds() -> CGRect {
@@ -25,13 +24,13 @@ public class Polygon: NSObject {
 
     public let edges: [Edge]
     public let center: Point
-    
+
     public init(center: Point, edges: [Edge]) {
         self.edges = edges
         self.center = center
         super.init()
     }
-    
+
     public static func build(edges: [Edge], bounds: CGRect) -> [Polygon] {
         var map: [Point: [Edge]] = [:]
         for e in edges {
@@ -44,7 +43,7 @@ public class Polygon: NSObject {
                 map[p]?.append(e)
             }
         }
-        
+
         return map.map { (p: Point, edges: [Edge]) -> Polygon in
             var lines: [Line] = []
             for e in edges {
@@ -66,7 +65,7 @@ public class Polygon: NSObject {
             return Polygon(center: p, edges: sort(edges: allEdges))
         }
     }
-    
+
     public func bounds() -> CGRect {
         if edges.count == 0 { return CGRect.zero }
         var minP = edges[0].start.cgPoint
@@ -84,11 +83,11 @@ public class Polygon: NSObject {
                       width: maxP.x - minP.x,
                       height: maxP.y - minP.y)
     }
-    
+
     public func bezierPath() -> UIBezierPath {
         let path = UIBezierPath()
         if edges.count == 0 { return path }
-        
+
         path.move(to: edges[0].start.cgPoint)
         for e in edges {
             path.addLine(to: e.end!.cgPoint)
@@ -96,11 +95,11 @@ public class Polygon: NSObject {
         path.close()
         return path
     }
-    
+
     static func isClose(_ a: CGFloat, _ b: CGFloat) -> Bool {
         return abs(a-b) < 1e-5
     }
-    
+
     static func getBorderEdges(edges: [Edge], center: Point, bounds: CGRect) -> [Edge] {
         var onXBorder: [Point] = []
         var onYBorder: [Point] = []
@@ -114,16 +113,16 @@ public class Polygon: NSObject {
                 }
             }
         }
-        
+
         if onXBorder.count + onYBorder.count != 2 { return [] }
-        
+
         if onXBorder.count == 2 || onYBorder.count == 2 {
             let points = onXBorder + onYBorder
             let e = Edge(start: points[0], left: center, right: center)
             e.end = points[1]
             return [e]
         }
-        
+
         let cornerPoint = Point(x: onXBorder[0].x, y: onYBorder[0].y)
         let e1 = Edge(start: onXBorder[0], left: center, right: center)
         e1.end = cornerPoint
@@ -131,22 +130,22 @@ public class Polygon: NSObject {
         e2.end = cornerPoint
         return [e1, e2]
     }
-    
+
     static fileprivate func intersection(l1: Line, l2: Line) -> CGPoint? {
         // Store the values for fast access and easy
         // equations-to-code conversion
-        let x1 = l1.p1.x, x2 = l1.p2.x, x3 = l2.p1.x, x4 = l2.p2.x;
-        let y1 = l1.p1.y, y2 = l1.p2.y, y3 = l2.p1.y, y4 = l2.p2.y;
-        
-        let d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+        let x1 = l1.p1.x, x2 = l1.p2.x, x3 = l2.p1.x, x4 = l2.p2.x
+        let y1 = l1.p1.y, y2 = l1.p2.y, y3 = l2.p1.y, y4 = l2.p2.y
+
+        let d = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4)
         // If d is zero, there is no intersection
         if (d == 0) { return nil }
-        
+
         // Get the x and y
-        let pre = (x1*y2 - y1*x2), post = (x3*y4 - y3*x4);
-        let x = ( pre * (x3 - x4) - (x1 - x2) * post ) / d;
-        let y = ( pre * (y3 - y4) - (y1 - y2) * post ) / d;
-        
+        let pre = (x1*y2 - y1*x2), post = (x3*y4 - y3*x4)
+        let x = ( pre * (x3 - x4) - (x1 - x2) * post ) / d
+        let y = ( pre * (y3 - y4) - (y1 - y2) * post ) / d
+
         let p = CGPoint(x: x, y: y)
         if l1.bounds().insetBy(dx: -0.1, dy: -0.1).contains(p) &&
             l2.bounds().insetBy(dx: -0.1, dy: -0.1).contains(p) {
@@ -154,7 +153,7 @@ public class Polygon: NSObject {
         }
         return nil
     }
-    
+
     static fileprivate func clipBounds(edges: [Edge], rect: CGRect) {
         let tl = CGPoint(x: rect.minX, y: rect.minY)
         let tr = CGPoint(x: rect.maxX, y: rect.minY)
@@ -181,13 +180,13 @@ public class Polygon: NSObject {
             }
         }
     }
-    
+
     static fileprivate func sort(edges: [Edge]) -> [Edge] {
         var edges = edges
-        
+
         // sort edges in circle
         var sortedEdges: [Edge] = []
-        
+
         var testCount = edges.count * 10
         while let e = edges.popLast() {
             testCount -= 1

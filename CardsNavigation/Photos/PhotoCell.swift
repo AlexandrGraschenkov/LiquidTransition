@@ -13,14 +13,14 @@ class PhotoCell: UICollectionViewCell {
     @IBOutlet var indicator: UIActivityIndicatorView!
     var cancelImageLoad: Cancelable?
     let corners: CGFloat = 5.0
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         cancelImageLoad?()
         cancelImageLoad = nil
         imgView.image = nil
     }
-    
+
     func display(photo: PhotoInfo) {
         indicator.startAnimating()
         cancelImageLoad = ThumbCaches.shared.getImage(name: photo.assetName, size: imgView.bounds.size, corners: corners, completion: {[weak self] (img) in
@@ -28,5 +28,5 @@ class PhotoCell: UICollectionViewCell {
             self?.indicator.stopAnimating()
         })
     }
-    
+
 }

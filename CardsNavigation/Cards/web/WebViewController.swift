@@ -11,15 +11,13 @@ import WebKit
 import Liquid
 
 class WebViewController: UIViewController {
-    
+
     var web: WKWebView!
     @IBOutlet weak var statusBarView: UIView!
     @IBOutlet weak var toolbar: UIView!
-    
-    
-    
+
     var urlToLoad: URL?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,16 +27,16 @@ class WebViewController: UIViewController {
         web = WKWebView(frame: view.bounds.inset(top: statusBarView.frame.size.height, bottom: toolbar.bounds.height))
         web.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         view.addSubview(web)
-        
+
         if let url = urlToLoad {
             web.load(URLRequest(url: url))
         }
-        
+
         let pan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(onEdgePan(pan:)))
         pan.edges = .left
         view.addGestureRecognizer(pan)
     }
-    
+
     func loadURL(url: URL) {
         if (isViewLoaded) {
             web.load(URLRequest(url: url))
@@ -50,15 +48,15 @@ class WebViewController: UIViewController {
     @IBAction func prevPagePressed() {
         web.goBack()
     }
-    
+
     @IBAction func nextPagePressed() {
         web.goForward()
     }
-    
+
     @IBAction func showCards() {
         dismiss(animated: true, completion: nil)
     }
-    
+
     @objc func onEdgePan(pan: UIScreenEdgePanGestureRecognizer) {
         switch pan.state {
         case .began:
@@ -83,11 +81,11 @@ extension WebViewController {
     func getContentView() -> UIView {
         return web
     }
-    
+
     func getToolbarView() -> UIView {
         return toolbar
     }
-    
+
     func getStatusView() -> UIView {
         return statusBarView
     }

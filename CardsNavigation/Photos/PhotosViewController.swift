@@ -20,20 +20,19 @@ class PhotosViewController: UICollectionViewController {
                                PhotoInfo(name: "img5"),
                                PhotoInfo(name: "img6"),
                                PhotoInfo(name: "img7")]
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let prefferedCellSize = floor((UIScreen.main.bounds.width - 10 * 4) / 3.0)
         let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout
         flowLayout?.itemSize = CGSize(width: prefferedCellSize, height: prefferedCellSize)
-        
-        
+
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         navigationController?.delegate = Liquid.shared
     }
 
@@ -44,13 +43,12 @@ class PhotosViewController: UICollectionViewController {
             detailVC.index = idx
         }
     }
-    
+
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
@@ -60,10 +58,10 @@ class PhotosViewController: UICollectionViewController {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? PhotoCell else {
             return UICollectionViewCell()
         }
-    
+
         cell.display(photo: photos[indexPath.row])
         // Configure the cell
-    
+
         return cell
     }
 

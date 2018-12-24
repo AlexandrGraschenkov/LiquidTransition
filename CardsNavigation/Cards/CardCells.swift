@@ -11,10 +11,10 @@ import UIKit
 class CardItemCell: UICollectionViewCell {
     let cornerRadius: CGFloat = 20
     @IBOutlet var imageView: UIImageView!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
 //        contentView.layer.cornerRadius = cornerRadius
 //        contentView.clipsToBounds = true
         imageView.layer.cornerRadius = cornerRadius

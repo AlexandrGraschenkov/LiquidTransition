@@ -15,10 +15,10 @@ class PhotoCloseInteractiveTransition: TransitionAnimator<PhotosDetailViewContro
     fileprivate var corners: CGFloat = 0
     fileprivate var toFrame: CGRect = .zero
     fileprivate var fromFrame: CGRect = .zero
-    
+
     init() {
         super.init(from: PhotosDetailViewController.self, to: PhotosViewController.self, direction: .dismiss)
-        
+
         duration = 0.4
         timing = Timing.easeOutExpo
         addCustomAnimation { [weak self] (progress) in
@@ -27,7 +27,7 @@ class PhotoCloseInteractiveTransition: TransitionAnimator<PhotosDetailViewContro
             print("progress", progress)
         }
     }
-    
+
     override func animateTransition(from vc1: PhotosDetailViewController, to vc2: PhotosViewController, container: UIView, duration: Double) {
         guard let cell = vc2.collectionView?.cellForItem(at: IndexPath(item: vc1.index, section: 0)) as? PhotoCell else {
             print("Something went wrong")
@@ -41,21 +41,21 @@ class PhotoCloseInteractiveTransition: TransitionAnimator<PhotosDetailViewContro
         toFrame = cell.imgView.convert(cell.imgView.bounds, to: container)
         fromFrame = vc2.view.bounds.getAspectFit(viewSize: imgView.image!.size)
         corners = cell.corners
-        
+
         let restore = TransitionRestorer(keyPaths: SaveViewState(path: \.contentMode))
         restore.moveView(imgView, to: container)
-        
+
         animImageView = imgView
         animImageView.frame = fromFrame
         animImageView.contentMode = .scaleAspectFill
         animImageView.layer.masksToBounds = true
         animImageView.layer.cornerRadius = cell.corners
-        
+
         restore.addRestoreViews(cell.imgView)
         restore.addRestoreView(vc1.view, ignoreFields: [.superview])
-        
+
         cell.imgView.isHidden = true
-        
+
         print("Custom duration", TimeInterval(duration))
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
             vc1.view.alpha = 0
@@ -63,13 +63,13 @@ class PhotoCloseInteractiveTransition: TransitionAnimator<PhotosDetailViewContro
             restore.restore()
         }
     }
-    
+
     override func completeInteractiveTransition(from: PhotosDetailViewController, to: PhotosViewController, isPresenting: Bool, finish: Bool, animationDuration: Double) {
         UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveLinear], animations: {
             self.animImageView.frame = finish ? self.toFrame : self.fromFrame
         }, completion: nil)
     }
-    
+
     func updateInteractive(offset: CGPoint, progress: CGFloat) {
         let mid = fromFrame.mid.add(offset)
         let size = fromFrame.size.interpolation(to: toFrame.size, progress: progress)

@@ -14,20 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func printPoints(function: CAMediaTimingFunction) {
         var cps = [Float](repeating: 0, count: 4)
         function.getControlPoint(at: 0, values: &cps[0])
         function.getControlPoint(at: 1, values: &cps[1])
         function.getControlPoint(at: 2, values: &cps[2])
         function.getControlPoint(at: 3, values: &cps[3])
-        
+
         print("p1 Point(\(cps[0]), \(cps[1]))")
         print("p2 Point(\(cps[2]), \(cps[3]))")
     }
-    
+
     func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
         // Override point for customization after application launch.
         Liquid.shared.becomeDelegate()
         Liquid.shared.addTransitions([CardTransition(),
@@ -35,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                       PhotoOpenTransition(),
                                       BrokenViewTransition(),
                                       FadeTransition()])
-        
+
         return true
     }
 
@@ -61,6 +60,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-

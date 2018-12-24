@@ -12,25 +12,25 @@ extension DispatchQueue {
     static var background: DispatchQueue { return DispatchQueue.global(qos: .background) }
 }
 
-public typealias Cancelable = ()->()
+public typealias Cancelable = ()->Void
 
 func delay(_ delay: Double,
            queue: DispatchQueue = DispatchQueue.main,
-           closure:@escaping ()->()) {
+           closure:@escaping ()->Void) {
     queue.asyncAfter(deadline: .now() + delay, execute: closure)
 }
 
 func performAsyncIn(_ queue: DispatchQueue,
-                    closure: @escaping ()->()) {
+                    closure: @escaping ()->Void) {
     queue.async(execute: closure)
 }
 
 func performSyncIn(_ queue: DispatchQueue,
-                   closure: @escaping ()->()) {
+                   closure: @escaping ()->Void) {
     queue.sync(execute: closure)
 }
 
-func performInMain(closure: @escaping ()->()) {
+func performInMain(closure: @escaping ()->Void) {
     if Thread.isMainThread {
         closure()
     } else {
@@ -38,7 +38,7 @@ func performInMain(closure: @escaping ()->()) {
     }
 }
 
-func performInBackground(closure: @escaping ()->()) {
+func performInBackground(closure: @escaping ()->Void) {
     if Thread.isMainThread {
         DispatchQueue.background.async(execute: closure)
     } else {
@@ -46,15 +46,14 @@ func performInBackground(closure: @escaping ()->()) {
     }
 }
 
+private var _privateKeys = Set<String>()
 
-fileprivate var _privateKeys = Set<String>()
-
-func once(file: String = #file, line: Int = #line, col: Int = #column, _ code: ()->()) {
+func once(file: String = #file, line: Int = #line, col: Int = #column, _ code: ()->Void) {
     let key = "\(file)|\(line)|\(col)"
-    
-    objc_sync_enter(DispatchQueue.main);
+
+    objc_sync_enter(DispatchQueue.main)
     defer { objc_sync_exit(DispatchQueue.main) }
-    
+
     if _privateKeys.contains(key) {
         return
     }

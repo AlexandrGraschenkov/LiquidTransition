@@ -14,7 +14,7 @@ public protocol LiquidTransitionProtocol: UIViewControllerAnimatedTransitioning 
     var percentAnimator: TransitionPercentAnimator { get }
     var isPresenting: Bool { get }
     var isEnabled: Bool { get }
-    
+
     func completeInteractive(complete: Bool?, animated: Bool)
     func canAnimate(from: UIViewController, to: UIViewController, direction: Liquid.Direction) -> Bool
 }
@@ -57,7 +57,7 @@ open class TransitionAnimator<Source: UIViewController, Destination: UIViewContr
     }
 
     open func prepareAnimation(vc1: Source, vc2: Destination, isPresenting: Bool) {
-        
+
     }
 
     open override func completeInteractiveTransition(from vc1: UIViewController,
@@ -82,16 +82,16 @@ open class TransitionAnimator<Source: UIViewController, Destination: UIViewContr
 }
 
 open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal {
-    
+
     public typealias Direction = Liquid.Direction
     public typealias CustomAnimation = (_ progress: CGFloat) -> Void
     private typealias ControllerCheckClosure = (_ vc1: UIViewController, _ vc2: UIViewController, _ direction: Direction) -> Bool
-    
+
     public var progress: CGFloat {
         get { return percentAnimator.percentComplete }
         set { percentAnimator.update(newValue) }
     }
-    
+
     public var isEnabled: Bool = true
     public var duration: CGFloat = 1.0
     public var timing: Timing {
@@ -106,8 +106,7 @@ open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal
     private var controllerCheck: ControllerCheckClosure!
     private let fromTypes: [AnyClass]
     private let toTypes: [AnyClass]
-    
-    
+
     public init(from: [AnyClass], to: [AnyClass], direction: Direction) {
         self.direction = direction
         fromTypes = from
@@ -119,23 +118,23 @@ open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal
     public func addCustomAnimation(_ closure: @escaping CustomAnimation) {
         customAnimations.append(closure)
     }
-    
+
     // -------------------------------
-    //       MARK: - Overrides
+    // MARK: - Overrides
     // -------------------------------
     /// Override to move information between controllers
     open func prepareAnimation(vc1: UIViewController, vc2: UIViewController, isPresenting: Bool) {
     }
-    
+
     /// Perform here you animation
     open func animateTransition(from vc1: UIViewController,
                                 to vc2: UIViewController,
                                 container: UIView,
                                 duration: TimeInterval) {
         print("LiquidTransition warning: override \(String(describing: self)).\(#function)")
-        
+
         guard let toView = vc2.view else { return }
-        
+
         toView.alpha = 0
         UIView.animate(withDuration: Double(duration), animations: {
             toView.alpha = 1
@@ -143,7 +142,7 @@ open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal
             toView.alpha = 0
         }
     }
-    
+
     open func completeInteractiveTransition(from vc1: UIViewController,
                                             to vc2: UIViewController,
                                             isPresenting: Bool,
@@ -151,7 +150,7 @@ open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal
                                             animationDuration: Double) {
         // override to animate interactive view to destanation location
     }
-    
+
     /// You can override to perform more complex logic
     open func canAnimate(from: UIViewController, to: UIViewController, direction animDirection: Direction) -> Bool {
         if fromTypes.isEmpty || toTypes.isEmpty {
@@ -173,12 +172,11 @@ open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal
         }
         return false
     }
-    
-    
+
     // -------------------------------
-    //    MARK: - Internal methods
+    // MARK: - Internal methods
     // -------------------------------
-    
+
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return TimeInterval(duration)
     }
@@ -189,7 +187,7 @@ open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal
         if let (vc1, vc2, _) = getControllers(context: transitionContext) {
             prepareAnimation(vc1: vc1, vc2: vc2, isPresenting: isPresenting)
         }
-        
+
         if let toView = transitionContext.view(forKey: .to) {
             toView.transform = .identity
             toView.frame = transitionContext.containerView.bounds
@@ -198,12 +196,12 @@ open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal
                 transitionContext.containerView.sendSubviewToBack(toView)
             }
         }
-        
+
         if let (vc1, vc2, backward) = getControllers(context: transitionContext) {
             Liquid.shared.currentTransition = self
             percentAnimator.reset()
             percentAnimator.backward = backward
-            
+
             if backward {
                 // fix wrong first frame
                 // image flick between end backward animation and it's start
@@ -214,20 +212,19 @@ open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal
                     }
                 }
             }
-            
+
             animateTransition(from: vc1, to: vc2, container: transitionContext.containerView, duration: TimeInterval(duration))
             percentAnimator.update(0)
             percentAnimator.animate(finish: true, speed: 1)
         }
     }
-    
-    
+
     func callPrepareInteractive(finish: Bool, animDuration: Double) {
         if let (vc1, vc2, _) = getControllers(context: percentAnimator.context) {
             completeInteractiveTransition(from: vc1, to: vc2, isPresenting: isPresenting, finish: finish, animationDuration: animDuration)
         }
     }
-    
+
     public func completeInteractive(complete: Bool?, animated: Bool) {
         if (animated) {
             var finish = true
@@ -259,17 +256,16 @@ open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal
             }
         }
     }
-    
-    
+
     // MARK: - Private
-    
+
     private func runDefaultAnimation(context: UIViewControllerContextTransitioning) {
         guard let toView = context.view(forKey: .to),
             let fromView = context.view(forKey: .from) else {
             context.completeTransition(true)
             return
         }
-        
+
         context.containerView.addSubview(toView)
         toView.frame = context.containerView.bounds
         toView.alpha = 0
@@ -278,7 +274,7 @@ open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal
         }) { (_) in
             toView.alpha = 1
             fromView.removeFromSuperview()
-            
+
             if context.transitionWasCancelled {
                 context.cancelInteractiveTransition()
             } else {
@@ -286,7 +282,7 @@ open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal
             }
         }
     }
-    
+
     private func getControllers(context: UIViewControllerContextTransitioning?) -> (vc1: UIViewController, vc2: UIViewController, backward: Bool)? {
         let to = context?.viewController(forKey: .to)
         let from = context?.viewController(forKey: .from)
@@ -299,7 +295,7 @@ open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal
 
         return nil
     }
-    
+
     private func makeNonVisibleChanges(view: UIView) {
         // change background color a little
         let color = view.backgroundColor ?? UIColor.clear
@@ -311,11 +307,10 @@ open class MutipleTransitionAnimator: NSObject, LiquidTransitionProtocolInternal
         } else {
             white += 0.001
         }
-        
+
         view.backgroundColor = UIColor.init(white: white, alpha: alpha)
     }
 }
-
 
 extension MutipleTransitionAnimator: TransitionPercentAnimatorDelegate {
     func transitionPercentChanged(_ percent: CGFloat) {
@@ -325,7 +320,7 @@ extension MutipleTransitionAnimator: TransitionPercentAnimatorDelegate {
             closure(animPercent)
         }
     }
-    
+
     func transitionCompleted(context: UIViewControllerContextTransitioning) {
         if context.transitionWasCancelled {
             context.view(forKey: .to)?.removeFromSuperview()
