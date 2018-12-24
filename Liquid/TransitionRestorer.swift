@@ -8,14 +8,13 @@
 
 import UIKit
 
-
 public protocol StateRestoreViewProtocol {
     func restore()
     func cloneAndSet(view: UIView?) -> StateRestoreViewProtocol
     func setObject(_ obj: UIView)
 }
 
-public class SaveViewState<Value> : StateRestoreViewProtocol {
+public final class SaveViewState<Value> : StateRestoreViewProtocol {
     public init(path: ReferenceWritableKeyPath<UIView, Value>) {
         self.keyPath = path
     }
@@ -83,7 +82,7 @@ class SaveState<Root, Value>: RestoreProtocol {
  }
  ```
  */
-public class RestoreTransition: NSObject {
+public class TransitionRestorer: NSObject {
     
     public enum Fields {
         case transform, superview, alpha, frame, isHidden
@@ -104,13 +103,13 @@ public class RestoreTransition: NSObject {
      Saves view state, and allow you to restore view state after changes
      - Parameter keyPaths: custom key path that saved for restore
      */
-    public func addRestore(_ view: UIView, ignoreFields: [Fields]) {
+    public func addRestoreView(_ view: UIView, ignoreFields: [Fields]) {
         restoreViews.append(ViewState.generateWithView(view: view,
                                                        keyPaths: keyPaths,
                                                        ignoreFields: ignoreFields))
     }
     
-    public func addRestore(_ view: UIView, keyPaths: [StateRestoreViewProtocol], ignoreFields: [Fields] = []) {
+    public func addRestoreView(_ view: UIView, keyPaths: [StateRestoreViewProtocol], ignoreFields: [Fields] = []) {
         restoreViews.append(ViewState.generateWithView(view: view,
                                                        keyPaths: self.keyPaths + keyPaths,
                                                        ignoreFields: ignoreFields))
@@ -123,20 +122,20 @@ public class RestoreTransition: NSObject {
         customSavedValues.append(SaveState(view, keyPath: keyPath))
     }
     
-    public func addRestore(_ views: UIView...) {
+    public func addRestoreViews(_ views: UIView...) {
         for v in views {
             restoreViews.append(ViewState.generateWithView(view: v, keyPaths: keyPaths))
         }
     }
     
-    public func addRestore(_ views: [UIView]) {
+    public func addRestoreViews(_ views: [UIView]) {
         for v in views {
             restoreViews.append(ViewState.generateWithView(view: v, keyPaths: keyPaths))
         }
     }
     
     public func moveView(_ view: UIView, to container: UIView) {
-        addRestore(view)
+        addRestoreViews(view)
         let frame = view.convert(view.bounds, to: container)
         if view.frame != frame {
             view.frame = frame
@@ -152,7 +151,7 @@ public class RestoreTransition: NSObject {
     public func moveSnapshot(_ view: UIView, to container: UIView, afterScreenUpdates: Bool) -> UIView? {
         if view.isHidden { return nil }
         
-        addRestore(view)
+        addRestoreViews(view)
         let snapshot = view.snapshotView(afterScreenUpdates: afterScreenUpdates)
         snapshot?.frame = view.convert(view.bounds, to: container)
         if let snapshot = snapshot {
@@ -208,10 +207,10 @@ public class RestoreTransition: NSObject {
     }
     // MARK: - private
     
-    fileprivate var restoreViews: [ViewState] = []
-    fileprivate var removeViews: [UIView] = []
-    fileprivate var keyPaths: [StateRestoreViewProtocol]
-    fileprivate var customSavedValues: [RestoreProtocol] = []
+    private var restoreViews: [ViewState] = []
+    private var removeViews: [UIView] = []
+    private var keyPaths: [StateRestoreViewProtocol]
+    private var customSavedValues: [RestoreProtocol] = []
 }
 
 
@@ -223,11 +222,11 @@ fileprivate struct ViewState {
     let superview: UIView?
     let isHidden: Bool
     var keyPaths: [StateRestoreViewProtocol] = []
-    var ignoreFields: [RestoreTransition.Fields] = []
+    var ignoreFields: [TransitionRestorer.Fields] = []
     
     static func generateWithView(view: UIView,
                                  keyPaths: [StateRestoreViewProtocol] = [],
-                                 ignoreFields: [RestoreTransition.Fields] = []) -> ViewState {
+                                 ignoreFields: [TransitionRestorer.Fields] = []) -> ViewState {
         return ViewState(view: view,
                          alpha: view.alpha,
                          frame: view.frame,

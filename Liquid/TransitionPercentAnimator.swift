@@ -28,11 +28,11 @@ public class InvertableInteractiveTransition: UIPercentDrivenInteractiveTransiti
     }
 }
 
-public class TransitionPercentAnimator: InvertableInteractiveTransition {
+public final class TransitionPercentAnimator: InvertableInteractiveTransition {
     
-    fileprivate var cancelAnimation: Cancelable?
-    fileprivate(set) var lastSpeed: CGFloat = 0
-    fileprivate(set) var lastUpdateTime: TimeInterval = 0
+    private var cancelAnimation: Cancelable?
+    private(set) var lastSpeed: CGFloat = 0
+    private(set) var lastUpdateTime: TimeInterval = 0
     weak var context: UIViewControllerContextTransitioning?
     var totalDuration: Double = 0
     public var maxDurationFactor: Double = 2.0
@@ -40,7 +40,7 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
     var isCanceled: Bool = false
     
     public var enableSmoothInteractive: Bool = false
-    fileprivate lazy var smoothInteractive = SmoothInteractive()
+    private lazy var smoothInteractive = SmoothInteractive()
     
     /// Max completion speed after interactive transition calls complete
     public var maxCompleteionSpeed: CGFloat = 1.0
@@ -124,16 +124,21 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
         }
     }
     
+    func reset() {
+        lastSpeed = 0
+        lastUpdateTime = 0
+        backward = false
+    }
     
     // MARK: - private
     
-    fileprivate func internalUpdate(_ percentComplete: CGFloat) {
+    private func internalUpdate(_ percentComplete: CGFloat) {
         updateSpeedWith(percentComplete: percentComplete)
         super.update(percentComplete)
         delegate?.transitionPercentChanged(percent)
     }
     
-    fileprivate func performSmoothInteractive(percent percentComplete: CGFloat, canInitalize: Bool) -> Bool {
+    private func performSmoothInteractive(percent percentComplete: CGFloat, canInitalize: Bool) -> Bool {
         if !enableSmoothInteractive { return false }
         
         if canInitalize && percentComplete > 0.05 {
@@ -150,7 +155,7 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
         return false
     }
     
-    fileprivate func updateSpeedWith(percentComplete: CGFloat) {
+    private func updateSpeedWith(percentComplete: CGFloat) {
         let currTime = CACurrentMediaTime()
         if (percentComplete - self.percentComplete) == 0 {
             return // nothing to update
@@ -171,11 +176,5 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
             lastSpeed = minCompleteionSpeed * (lastSpeed > 0 ? 1 : -1)
         }
         lastUpdateTime = currTime
-    }
-    
-    internal func reset() {
-        lastSpeed = 0
-        lastUpdateTime = 0
-        backward = false
     }
 }

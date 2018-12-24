@@ -102,7 +102,7 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
     }
     
     
-    override func animation(vc1: TestBrokenAnimationController, vc2: UIViewController, container: UIView, duration: Double) {
+    override func animateTransition(from vc1: TestBrokenAnimationController, to vc2: UIViewController, container: UIView, duration: Double) {
         let point = vc1.dismissFromPoint
         let brokenPieces = broke(view: vc1.view, fromPoint: point)
         for view in brokenPieces {

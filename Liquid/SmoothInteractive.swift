@@ -8,11 +8,11 @@
 
 import UIKit
 
-class SmoothInteractive: NSObject {
+final class SmoothInteractive: NSObject {
     var isRunning: Bool { return self.cancelable != nil }
-    fileprivate var cancelable: Cancelable?
-    fileprivate var lastValue: CGFloat = 0
-    fileprivate var lastProgress: CGFloat = 0
+    private var cancelable: Cancelable?
+    private var lastValue: CGFloat = 0
+    private var lastProgress: CGFloat = 0
     
     func run(duration: TimeInterval, update: @escaping (CGFloat)->()) {
         cancelable = DisplayLinkAnimator.animate(duration: duration) {[weak self] (progress) in

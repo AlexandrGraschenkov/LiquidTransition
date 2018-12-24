@@ -28,7 +28,7 @@ class PhotoCloseInteractiveTransition: TransitionAnimator<PhotosDetailViewContro
         }
     }
     
-    override func animation(vc1: PhotosDetailViewController, vc2: PhotosViewController, container: UIView, duration: Double) {
+    override func animateTransition(from vc1: PhotosDetailViewController, to vc2: PhotosViewController, container: UIView, duration: Double) {
         guard let cell = vc2.collectionView?.cellForItem(at: IndexPath(item: vc1.index, section: 0)) as? PhotoCell else {
             print("Something went wrong")
             return
@@ -42,7 +42,7 @@ class PhotoCloseInteractiveTransition: TransitionAnimator<PhotosDetailViewContro
         fromFrame = vc2.view.bounds.getAspectFit(viewSize: imgView.image!.size)
         corners = cell.corners
         
-        let restore = RestoreTransition(keyPaths: SaveViewState(path: \.contentMode))
+        let restore = TransitionRestorer(keyPaths: SaveViewState(path: \.contentMode))
         restore.moveView(imgView, to: container)
         
         animImageView = imgView
@@ -51,8 +51,8 @@ class PhotoCloseInteractiveTransition: TransitionAnimator<PhotosDetailViewContro
         animImageView.layer.masksToBounds = true
         animImageView.layer.cornerRadius = cell.corners
         
-        restore.addRestore(cell.imgView)
-        restore.addRestore(vc1.view, ignoreFields: [.superview])
+        restore.addRestoreViews(cell.imgView)
+        restore.addRestoreView(vc1.view, ignoreFields: [.superview])
         
         cell.imgView.isHidden = true
         
@@ -64,7 +64,7 @@ class PhotoCloseInteractiveTransition: TransitionAnimator<PhotosDetailViewContro
         }
     }
     
-    override func completeInteractiveTransition(vc1: PhotosDetailViewController, vc2: PhotosViewController, isPresenting: Bool, finish: Bool, animationDuration: Double) {
+    override func completeInteractiveTransition(from: PhotosDetailViewController, to: PhotosViewController, isPresenting: Bool, finish: Bool, animationDuration: Double) {
         UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveLinear], animations: {
             self.animImageView.frame = finish ? self.toFrame : self.fromFrame
         }, completion: nil)

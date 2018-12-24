@@ -9,7 +9,7 @@
 import UIKit
 
 /// Timer on **DisplayLink**
-public class DisplayLinkAnimator: NSObject {
+public final class DisplayLinkAnimator: NSObject {
     public static func animate(duration: Double, closure: @escaping (CGFloat)->()) -> Cancelable {
         let anim = DisplayLinkAnimator(duration: duration, closure: closure)
         anim.retainSelf = anim
@@ -17,7 +17,7 @@ public class DisplayLinkAnimator: NSObject {
     }
     
     // MARK: - private
-    fileprivate init(duration: Double, closure: @escaping (CGFloat)->()) {
+    private init(duration: Double, closure: @escaping (CGFloat)->()) {
         self.duration = duration
         self.closure = closure
         super.init()
@@ -26,17 +26,17 @@ public class DisplayLinkAnimator: NSObject {
         link.add(to: .current, forMode: .default)
     }
     
-    fileprivate func cancel() {
+    private func cancel() {
         link.invalidate()
     }
     
-    fileprivate var closure: (CGFloat)->()
-    fileprivate var link: CADisplayLink!
-    fileprivate var duration: Double
-    fileprivate var retainSelf: Any?
-    fileprivate var startTimeStamp: CFTimeInterval = 0
+    private var closure: (CGFloat)->()
+    private var link: CADisplayLink!
+    private var duration: Double
+    private var retainSelf: Any?
+    private var startTimeStamp: CFTimeInterval = 0
     
-    @objc fileprivate func step(link: CADisplayLink) {
+    @objc private func step(link: CADisplayLink) {
         if startTimeStamp == 0 {
             startTimeStamp = link.timestamp - link.duration
         }

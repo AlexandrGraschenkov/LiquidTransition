@@ -25,7 +25,7 @@ class PhotoOpenTransition: TransitionAnimator<PhotosViewController, PhotosDetail
         }
     }
     
-    override func animation(vc1: PhotosViewController, vc2: PhotosDetailViewController, container: UIView, duration: Double) {
+    override func animateTransition(from vc1: PhotosViewController, to vc2: PhotosDetailViewController, container: UIView, duration: Double) {
         guard let cell = vc1.collectionView?.cellForItem(at: IndexPath(item: vc2.index, section: 0)) as? PhotoCell else {
             print("Something went wrong")
             return
@@ -40,13 +40,13 @@ class PhotoOpenTransition: TransitionAnimator<PhotosViewController, PhotosDetail
         animImageView.layer.masksToBounds = true
         animImageView.layer.cornerRadius = cell.corners
         
-        let restore = RestoreTransition()
+        let restore = TransitionRestorer()
         let contentVC = vc2.viewControllers?.first as? PhotoPreviewController
         let detailContentView = contentVC?.imageView
-        restore.addRestore(animImageView, cell.imgView)
-        restore.addRestore(vc2.view, ignoreFields: [.superview])
+        restore.addRestoreViews(animImageView, cell.imgView)
+        restore.addRestoreView(vc2.view, ignoreFields: [.superview])
         if let content = detailContentView {
-            restore.addRestore(content)
+            restore.addRestoreViews(content)
         }
         
         vc2.view.alpha = 0

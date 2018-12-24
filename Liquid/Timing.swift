@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class Timing {
+public final class Timing {
     
     public static let `default`: Timing = Timing(functionName: .default)
     public static let linear: Timing = Timing(closure: {$0})
@@ -53,17 +53,17 @@ public class Timing {
     
     // MARK: - Private
     
-    fileprivate var p1: CGPoint = .zero
-    fileprivate var p2: CGPoint = CGPoint(x: 1, y: 1)
-    fileprivate var cx: CGFloat = 0
-    fileprivate var bx: CGFloat = 0
-    fileprivate var ax: CGFloat = 0
-    fileprivate var cy: CGFloat = 0
-    fileprivate var by: CGFloat = 0
-    fileprivate var ay: CGFloat = 0
-    fileprivate var customClosure: ((CGFloat)->(CGFloat))? = nil
+    private var p1: CGPoint = .zero
+    private var p2: CGPoint = CGPoint(x: 1, y: 1)
+    private var cx: CGFloat = 0
+    private var bx: CGFloat = 0
+    private var ax: CGFloat = 0
+    private var cy: CGFloat = 0
+    private var by: CGFloat = 0
+    private var ay: CGFloat = 0
+    private var customClosure: ((CGFloat)->(CGFloat))? = nil
     
-    fileprivate func updateCoefficients() {
+    private func updateCoefficients() {
         cx = 3.0 * p1.x
         bx = 3.0 * (p2.x - p1.x) - cx
         ax = 1.0 - cx - bx
@@ -73,20 +73,20 @@ public class Timing {
         ay = 1.0 - cy - by
     }
     
-    fileprivate func getSampleCurveX(t: CGFloat) -> CGFloat {
+    private func getSampleCurveX(t: CGFloat) -> CGFloat {
         return ((ax * t + bx) * t + cx) * t
     }
     
-    fileprivate func getSampleCurveY(t: CGFloat) -> CGFloat {
+    private func getSampleCurveY(t: CGFloat) -> CGFloat {
         return ((ay * t + by) * t + cy) * t
     }
     
-    fileprivate func getSampleCurveDerivativeX(t: CGFloat) -> CGFloat {
+    private func getSampleCurveDerivativeX(t: CGFloat) -> CGFloat {
         return (3.0 * ax * t + 2.0 * bx) * t + cx
     }
     
     
-    fileprivate func solve(x: CGFloat, epsilon: CGFloat) -> CGFloat {
+    private func solve(x: CGFloat, epsilon: CGFloat) -> CGFloat {
         var t0: CGFloat = 0
         var t1: CGFloat = 0
         var t2: CGFloat = x
@@ -182,7 +182,7 @@ extension Timing {
     }
     
     
-    fileprivate static func easeOutBounceFunc(t: CGFloat) -> CGFloat {
+    private static func easeOutBounceFunc(t: CGFloat) -> CGFloat {
         if (t < 4.0 / 11.0) {
             return pow(11.0 / 4.0, 2) * pow(t, 2)
         }
