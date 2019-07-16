@@ -31,7 +31,6 @@
 		FA92B84A216870D10095C126 /* PhotoPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B849216870D10095C126 /* PhotoPreviewController.swift */; };
 		FA92B84E216878870095C126 /* UIImage+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B84D216878870095C126 /* UIImage+Ex.swift */; };
 		FA92B85121687E6C0095C126 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA92B85021687E6C0095C126 /* Assets.xcassets */; };
-		FA92B859216BFD7E0095C126 /* PhotoOpenTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B858216BFD7E0095C126 /* PhotoOpenTransition.swift */; };
 		FA94878B2135F23400DAE280 /* CardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878A2135F23400DAE280 /* CardTransition.swift */; };
 		FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C5211A1A430047CECD /* AppDelegate.swift */; };
 		FAAE26C8211A1A430047CECD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C7211A1A430047CECD /* ViewController.swift */; };
@@ -58,7 +57,7 @@
 		FAC2F70321558F60003B3E0A /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FD21558F60003B3E0A /* Point.swift */; };
 		FAC2F70421558F60003B3E0A /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FE21558F60003B3E0A /* Event.swift */; };
 		FAC2F70521558F60003B3E0A /* Voronoi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC2F6FF21558F60003B3E0A /* Voronoi.swift */; };
-		FAEB331E2175305100F61B5C /* PhotoCloseInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB331D2175305100F61B5C /* PhotoCloseInteractiveTransition.swift */; };
+		FAEB331E2175305100F61B5C /* PhotoOpenTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEB331D2175305100F61B5C /* PhotoOpenTransition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,7 +124,6 @@
 		FA92B849216870D10095C126 /* PhotoPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewController.swift; sourceTree = "<group>"; };
 		FA92B84D216878870095C126 /* UIImage+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ex.swift"; sourceTree = "<group>"; };
 		FA92B85021687E6C0095C126 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		FA92B858216BFD7E0095C126 /* PhotoOpenTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOpenTransition.swift; sourceTree = "<group>"; };
 		FA94878A2135F23400DAE280 /* CardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransition.swift; sourceTree = "<group>"; };
 		FA94878C2135F5ED00DAE280 /* RuntimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeHelper.swift; sourceTree = "<group>"; };
 		FAAB21DB214630C500AAFF48 /* Timing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timing.swift; sourceTree = "<group>"; };
@@ -157,7 +155,7 @@
 		FAC2F6FD21558F60003B3E0A /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		FAC2F6FE21558F60003B3E0A /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		FAC2F6FF21558F60003B3E0A /* Voronoi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Voronoi.swift; sourceTree = "<group>"; };
-		FAEB331D2175305100F61B5C /* PhotoCloseInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCloseInteractiveTransition.swift; sourceTree = "<group>"; };
+		FAEB331D2175305100F61B5C /* PhotoOpenTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoOpenTransition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,8 +246,7 @@
 				FA94878A2135F23400DAE280 /* CardTransition.swift */,
 				FA1DA67621851E60004B4DD2 /* FadeTransition.swift */,
 				FA0B4F642161FF8A00C18F26 /* BrokenViewTransition.swift */,
-				FA92B858216BFD7E0095C126 /* PhotoOpenTransition.swift */,
-				FAEB331D2175305100F61B5C /* PhotoCloseInteractiveTransition.swift */,
+				FAEB331D2175305100F61B5C /* PhotoOpenTransition.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -571,7 +568,7 @@
 				FAAE26E2211A46E60047CECD /* GradientView.swift in Sources */,
 				FA0B4F652161FF8A00C18F26 /* BrokenViewTransition.swift in Sources */,
 				FA1DA67721851E60004B4DD2 /* FadeTransition.swift in Sources */,
-				FAEB331E2175305100F61B5C /* PhotoCloseInteractiveTransition.swift in Sources */,
+				FAEB331E2175305100F61B5C /* PhotoOpenTransition.swift in Sources */,
 				FAAE26DA211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift in Sources */,
 				FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */,
 				FA92B84E216878870095C126 /* UIImage+Ex.swift in Sources */,
@@ -582,7 +579,6 @@
 				FA2B5D962128BBCD00B38B1C /* GlobalFunctions.swift in Sources */,
 				FAAF4569216740490032C2A9 /* ThumbCaches.swift in Sources */,
 				FA92B848216870750095C126 /* PhotosDetailViewController.swift in Sources */,
-				FA92B859216BFD7E0095C126 /* PhotoOpenTransition.swift in Sources */,
 				FA2B5D8D2128B43C00B38B1C /* CardCells.swift in Sources */,
 				FA2B5D922128BAAB00B38B1C /* Extensions.swift in Sources */,
 			);

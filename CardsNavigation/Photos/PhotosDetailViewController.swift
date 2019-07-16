@@ -13,7 +13,7 @@ class PhotosDetailViewController: UIPageViewController {
 
     var photos: [PhotoInfo] = []
     var index: Int = 0
-    var animTransition: PhotoCloseInteractiveTransition?
+    var animTransition: PhotoOpenTransition?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +35,7 @@ class PhotosDetailViewController: UIPageViewController {
         
         if let controllers = self.navigationController?.viewControllers,
             let prev = controllers[controllers.count-2] as? PhotosViewController {
-            animTransition = Liquid.shared.transitionForDismiss(from: self, to: prev) as? PhotoCloseInteractiveTransition
-            animTransition?.isEnabled = false
+            animTransition = Liquid.shared.transitionForDismiss(from: self, to: prev) as? PhotoOpenTransition
         }
     }
     
@@ -49,22 +48,22 @@ class PhotosDetailViewController: UIPageViewController {
                 pan.isEnabled = true
                 return
             }
-            animTransition?.isEnabled = true
+            self.animTransition?.isInteractive = true
             if let nav = navigationController {
                 nav.popViewController(animated: true)
                 transitionCoordinator?.animate(alongsideTransition: nil, completion: { (_) in
-                    self.animTransition?.isEnabled = false
+                    self.animTransition?.isInteractive = false
                 })
             } else {
                 dismiss(animated: true) {
-                    self.animTransition?.isEnabled = false
+                    self.animTransition?.isInteractive = false
                 }
             }
             
         } else if pan.state == .changed {
             let progress = min(0.7, max(0, offset.y / 200.0))
             Liquid.shared.update(progress: progress)
-            animTransition?.updateInteractive(offset: CGPoint(x: 0, y: offset.y), progress: progress)
+            animTransition?.updateInteractive(offset: CGPoint(x: offset.x * 0.7, y: offset.y), progress: progress)
         } else {
             Liquid.shared.complete()
         }
@@ -94,9 +93,6 @@ extension PhotosDetailViewController: UIPageViewControllerDelegate, UIPageViewCo
         if index < 0 || index >= photos.count {
             return nil
         }
-//        if LiquidTransition.shared.currentTransition != nil {
-//            return nil
-//        }
         return PhotoPreviewController.controller(photo: photos[index], index: index)
     }
     

@@ -31,7 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         Liquid.shared.becomeDelegate()
         Liquid.shared.addTransitions([CardTransition(),
-                                      PhotoCloseInteractiveTransition(),
                                       PhotoOpenTransition(),
                                       BrokenViewTransition(),
                                       FadeTransition()])

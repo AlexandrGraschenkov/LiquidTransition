@@ -23,7 +23,7 @@ internal protocol LiquidTransitionProtocolInternal: LiquidTransitionProtocol {
     var isPresenting: Bool { get set }
 }
 
-open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInternal  {
+open class TransitionAnimator<VC1: AnyObject, VC2: AnyObject>: NSObject, LiquidTransitionProtocolInternal  {
     
     public typealias CustomAnimation = (_ progress: CGFloat)->()
     public typealias ControllerCheckClosure = (_ vc1: UIViewController, _ vc2: UIViewController, _ dir: Direction) -> Bool
@@ -85,17 +85,11 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
     
     /// Perform here you animation
     open func animation(vc1: VC1, vc2: VC2, container: UIView, duration: Double) {
-        let className = String(describing: self)
-        print("LiquidTransition warning: override \(className).animation(vc1: VC1, vc2: VC2, container: UIView, duration: Double) method")
-        
-        guard let toView = (vc2 as? UIViewController)?.view else { return }
-        
-        toView.alpha = 0
-        UIView.animate(withDuration: Double(duration), animations: {
-            toView.alpha = 1
-        }) { (_) in
-            toView.alpha = 0
-        }
+        flagOverrideAnim = false
+    }
+    
+    open func animationDismiss(vc1: VC1, vc2: VC2, container: UIView, duration: Double) {
+        flagOverrideAnim = false
     }
     
     open func completeInteractiveTransition(vc1: VC1, vc2: VC2, isPresenting: Bool, finish: Bool, animationDuration: Double) {
@@ -110,11 +104,19 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
             print("LiquidTransition warning: override \(className).canAnimate(from: UIViewController, to: UIViewController, direction: Direction) -> Bool method")
             return false
         }
+        print("From")
+        for f in fromTypes {
+            print(String(describing: f))
+        }
+        print("To")
+        for f in toTypes {
+            print(String(describing: f))
+        }
         
         var from = from
         var to = to
         // check is backward
-        if direction.contains(.both) && animDirection.contains(.dismiss) {
+        if animDirection.contains(.dismiss) {
             swap(&from, &to)
         }
         
@@ -127,7 +129,7 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
     
     
     // -------------------------------
-    //    MARK: - Internal methods
+    //    MARK: - Public methods
     // -------------------------------
     
     public func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
@@ -151,32 +153,35 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
         }
         
         
-        if let (vc1, vc2, backward) = getControllers(context: transitionContext) {
+        if let (vc1, vc2, isPresenting) = getControllers(context: transitionContext) {
             Liquid.shared.currentTransition = self
             interactive.reset()
-            interactive.backward = backward
             
-            if backward {
-                // fix wrong first frame
-                // image flick between end backward animation and it's start
-                if let snapshot = transitionContext.containerView.snapshotView(afterScreenUpdates: false) {
-                    transitionContext.containerView.superview!.addSubview(snapshot)
-                    _ = DisplayLinkAnimator.animate(duration: 0) { (_) in
-                        snapshot.removeFromSuperview()
-                    }
-                }
+            flagOverrideAnim = true
+            if isPresenting {
+                animation(vc1: vc1, vc2: vc2, container: transitionContext.containerView, duration: Double(duration))
+            } else {
+                animationDismiss(vc1: vc1, vc2: vc2, container: transitionContext.containerView, duration: Double(duration))
             }
             
-            animation(vc1: vc1, vc2: vc2, container: transitionContext.containerView, duration: Double(duration))
+            if flagOverrideAnim == false {
+                // without snapshot first frame animation is fliching
+                showSnapshotOnStartAnimation(transitionContext: transitionContext)
+                
+                // try to use animation in backward direction
+                interactive.backward = true
+                flagOverrideAnim = true
+                if isPresenting {
+                    animationDismiss(vc1: vc1, vc2: vc2, container: transitionContext.containerView, duration: Double(duration))
+                } else {
+                    animation(vc1: vc1, vc2: vc2, container: transitionContext.containerView, duration: Double(duration))
+                }
+                assert(flagOverrideAnim == true, "You must override animation(vc1:vc2:container:duration) or animationDismiss(vc1:vc2:container:duration)")
+            }
+            flagOverrideAnim = nil
+            
             interactive.update(0)
             interactive.animate(finish: true, speed: 1)
-        }
-    }
-    
-    
-    func callPrepareInteractive(finish: Bool, animDuration: Double) {
-        if let (vc1, vc2, _) = getControllers(context: interactive.context) {
-            completeInteractiveTransition(vc1: vc1, vc2: vc2, isPresenting: isPresenting, finish: finish, animationDuration: animDuration)
         }
     }
     
@@ -212,13 +217,51 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
         }
     }
     
+    // -------------------------------
+    //    MARK: - Internal methods
+    // -------------------------------
     
-    // MARK: - Fileprivate
+    func callPrepareInteractive(finish: Bool, animDuration: Double) {
+        if let (vc1, vc2, _) = getControllers(context: interactive.context) {
+            completeInteractiveTransition(vc1: vc1, vc2: vc2, isPresenting: isPresenting, finish: finish, animationDuration: animDuration)
+        }
+    }
+    
+    func runDefaultAnimation(vc1: VC1, vc2: VC2, container: UIView, duration: Double) {
+        let className = String(describing: self)
+        print("LiquidTransition warning: override \(className).animation(vc1: VC1, vc2: VC2, container: UIView, duration: Double) method")
+        
+        guard let toView = (vc2 as? UIViewController)?.view else { return }
+        
+        toView.alpha = 0
+        UIView.animate(withDuration: Double(duration), animations: {
+            toView.alpha = 1
+        }) { (_) in
+            toView.alpha = 0
+        }
+    }
+    
+    
+    // fix wrong first frame
+    // image flick between end backward animation and it's start
+    func showSnapshotOnStartAnimation(transitionContext: UIViewControllerContextTransitioning) {
+        if let snapshot = transitionContext.containerView.snapshotView(afterScreenUpdates: false) {
+            transitionContext.containerView.superview!.addSubview(snapshot)
+            _ = DisplayLinkAnimator.animate(duration: 0) { (_) in
+                snapshot.removeFromSuperview()
+            }
+        }
+    }
+    
+    // -------------------------------
+    //    MARK: - Fileprivate methods
+    // -------------------------------
     
     fileprivate var customAnimations: [CustomAnimation] = []
     fileprivate var controllerCheck: ControllerCheckClosure!
     fileprivate let fromTypes: [AnyClass]
     fileprivate let toTypes: [AnyClass]
+    fileprivate var flagOverrideAnim: Bool?
     
     fileprivate func runDefaultAnimation(context: UIViewControllerContextTransitioning) {
         guard let toView = context.view(forKey: .to),
@@ -244,15 +287,14 @@ open class TransitionAnimator<VC1, VC2>: NSObject, LiquidTransitionProtocolInter
         }
     }
     
-    fileprivate func getControllers(context: UIViewControllerContextTransitioning?) -> (vc1: VC1, vc2: VC2, backward: Bool)? {
+    fileprivate func getControllers(context: UIViewControllerContextTransitioning?) -> (vc1: VC1, vc2: VC2, isPresenting: Bool)? {
         let to = context?.viewController(forKey: .to)
         let from = context?.viewController(forKey: .from)
         
-        if let vc1 = to as? VC1, let vc2 = from as? VC2,
-           !isPresenting && direction == .both
+        if let vc1 = from as? VC1, let vc2 = to as? VC2
         {
             return (vc1, vc2, true)
-        } else if let vc1 = from as? VC1, let vc2 = to as? VC2
+        } else if let vc1 = to as? VC1, let vc2 = from as? VC2
         {
             return (vc1, vc2, false)
         }

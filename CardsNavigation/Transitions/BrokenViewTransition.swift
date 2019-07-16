@@ -10,10 +10,10 @@ import UIKit
 import Voronoi
 import Liquid
 
-class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UIViewController> {
+class BrokenViewTransition: TransitionAnimator<UIViewController, TestBrokenAnimationController> {
 
     init() {
-        super.init(from: TestBrokenAnimationController.self, to: UIViewController.self, direction: .dismiss)
+        super.init(from: UIViewController.self, to: TestBrokenAnimationController.self, direction: .dismiss)
         
         duration = 0.7
         timing = .linear
@@ -102,9 +102,9 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
     }
     
     
-    override func animation(vc1: TestBrokenAnimationController, vc2: UIViewController, container: UIView, duration: Double) {
-        let point = vc1.dismissFromPoint
-        let brokenPieces = broke(view: vc1.view, fromPoint: point)
+    override func animationDismiss(vc1: UIViewController, vc2: TestBrokenAnimationController, container: UIView, duration: Double) {
+        let point = vc2.dismissFromPoint
+        let brokenPieces = broke(view: vc2.view, fromPoint: point)
         for view in brokenPieces {
             container.addSubview(view)
             var transform = CATransform3DIdentity
@@ -113,10 +113,10 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
             view.layer.transform = transform
         }
         
-        vc1.view.isHidden = true
+        vc2.view.isHidden = true
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
             for view in brokenPieces {
-                let offset = (view.center - point).norm() * vc1.view.bounds.height
+                let offset = (view.center - point).norm() * vc2.view.bounds.height
                 view.center = offset + view.center
                 
                 var transform = CATransform3DIdentity
@@ -129,7 +129,7 @@ class BrokenViewTransition: TransitionAnimator<TestBrokenAnimationController, UI
                 view.layer.transform = transform
             }
         }) { (_) in
-            vc1.view.isHidden = false
+            vc2.view.isHidden = false
             for view in brokenPieces {
                 view.removeFromSuperview()
             }
