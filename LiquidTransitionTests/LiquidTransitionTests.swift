@@ -77,7 +77,7 @@ class LiquidTransitionTests: XCTestCase {
         })
         
         waitForExpectations(timeout: 0.6) { (error) in
-            print(error?.localizedDescription)
+            print(error?.localizedDescription ?? "")
         }
     }
 }

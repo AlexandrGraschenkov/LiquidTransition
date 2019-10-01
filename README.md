@@ -50,14 +50,14 @@ class FadeTransition: TransitionAnimator<FromViewController, ToViewController> {
         // do not perform here complex operations, cause it calls on app initialization
     }
     
-    override func animation(vc1: FromViewController, vc2: ToViewController, container: UIView, duration: Double) {
-        vc2.view.alpha = 0
+    override func animation(src: FromViewController, dst: ToViewController, container: UIView, duration: Double) {
+        dst.view.alpha = 0
         
         // perform linear animation and manage timing function with `self.timing`
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
-            vc2.view.alpha = 1
+            dst.view.alpha = 1
         }) { _ in
-            vc2.view.alpha = 1 // if anim somehow canceled
+            dst.view.alpha = 1 // if anim somehow canceled
         }
     }
 }
@@ -97,21 +97,21 @@ class ExampleTransition: TransitionAnimator<SampleController, CardsNavigationCon
         }
     }
     
-    override func animation(vc1: SampleController, vc2: CardsNavigationController, container: UIView, duration: Double) {
-        imgView = vc2.imgView
+    override func animation(src: SampleController, dst: CardsNavigationController, container: UIView, duration: Double) {
+        imgView = dst.imgView
         
         // this class restore all views state before transition
         // when you have lot of property changes, it can be might helpfull
-        let restore = RestoreTransition()
-        restore.addRestore(imgView, vc1.fadeView)
+        let restore = TransitionRestorer()
+        restore.addRestore(imgView, src.fadeView)
         
-        // cause on end transition we dont want restore superview of `vc1.view` and `vc2.view`
-        restore.addRestore(vc2.view, ignoreFields: [.superview])
+        // cause on end transition we dont want restore superview of `src.view` and `dst.view`
+        restore.addRestore(dst.view, ignoreFields: [.superview])
         
-        vc2.view.alpha = 0
+        dst.view.alpha = 0
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
-            vc2.view.alpha = 1
-            vc1.fadeView.alpha = 0
+            dst.view.alpha = 1
+            src.fadeView.alpha = 0
             self.imgView.frame = CGRect(/*new frame*/)
         }) { _ in
             restore.restore()
@@ -130,14 +130,14 @@ init() {
     duration = 0.3
 }
 
-override func animation(vc1: UIViewController, vc2: UIViewController, container: UIView, duration: Double) {
+override func animation(src: UIViewController, dst: UIViewController, container: UIView, duration: Double) {
 // animation
 }
 ```
 
 Or use protocol, to have access to common views. If it's not your case, you can ovverride `canAnimate` function
 ```Swift
-open func canAnimate(from: UIViewController, to: UIViewController, direction animDirection: Direction) -> Bool
+open func canAnimate(src: UIViewController, dst: UIViewController, direction animDirection: Direction) -> Bool
 ```
 and define your conditions
 
@@ -150,7 +150,7 @@ and define your conditions
 - [x] Smooth interactive animation for complex prepare animation
 - [x] Support Cocoapods
 - [ ] Support Carthage
-- [x] Add custom save keys for `RestoreTransition`
+- [x] Add custom save keys for `TransitionRestorer`
 - [ ] Add some default animations
 
 ## Notes

@@ -17,12 +17,12 @@ class FadeTransition: TransitionAnimator<UIViewController, CardsNavigationContro
         duration = 0.3
     }
     
-    override func animation(vc1: UIViewController, vc2: CardsNavigationController, container: UIView, duration: Double) {
-        vc2.view.alpha = 0
+    override func animation(src: UIViewController, dst: CardsNavigationController, container: UIView, duration: Double) {
+        dst.view.alpha = 0
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
-            vc2.view.alpha = 1
+            dst.view.alpha = 1
         }) { _ in
-            vc2.view.alpha = 1 // if anim somehow canceled
+            dst.view.alpha = 1 // if anim somehow canceled
         }
     }
 }

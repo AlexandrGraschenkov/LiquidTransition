@@ -9,7 +9,9 @@
 import UIKit
 
 
-public class Liquid: NSObject {
+public typealias Cancelable = ()->()
+
+public final class Liquid: NSObject {
 
     public static var shared = Liquid()
     
@@ -45,7 +47,7 @@ public class Liquid: NSObject {
         let arrInternal = arr.compactMap({$0 as? LiquidTransitionProtocolInternal})
         transitions.append(contentsOf: arrInternal)
         if arrInternal.count != arr.count {
-            print("Error: please inherit from Liquid.TransitionAnimator<VC1, VC2>")
+            print("Error: please inherit from Liquid.TransitionAnimator<Source, Destination>")
         }
     }
     
@@ -53,7 +55,7 @@ public class Liquid: NSObject {
         if let transition = transition as? LiquidTransitionProtocolInternal {
             transitions.append(transition)
         } else {
-            print("Error: please inherit from Liquid.TransitionAnimator<VC1, VC2>")
+            print("Error: please inherit from Liquid.TransitionAnimator<Source, Destination>")
         }
     }
     
@@ -83,12 +85,12 @@ public class Liquid: NSObject {
     
     
     public func transitionForPresent(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
-        let transition = transitions.first(where: {$0.canAnimate(from: from, to: to, direction: .present)})
+        let transition = transitions.first(where: {$0.canAnimate(src: from, dst: to, direction: .present)})
         return transition
     }
     
     public func transitionForDismiss(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
-        let transition = transitions.first(where: {$0.canAnimate(from: from, to: to, direction: .dismiss)})
+        let transition = transitions.first(where: {$0.canAnimate(src: from, dst: to, direction: .dismiss)})
         return transition
     }
     
@@ -98,13 +100,13 @@ public class Liquid: NSObject {
     }
     
     func presentTransition(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
-        let transition = transitions.first(where: {$0.canAnimate(from: from, to: to, direction: .present)})
+        let transition = transitions.first(where: {$0.canAnimate(src: from, dst: to, direction: .present)})
         transition?.isPresenting = true
         return transition
     }
     
     func dismissTransition(from: UIViewController, to: UIViewController) -> LiquidTransitionProtocol? {
-        let transition = transitions.first(where: {$0.isEnabled && $0.canAnimate(from: from, to: to, direction: .dismiss)})
+        let transition = transitions.first(where: {$0.isEnabled && $0.canAnimate(src: from, dst: to, direction: .dismiss)})
         transition?.isPresenting = false
         return transition
     }
@@ -136,15 +138,15 @@ extension Liquid: UIViewControllerTransitioningDelegate, UINavigationControllerD
     }
 
     public func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return (animator as? LiquidTransitionProtocol)?.interactive
+        return (animator as? LiquidTransitionProtocol)?.percentAnimator
     }
 
     public func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return (animator as? LiquidTransitionProtocol)?.interactive
+        return (animator as? LiquidTransitionProtocol)?.percentAnimator
     }
     
     public func navigationController(_ navigationController: UINavigationController, interactionControllerFor animationController: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
-        return (animationController as? LiquidTransitionProtocol)?.interactive
+        return (animationController as? LiquidTransitionProtocol)?.percentAnimator
     }
     
     

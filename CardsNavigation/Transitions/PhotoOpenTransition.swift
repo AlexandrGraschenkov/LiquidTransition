@@ -29,12 +29,12 @@ class PhotoOpenTransition: TransitionAnimator<PhotosViewController, PhotosDetail
         }
     }
     
-    override func animation(vc1: PhotosViewController, vc2: PhotosDetailViewController, container: UIView, duration: Double) {
-        guard let cell = vc1.collectionView?.cellForItem(at: IndexPath(item: vc2.index, section: 0)) as? PhotoCell else {
+    override func animation(src: PhotosViewController, dst: PhotosDetailViewController, container: UIView, duration: Double) {
+        guard let cell = src.collectionView?.cellForItem(at: IndexPath(item: dst.index, section: 0)) as? PhotoCell else {
             print("Something went wrong")
             return
         }
-        let photo = vc1.photos[vc2.index]
+        let photo = src.photos[dst.index]
         let frame = cell.imgView.convert(cell.imgView.bounds, to: container)
         corners = cell.corners
         
@@ -44,43 +44,43 @@ class PhotoOpenTransition: TransitionAnimator<PhotosViewController, PhotosDetail
         animImageView.layer.masksToBounds = true
         animImageView.layer.cornerRadius = cell.corners
         
-        let restore = RestoreTransition()
-        let contentVC = vc2.viewControllers?.first as? PhotoPreviewController
+        let restore = TransitionRestorer()
+        let contentVC = dst.viewControllers?.first as? PhotoPreviewController
         let detailContentView = contentVC?.imageView
         restore.addRestore(animImageView, cell.imgView)
-        restore.addRestore(vc2.view, ignoreFields: [.superview])
+        restore.addRestore(dst.view, ignoreFields: [.superview])
         if let content = detailContentView {
             restore.addRestore(content)
         }
         
-        vc2.view.alpha = 0
+        dst.view.alpha = 0
         detailContentView?.isHidden = true
         cell.imgView.isHidden = true
         
         container.addSubview(animImageView)
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
-            self.animImageView.frame = vc2.view.bounds.getAspectFit(viewSize: self.animImageView.image!.size)
-            vc2.view.alpha = 1
+            self.animImageView.frame = dst.view.bounds.getAspectFit(viewSize: self.animImageView.image!.size)
+            dst.view.alpha = 1
         }) { (_) in
             restore.restore()
         }
     }
     
-    override func animationDismiss(vc1: PhotosViewController, vc2: PhotosDetailViewController, container: UIView, duration: Double) {
-        guard let cell = vc1.collectionView?.cellForItem(at: IndexPath(item: vc2.index, section: 0)) as? PhotoCell else {
+    override func animationDismiss(src: PhotosViewController, dst: PhotosDetailViewController, container: UIView, duration: Double) {
+        guard let cell = src.collectionView?.cellForItem(at: IndexPath(item: dst.index, section: 0)) as? PhotoCell else {
             print("Something went wrong")
             return
         }
-        guard let preview = vc2.viewControllers?.first as? PhotoPreviewController,
+        guard let preview = dst.viewControllers?.first as? PhotoPreviewController,
             let imgView = preview.imageView else {
             print("Something went wrong")
             return
         }
         toFrame = cell.imgView.convert(cell.imgView.bounds, to: container)
-        fromFrame = vc1.view.bounds.getAspectFit(viewSize: imgView.image!.size)
+        fromFrame = src.view.bounds.getAspectFit(viewSize: imgView.image!.size)
         corners = cell.corners
         
-        let restore = RestoreTransition(keyPaths: SaveViewState(path: \.contentMode))
+        let restore = TransitionRestorer(keyPaths: SaveViewState(path: \.contentMode))
         restore.moveView(imgView, to: container)
         
         animImageView = imgView
@@ -90,13 +90,13 @@ class PhotoOpenTransition: TransitionAnimator<PhotosViewController, PhotosDetail
         animImageView.layer.cornerRadius = cell.corners
         
         restore.addRestore(cell.imgView)
-        restore.addRestore(vc2.view, ignoreFields: [.superview])
+        restore.addRestore(dst.view, ignoreFields: [.superview])
         
         cell.imgView.isHidden = true
         
         print("Custom duration", TimeInterval(duration))
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
-            vc2.view.alpha = 0
+            dst.view.alpha = 0
             if !self.isInteractive {
                 self.animImageView.frame = self.toFrame
             }
@@ -105,7 +105,7 @@ class PhotoOpenTransition: TransitionAnimator<PhotosViewController, PhotosDetail
         }
     }
     
-    override func completeInteractiveTransition(vc1: PhotosViewController, vc2: PhotosDetailViewController, isPresenting: Bool, finish: Bool, animationDuration: Double) {
+    override func completeInteractiveTransition(src: PhotosViewController, dst: PhotosDetailViewController, isPresenting: Bool, finish: Bool, animationDuration: Double) {
         UIView.animate(withDuration: animationDuration, delay: 0, options: [.curveLinear], animations: {
             self.animImageView.frame = finish ? self.toFrame : self.fromFrame
         }, completion: nil)

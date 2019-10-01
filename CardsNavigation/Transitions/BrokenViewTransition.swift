@@ -102,9 +102,9 @@ class BrokenViewTransition: TransitionAnimator<UIViewController, TestBrokenAnima
     }
     
     
-    override func animationDismiss(vc1: UIViewController, vc2: TestBrokenAnimationController, container: UIView, duration: Double) {
-        let point = vc2.dismissFromPoint
-        let brokenPieces = broke(view: vc2.view, fromPoint: point)
+    override func animationDismiss(src: UIViewController, dst: TestBrokenAnimationController, container: UIView, duration: Double) {
+        let point = dst.dismissFromPoint
+        let brokenPieces = broke(view: dst.view, fromPoint: point)
         for view in brokenPieces {
             container.addSubview(view)
             var transform = CATransform3DIdentity
@@ -113,10 +113,10 @@ class BrokenViewTransition: TransitionAnimator<UIViewController, TestBrokenAnima
             view.layer.transform = transform
         }
         
-        vc2.view.isHidden = true
+        dst.view.isHidden = true
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
             for view in brokenPieces {
-                let offset = (view.center - point).norm() * vc2.view.bounds.height
+                let offset = (view.center - point).norm() * dst.view.bounds.height
                 view.center = offset + view.center
                 
                 var transform = CATransform3DIdentity
@@ -129,7 +129,7 @@ class BrokenViewTransition: TransitionAnimator<UIViewController, TestBrokenAnima
                 view.layer.transform = transform
             }
         }) { (_) in
-            vc2.view.isHidden = false
+            dst.view.isHidden = false
             for view in brokenPieces {
                 view.removeFromSuperview()
             }

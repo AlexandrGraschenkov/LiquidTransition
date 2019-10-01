@@ -1,5 +1,5 @@
 //
-//  RestoreTransition.swift
+//  TransitionRestorer.swift
 //  Liquid
 //
 //  Created by Alexander Graschenkov on 10.09.2018.
@@ -15,7 +15,7 @@ public protocol StateRestoreViewProtocol {
     func setObject(_ obj: UIView)
 }
 
-public class SaveViewState<Value> : StateRestoreViewProtocol {
+public final class SaveViewState<Value> : StateRestoreViewProtocol {
     public init(path: ReferenceWritableKeyPath<UIView, Value>) {
         self.keyPath = path
     }
@@ -68,10 +68,10 @@ class SaveState<Root, Value>: RestoreProtocol {
  Restore `view` state after transition
  # Example:
  ```
- let restore = RestoreTransition()
- restore.addRestore(imgView, label, view)
- restore.moveView(avatarView, to: containerView) // it helps move move view to another superview, and restore it when animation is finished
- restore.addRestore(imgView2, keyPaths: [SaveViewState(path: \.layer.cornerRadius)]) // you can restore any custom property from UIView
+ let restorer = TransitionRestorer()
+ restorer.addRestore(imgView, label, view)
+ restorer.moveView(avatarView, to: containerView) // it helps move move view to another superview, and restore it when animation is finished
+ restorer.addRestore(imgView2, keyPaths: [SaveViewState(path: \.layer.cornerRadius)]) // you can restore any custom property from UIView
  
  UIView.animate(withDuration: 0.2, animations: {
     avatarView.frame.center.y += 200;
@@ -79,11 +79,11 @@ class SaveState<Root, Value>: RestoreProtocol {
     imgView2.layer.cornerRadius = 30.0;
  }) { (_) in
     // restores start state for all added views
-    restore.restore()
+    restorer.restore()
  }
  ```
  */
-public class RestoreTransition: NSObject {
+public class TransitionRestorer: NSObject {
     
     public enum Fields {
         case transform, superview, alpha, frame, isHidden
@@ -160,9 +160,9 @@ public class RestoreTransition: NSObject {
             removeViews.append(snapshot)
         }
         if afterScreenUpdates {
-            performAsyncIn(.main, closure: {
+            DispatchQueue.main.async {
                 view.isHidden = true
-            })
+            }
         } else {
             view.isHidden = true
         }
@@ -223,11 +223,11 @@ fileprivate struct ViewState {
     let superview: UIView?
     let isHidden: Bool
     var keyPaths: [StateRestoreViewProtocol] = []
-    var ignoreFields: [RestoreTransition.Fields] = []
+    var ignoreFields: [TransitionRestorer.Fields] = []
     
     static func generateWithView(view: UIView,
                                  keyPaths: [StateRestoreViewProtocol] = [],
-                                 ignoreFields: [RestoreTransition.Fields] = []) -> ViewState {
+                                 ignoreFields: [TransitionRestorer.Fields] = []) -> ViewState {
         return ViewState(view: view,
                          alpha: view.alpha,
                          frame: view.frame,

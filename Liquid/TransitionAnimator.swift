@@ -11,47 +11,46 @@ import UIKit
 public protocol LiquidTransitionProtocol: UIViewControllerAnimatedTransitioning {
     var progress: CGFloat { get set }
     var duration: CGFloat { get set }
-    var interactive: TransitionPercentAnimator { get }
+    var percentAnimator: TransitionPercentAnimator { get }
     var isPresenting: Bool { get }
     var isEnabled: Bool { get }
     
     func completeInteractive(complete: Bool?, animated: Bool)
-    func canAnimate(from: UIViewController, to: UIViewController, direction: Liquid.Direction) -> Bool
+    func canAnimate(src: UIViewController, dst: UIViewController, direction: Liquid.Direction) -> Bool
 }
 
 internal protocol LiquidTransitionProtocolInternal: LiquidTransitionProtocol {
     var isPresenting: Bool { get set }
 }
 
-open class TransitionAnimator<VC1: AnyObject, VC2: AnyObject>: NSObject, LiquidTransitionProtocolInternal  {
+open class TransitionAnimator<Source: UIViewController, Destination: UIViewController>: NSObject, LiquidTransitionProtocolInternal  {
     
     public typealias CustomAnimation = (_ progress: CGFloat)->()
-    public typealias ControllerCheckClosure = (_ vc1: UIViewController, _ vc2: UIViewController, _ dir: Direction) -> Bool
     public typealias Direction = Liquid.Direction
     
     
     public var progress: CGFloat {
-        get { return interactive.percentComplete }
-        set { interactive.update(newValue) }
+        get { return percentAnimator.percentComplete }
+        set { percentAnimator.update(newValue) }
     }
     
     public var isEnabled: Bool = true
     public var duration: CGFloat = 1.0
     public let direction: Direction
     public var timing: Timing {
-        get { return interactive.timing }
-        set { interactive.timing = newValue }
+        get { return percentAnimator.timing }
+        set { percentAnimator.timing = newValue }
     }
-    public let interactive = TransitionPercentAnimator()
+    public let percentAnimator = TransitionPercentAnimator()
     public internal(set) var isPresenting: Bool = true
     
     
-    public init(from: VC1.Type, to: VC2.Type, direction: Direction) {
+    public init(from: Source.Type, to: Destination.Type, direction: Direction) {
         self.direction = direction
-        fromTypes = [from as! AnyClass]
-        toTypes = [to as! AnyClass]
+        fromTypes = [from as AnyClass]
+        toTypes = [to as AnyClass]
         super.init()
-        interactive.delegate = self
+        percentAnimator.delegate = self
     }
     
     public init(from: [AnyClass], to: [AnyClass], direction: Direction) {
@@ -59,7 +58,7 @@ open class TransitionAnimator<VC1: AnyObject, VC2: AnyObject>: NSObject, LiquidT
         fromTypes = from
         toTypes = to
         super.init()
-        interactive.delegate = self
+        percentAnimator.delegate = self
     }
     
     public init(direction: Direction) {
@@ -67,8 +66,7 @@ open class TransitionAnimator<VC1: AnyObject, VC2: AnyObject>: NSObject, LiquidT
         fromTypes = []
         toTypes = []
         super.init()
-        controllerCheck = { (_, _, _) -> Bool in false }
-        interactive.delegate = self
+        percentAnimator.delegate = self
     }
     
     /// You can animate non animatable properties
@@ -80,41 +78,41 @@ open class TransitionAnimator<VC1: AnyObject, VC2: AnyObject>: NSObject, LiquidT
     //       MARK: - Overrides
     // -------------------------------
     /// Override to move information between controllers
-    open func prepareAnimation(vc1: VC1, vc2: VC2, isPresenting: Bool) {
+    open func prepare(src: Source, dst: Destination, isPresenting: Bool) {
     }
     
     /// Perform here you animation
-    open func animation(vc1: VC1, vc2: VC2, container: UIView, duration: Double) {
+    open func animation(src: Source, dst: Destination, container: UIView, duration: Double) {
         flagOverrideAnim = false
     }
     
-    open func animationDismiss(vc1: VC1, vc2: VC2, container: UIView, duration: Double) {
+    open func animationDismiss(src: Source, dst: Destination, container: UIView, duration: Double) {
         flagOverrideAnim = false
     }
     
-    open func completeInteractiveTransition(vc1: VC1, vc2: VC2, isPresenting: Bool, finish: Bool, animationDuration: Double) {
+    open func completeInteractiveTransition(src: Source, dst: Destination, isPresenting: Bool, finish: Bool, animationDuration: Double) {
         // override to animate interactive view to destanation location
     }
     
     /// You can override to perform more complex logic
-    open func canAnimate(from: UIViewController, to: UIViewController, direction animDirection: Direction) -> Bool {
+    open func canAnimate(src: UIViewController, dst: UIViewController, direction animDirection: Direction) -> Bool {
         if !direction.contains(animDirection) { return false }
         if fromTypes.count == 0 || toTypes.count == 0 {
             let className = String(describing: self)
             print("LiquidTransition warning: override \(className).canAnimate(from: UIViewController, to: UIViewController, direction: Direction) -> Bool method")
             return false
         }
-        print("From")
-        for f in fromTypes {
-            print(String(describing: f))
-        }
-        print("To")
-        for f in toTypes {
-            print(String(describing: f))
-        }
+//        print("From")
+//        for f in fromTypes {
+//            print(String(describing: f))
+//        }
+//        print("To")
+//        for f in toTypes {
+//            print(String(describing: f))
+//        }
         
-        var from = from
-        var to = to
+        var from = src
+        var to = dst
         // check is backward
         if animDirection.contains(.dismiss) {
             swap(&from, &to)
@@ -137,10 +135,10 @@ open class TransitionAnimator<VC1: AnyObject, VC2: AnyObject>: NSObject, LiquidT
     }
 
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        interactive.context = transitionContext
-        interactive.totalDuration = transitionDuration(using: transitionContext)
-        if let (vc1, vc2, _) = getControllers(context: transitionContext) {
-            prepareAnimation(vc1: vc1, vc2: vc2, isPresenting: isPresenting)
+        percentAnimator.context = transitionContext
+        percentAnimator.totalDuration = transitionDuration(using: transitionContext)
+        if let (src, dst, _) = getControllers(context: transitionContext) {
+            prepare(src: src, dst: dst, isPresenting: isPresenting)
         }
         
         if let toView = transitionContext.view(forKey: .to) {
@@ -153,15 +151,15 @@ open class TransitionAnimator<VC1: AnyObject, VC2: AnyObject>: NSObject, LiquidT
         }
         
         
-        if let (vc1, vc2, isPresenting) = getControllers(context: transitionContext) {
+        if let (src, dst, isPresenting) = getControllers(context: transitionContext) {
             Liquid.shared.currentTransition = self
-            interactive.reset()
+            percentAnimator.reset()
             
             flagOverrideAnim = true
             if isPresenting {
-                animation(vc1: vc1, vc2: vc2, container: transitionContext.containerView, duration: Double(duration))
+                animation(src: src, dst: dst, container: transitionContext.containerView, duration: Double(duration))
             } else {
-                animationDismiss(vc1: vc1, vc2: vc2, container: transitionContext.containerView, duration: Double(duration))
+                animationDismiss(src: src, dst: dst, container: transitionContext.containerView, duration: Double(duration))
             }
             
             if flagOverrideAnim == false {
@@ -169,19 +167,19 @@ open class TransitionAnimator<VC1: AnyObject, VC2: AnyObject>: NSObject, LiquidT
                 showSnapshotOnStartAnimation(transitionContext: transitionContext)
                 
                 // try to use animation in backward direction
-                interactive.backward = true
+                percentAnimator.backward = true
                 flagOverrideAnim = true
                 if isPresenting {
-                    animationDismiss(vc1: vc1, vc2: vc2, container: transitionContext.containerView, duration: Double(duration))
+                    animationDismiss(src: src, dst: dst, container: transitionContext.containerView, duration: Double(duration))
                 } else {
-                    animation(vc1: vc1, vc2: vc2, container: transitionContext.containerView, duration: Double(duration))
+                    animation(src: src, dst: dst, container: transitionContext.containerView, duration: Double(duration))
                 }
-                assert(flagOverrideAnim == true, "You must override animation(vc1:vc2:container:duration) or animationDismiss(vc1:vc2:container:duration)")
+                assert(flagOverrideAnim == true, "You must override animation(src:dst:container:duration) or animationDismiss(src:dst:container:duration)")
             }
             flagOverrideAnim = nil
             
-            interactive.update(0)
-            interactive.animate(finish: true, speed: 1)
+            percentAnimator.update(0)
+            percentAnimator.animate(finish: true, speed: 1)
         }
     }
     
@@ -191,28 +189,28 @@ open class TransitionAnimator<VC1: AnyObject, VC2: AnyObject>: NSObject, LiquidT
             var speed: CGFloat = 0
             if let complete = complete {
                 finish = complete
-                if finish == interactive.needFinish() {
-                    speed = abs(interactive.lastSpeed)
+                if finish == percentAnimator.needFinish() {
+                    speed = abs(percentAnimator.lastSpeed)
                 }
             } else {
-                finish = interactive.needFinish()
-                speed = abs(interactive.lastSpeed)
+                finish = percentAnimator.needFinish()
+                speed = abs(percentAnimator.lastSpeed)
             }
-            let animDuration = Double(interactive.getDurationToState(finish: finish, speed: speed))
+            let animDuration = Double(percentAnimator.getDurationToState(finish: finish, speed: speed))
             callPrepareInteractive(finish: finish, animDuration: animDuration)
-            interactive.animate(finish: finish, speed: speed)
+            percentAnimator.animate(finish: finish, speed: speed)
         } else {
-            let finish = complete ?? interactive.needFinish()
+            let finish = complete ?? percentAnimator.needFinish()
             progress = finish ? 1 : 0
-            interactive.backward = false
+            percentAnimator.backward = false
             if finish {
-                interactive.update(1)
+                percentAnimator.update(1)
                 callPrepareInteractive(finish: finish, animDuration: 0)
-                interactive.finish()
+                percentAnimator.finish()
             } else {
-                interactive.update(0)
+                percentAnimator.update(0)
                 callPrepareInteractive(finish: finish, animDuration: 0)
-                interactive.cancel()
+                percentAnimator.cancel()
             }
         }
     }
@@ -222,22 +220,8 @@ open class TransitionAnimator<VC1: AnyObject, VC2: AnyObject>: NSObject, LiquidT
     // -------------------------------
     
     func callPrepareInteractive(finish: Bool, animDuration: Double) {
-        if let (vc1, vc2, _) = getControllers(context: interactive.context) {
-            completeInteractiveTransition(vc1: vc1, vc2: vc2, isPresenting: isPresenting, finish: finish, animationDuration: animDuration)
-        }
-    }
-    
-    func runDefaultAnimation(vc1: VC1, vc2: VC2, container: UIView, duration: Double) {
-        let className = String(describing: self)
-        print("LiquidTransition warning: override \(className).animation(vc1: VC1, vc2: VC2, container: UIView, duration: Double) method")
-        
-        guard let toView = (vc2 as? UIViewController)?.view else { return }
-        
-        toView.alpha = 0
-        UIView.animate(withDuration: Double(duration), animations: {
-            toView.alpha = 1
-        }) { (_) in
-            toView.alpha = 0
+        if let (src, dst, _) = getControllers(context: percentAnimator.context) {
+            completeInteractiveTransition(src: src, dst: dst, isPresenting: isPresenting, finish: finish, animationDuration: animDuration)
         }
     }
     
@@ -258,63 +242,24 @@ open class TransitionAnimator<VC1: AnyObject, VC2: AnyObject>: NSObject, LiquidT
     // -------------------------------
     
     fileprivate var customAnimations: [CustomAnimation] = []
-    fileprivate var controllerCheck: ControllerCheckClosure!
     fileprivate let fromTypes: [AnyClass]
     fileprivate let toTypes: [AnyClass]
     fileprivate var flagOverrideAnim: Bool?
     
-    fileprivate func runDefaultAnimation(context: UIViewControllerContextTransitioning) {
-        guard let toView = context.view(forKey: .to),
-            let fromView = context.view(forKey: .from) else {
-            context.completeTransition(true)
-            return
-        }
-        
-        context.containerView.addSubview(toView)
-        toView.frame = context.containerView.bounds
-        toView.alpha = 0
-        UIView.animate(withDuration: Double(duration), animations: {
-            toView.alpha = 1.0
-        }) { (_) in
-            toView.alpha = 1
-            fromView.removeFromSuperview()
-            
-            if context.transitionWasCancelled {
-                context.cancelInteractiveTransition()
-            } else {
-                context.finishInteractiveTransition()
-            }
-        }
-    }
     
-    fileprivate func getControllers(context: UIViewControllerContextTransitioning?) -> (vc1: VC1, vc2: VC2, isPresenting: Bool)? {
+    fileprivate func getControllers(context: UIViewControllerContextTransitioning?) -> (src: Source, dst: Destination, isPresenting: Bool)? {
         let to = context?.viewController(forKey: .to)
         let from = context?.viewController(forKey: .from)
         
-        if let vc1 = from as? VC1, let vc2 = to as? VC2
+        if let src = from as? Source, let dst = to as? Destination
         {
-            return (vc1, vc2, true)
-        } else if let vc1 = to as? VC1, let vc2 = from as? VC2
+            return (src, dst, true)
+        } else if let src = to as? Source, let dst = from as? Destination
         {
-            return (vc1, vc2, false)
+            return (src, dst, false)
         }
         
         return nil
-    }
-    
-    fileprivate func makeNonVisibleChanges(view: UIView) {
-        // change background color a little
-        let color = view.backgroundColor ?? UIColor.clear
-        var white: CGFloat = 0
-        var alpha: CGFloat = 0
-        color.getWhite(&white, alpha: &alpha)
-        if white == 1 {
-            white -= 0.001
-        } else {
-            white += 0.001
-        }
-        
-        view.backgroundColor = UIColor.init(white: white, alpha: alpha)
     }
 }
 

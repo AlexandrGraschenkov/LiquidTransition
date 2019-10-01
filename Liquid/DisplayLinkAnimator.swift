@@ -45,9 +45,7 @@ public class DisplayLinkAnimator: NSObject {
         if progress >= 1 {
             link.invalidate()
             progress = 1
-            defer {
-                retainSelf = nil
-            }
+            retainSelf = nil
         }
         
         closure(CGFloat(progress))

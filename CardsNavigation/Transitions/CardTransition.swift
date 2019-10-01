@@ -35,14 +35,14 @@ class CardTransition: TransitionAnimator<CardsNavigationController, WebViewContr
     }
     
     
-    override func animation(vc1: CardsNavigationController,
-                            vc2: WebViewController,
+    override func animation(src: CardsNavigationController,
+                            dst: WebViewController,
                             container: UIView,
                             duration: Double) {
-        let restore = RestoreTransition()
-        let content = vc2.getContentView()
+        let restore = TransitionRestorer()
+        let content = dst.getContentView()
         let startContentFrame = content.frame
-        let card = vc1.getTransitionCell()
+        let card = src.getTransitionCell()
         
         restore.addRestore(content)
         let cardFrame = card.convert(card.bounds, to: container)
@@ -63,14 +63,14 @@ class CardTransition: TransitionAnimator<CardsNavigationController, WebViewContr
         clipContainer.backgroundColor = UIColor.white
         content.mask = clipContainer
         
-        let toolbar = vc2.toolbar!
+        let toolbar = dst.toolbar!
         restore.addRestore(toolbar)
         let toolbarFrame = toolbar.frame
         toolbar.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
         toolbar.frame = toolbarFrame
         toolbar.layer.transform = AnimationHelper.xRotation(.pi * 0.6)
         
-        let status = vc2.statusBarView!
+        let status = dst.statusBarView!
         restore.addRestore(status)
         let statusFrame = status.frame
         status.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
