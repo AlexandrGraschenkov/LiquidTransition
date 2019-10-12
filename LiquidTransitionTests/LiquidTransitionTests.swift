@@ -12,7 +12,7 @@ import Liquid
 class TVC1: UIViewController {}
 class TVC2: UIViewController {}
 
-class Transition: TransitionAnimator<TVC1, TVC2> {
+class Transition: Animator<TVC1, TVC2> {
 }
 
 class LiquidTransitionTests: XCTestCase {

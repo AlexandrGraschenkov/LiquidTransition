@@ -1,5 +1,5 @@
 //
-//  TransitionPercentAnimator.swift
+//  PercentAnimator.swift
 //  CardsNavigation
 //
 //  Created by Alexander Graschenkov on 22.08.2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol TransitionPercentAnimatorDelegate: class {
+protocol PercentAnimatorDelegate: class {
     func transitionPercentChanged(_ percent: CGFloat)
     func transitionCompleted(context: UIViewControllerContextTransitioning)
 }
@@ -28,7 +28,7 @@ public class InvertableInteractiveTransition: UIPercentDrivenInteractiveTransiti
     }
 }
 
-public class TransitionPercentAnimator: InvertableInteractiveTransition {
+public class PercentAnimator: InvertableInteractiveTransition {
     
     fileprivate var cancelAnimation: Cancelable?
     fileprivate(set) var lastSpeed: CGFloat = 0
@@ -47,7 +47,7 @@ public class TransitionPercentAnimator: InvertableInteractiveTransition {
     /// Min completion speed after interactive transition calls complete
     public var minCompleteionSpeed: CGFloat = 1.0
     
-    weak var delegate: TransitionPercentAnimatorDelegate?
+    weak var delegate: PercentAnimatorDelegate?
     
     func getDurationToState(finish: Bool, speed: CGFloat = 0) -> CGFloat {
         let fromPercent = percent

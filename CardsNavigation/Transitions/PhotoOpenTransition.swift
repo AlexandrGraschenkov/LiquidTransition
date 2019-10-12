@@ -9,7 +9,7 @@
 import UIKit
 import Liquid
 
-class PhotoOpenTransition: TransitionAnimator<PhotosViewController, PhotosDetailViewController> {
+class PhotoOpenTransition: Animator<PhotosViewController, PhotosDetailViewController> {
 
     fileprivate var animImageView: UIImageView!
     fileprivate var corners: CGFloat = 0

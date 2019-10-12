@@ -23,7 +23,7 @@ struct AnimationHelper {
     }
 }
 
-class CardTransition: TransitionAnimator<CardsNavigationController, WebViewController> {
+class CardTransition: Animator<CardsNavigationController, WebViewController> {
     var clipContainer: UIView!
     var scaleFactor: CGFloat = 1.0
     

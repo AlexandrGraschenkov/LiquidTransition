@@ -20,12 +20,12 @@
 		FA6203E5216E9CFE002EFE71 /* Liquid.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA6203DD216E9CFE002EFE71 /* Liquid.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA6203E9216E9D1F002EFE71 /* RuntimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878C2135F5ED00DAE280 /* RuntimeHelper.swift */; };
 		FA6203EA216E9D1F002EFE71 /* DisplayLinkAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */; };
-		FA6203EB216E9D1F002EFE71 /* TransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */; };
+		FA6203EB216E9D1F002EFE71 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4A2EA1212B2060003E414C /* Animator.swift */; };
 		FA6203EC216E9D1F002EFE71 /* Timing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAB21DB214630C500AAFF48 /* Timing.swift */; };
 		FA6203ED216E9D1F002EFE71 /* SmoothInteractive.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAF4556216567200032C2A9 /* SmoothInteractive.swift */; };
 		FA6203EE216E9D1F002EFE71 /* LiquidTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E8160212D3383001DA432 /* LiquidTransition.swift */; };
 		FA6203EF216E9D1F002EFE71 /* TransitionRestorer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D932128BAED00B38B1C /* TransitionRestorer.swift */; };
-		FA6203F0216E9D1F002EFE71 /* TransitionPercentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */; };
+		FA6203F0216E9D1F002EFE71 /* PercentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1E8162212D44E3001DA432 /* PercentAnimator.swift */; };
 		FA92B848216870750095C126 /* PhotosDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B847216870750095C126 /* PhotosDetailViewController.swift */; };
 		FA92B84A216870D10095C126 /* PhotoPreviewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B849216870D10095C126 /* PhotoPreviewController.swift */; };
 		FA92B84E216878870095C126 /* UIImage+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B84D216878870095C126 /* UIImage+Ex.swift */; };
@@ -105,7 +105,7 @@
 		FA1DA67621851E60004B4DD2 /* FadeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		FA1DA67821873CB3004B4DD2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FA1E8160212D3383001DA432 /* LiquidTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidTransition.swift; sourceTree = "<group>"; };
-		FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionPercentAnimator.swift; sourceTree = "<group>"; };
+		FA1E8162212D44E3001DA432 /* PercentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentAnimator.swift; sourceTree = "<group>"; };
 		FA2B5D8C2128B43C00B38B1C /* CardCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCells.swift; sourceTree = "<group>"; };
 		FA2B5D912128BAAB00B38B1C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FA2B5D932128BAED00B38B1C /* TransitionRestorer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionRestorer.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		FA2B7510218AEA420065845C /* LiquidTransitionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LiquidTransitionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA2B7512218AEA420065845C /* LiquidTransitionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidTransitionTests.swift; sourceTree = "<group>"; };
 		FA2B7514218AEA420065845C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionAnimator.swift; sourceTree = "<group>"; };
+		FA4A2EA1212B2060003E414C /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 		FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLinkAnimator.swift; sourceTree = "<group>"; };
 		FA6203DD216E9CFE002EFE71 /* Liquid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Liquid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6203DF216E9CFE002EFE71 /* Liquid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Liquid.h; sourceTree = "<group>"; };
@@ -216,8 +216,8 @@
 				FA1E8160212D3383001DA432 /* LiquidTransition.swift */,
 				FA94878C2135F5ED00DAE280 /* RuntimeHelper.swift */,
 				FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */,
-				FA4A2EA1212B2060003E414C /* TransitionAnimator.swift */,
-				FA1E8162212D44E3001DA432 /* TransitionPercentAnimator.swift */,
+				FA4A2EA1212B2060003E414C /* Animator.swift */,
+				FA1E8162212D44E3001DA432 /* PercentAnimator.swift */,
 				FAAF4556216567200032C2A9 /* SmoothInteractive.swift */,
 				FAAB21DB214630C500AAFF48 /* Timing.swift */,
 				FA6203DF216E9CFE002EFE71 /* Liquid.h */,
@@ -540,13 +540,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA6203ED216E9D1F002EFE71 /* SmoothInteractive.swift in Sources */,
-				FA6203F0216E9D1F002EFE71 /* TransitionPercentAnimator.swift in Sources */,
+				FA6203F0216E9D1F002EFE71 /* PercentAnimator.swift in Sources */,
 				FA6203E9216E9D1F002EFE71 /* RuntimeHelper.swift in Sources */,
 				FA6203EF216E9D1F002EFE71 /* TransitionRestorer.swift in Sources */,
 				FA6203EE216E9D1F002EFE71 /* LiquidTransition.swift in Sources */,
 				FA6203EA216E9D1F002EFE71 /* DisplayLinkAnimator.swift in Sources */,
 				FA6203EC216E9D1F002EFE71 /* Timing.swift in Sources */,
-				FA6203EB216E9D1F002EFE71 /* TransitionAnimator.swift in Sources */,
+				FA6203EB216E9D1F002EFE71 /* Animator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

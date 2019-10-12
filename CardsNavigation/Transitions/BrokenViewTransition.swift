@@ -10,7 +10,7 @@ import UIKit
 import Voronoi
 import Liquid
 
-class BrokenViewTransition: TransitionAnimator<UIViewController, TestBrokenAnimationController> {
+class BrokenViewTransition: Animator<UIViewController, TestBrokenAnimationController> {
 
     override init() {
         super.init()

@@ -47,7 +47,7 @@ public final class Liquid: NSObject {
         let arrInternal = arr.compactMap({$0 as? LiquidTransitionProtocolInternal})
         transitions.append(contentsOf: arrInternal)
         if arrInternal.count != arr.count {
-            print("Error: please inherit from Liquid.TransitionAnimator<Source, Destination>")
+            print("Error: please inherit from Liquid.Animator<Source, Destination>")
         }
     }
     
@@ -55,7 +55,7 @@ public final class Liquid: NSObject {
         if let transition = transition as? LiquidTransitionProtocolInternal {
             transitions.append(transition)
         } else {
-            print("Error: please inherit from Liquid.TransitionAnimator<Source, Destination>")
+            print("Error: please inherit from Liquid.Animator<Source, Destination>")
         }
     }
     

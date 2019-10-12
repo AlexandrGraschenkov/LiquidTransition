@@ -40,7 +40,7 @@ Like this you can create simple transition
 ``` Swift
 import LiquidTransition
 
-class FadeTransition: TransitionAnimator<FromViewController, ToViewController> {
+class FadeTransition: Animator<FromViewController, ToViewController> {
 
     init() {
         super.init(from: FromViewController.self, to: ToViewController.self, direction: .both)
@@ -83,7 +83,7 @@ Also there some advantages over standart approach:
 ```Swift
 import LiquidTransition
 
-class ExampleTransition: TransitionAnimator<SampleController, CardsNavigationController> {
+class ExampleTransition: Animator<SampleController, CardsNavigationController> {
 
     var imgView: UIImageView!
     init() {
@@ -123,7 +123,7 @@ class ExampleTransition: TransitionAnimator<SampleController, CardsNavigationCon
 Sometimes we need that one transition work for multiple controllers. In this case you can define `UIViewController` as template classes and call init method with multiple classes defined:
 
 ```Swift
-class FadeTransition: TransitionAnimator<UIViewController, UIViewController> {
+class FadeTransition: Animator<UIViewController, UIViewController> {
 
 init() {
     super.init(from: [VC1.self, VC2.self, VC3.self], to: [VC4.self, VC5.self], direction: .both)

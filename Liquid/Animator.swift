@@ -1,5 +1,5 @@
 //
-//  TransitionAnimator.swift
+//  Animator.swift
 //  CardsNavigation
 //
 //  Created by Alexander Graschenkov on 20.08.2018.
@@ -11,7 +11,7 @@ import UIKit
 public protocol LiquidTransitionProtocol: UIViewControllerAnimatedTransitioning {
     var progress: CGFloat { get set }
     var duration: CGFloat { get set }
-    var percentAnimator: TransitionPercentAnimator { get }
+    var percentAnimator: PercentAnimator { get }
     var isPresenting: Bool { get }
     var isEnabled: Bool { get }
     
@@ -23,7 +23,7 @@ internal protocol LiquidTransitionProtocolInternal: LiquidTransitionProtocol {
     var isPresenting: Bool { get set }
 }
 
-open class TransitionAnimator<Source: UIViewController, Destination: UIViewController>: NSObject, LiquidTransitionProtocolInternal  {
+open class Animator<Source: UIViewController, Destination: UIViewController>: NSObject, LiquidTransitionProtocolInternal  {
     
     public typealias CustomAnimation = (_ progress: CGFloat)->()
     public typealias Direction = Liquid.Direction
@@ -41,7 +41,7 @@ open class TransitionAnimator<Source: UIViewController, Destination: UIViewContr
         get { return percentAnimator.timing }
         set { percentAnimator.timing = newValue }
     }
-    public let percentAnimator = TransitionPercentAnimator()
+    public let percentAnimator = PercentAnimator()
     public internal(set) var isPresenting: Bool = true
     
     public override init() {
@@ -262,7 +262,7 @@ open class TransitionAnimator<Source: UIViewController, Destination: UIViewContr
 }
 
 
-extension TransitionAnimator: TransitionPercentAnimatorDelegate {
+extension Animator: PercentAnimatorDelegate {
     internal func transitionPercentChanged(_ percent: CGFloat) {
         let isBackwardAnimation = !isPresenting && direction == .both
         let animPercent = isBackwardAnimation ? 1-percent : percent

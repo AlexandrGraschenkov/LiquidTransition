@@ -9,7 +9,7 @@
 import UIKit
 import Liquid
 
-class FadeTransition: TransitionAnimator<UIViewController, CardsNavigationController> {
+class FadeTransition: Animator<UIViewController, CardsNavigationController> {
 
     override init() {
         super.init()
