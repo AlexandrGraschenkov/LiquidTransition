@@ -13,9 +13,6 @@ class TVC1: UIViewController {}
 class TVC2: UIViewController {}
 
 class Transition: TransitionAnimator<TVC1, TVC2> {
-    init() {
-        super.init(from: TVC1.self, to: TVC2.self, direction: .both)
-    }
 }
 
 class LiquidTransitionTests: XCTestCase {
