@@ -17,8 +17,8 @@ class PhotoOpenTransition: TransitionAnimator<PhotosViewController, PhotosDetail
     fileprivate var fromFrame: CGRect = .zero
     var isInteractive = false
     
-    init() {
-        super.init(from: PhotosViewController.self, to: PhotosDetailViewController.self, direction: .both)
+    override init() {
+        super.init()
         
         duration = 0.4
         timing = Timing.easeOutSine

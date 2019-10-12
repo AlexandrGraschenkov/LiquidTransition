@@ -36,7 +36,7 @@ open class TransitionAnimator<Source: UIViewController, Destination: UIViewContr
     
     public var isEnabled: Bool = true
     public var duration: CGFloat = 1.0
-    public let direction: Direction
+    public var direction: Direction = .both
     public var timing: Timing {
         get { return percentAnimator.timing }
         set { percentAnimator.timing = newValue }
@@ -44,16 +44,14 @@ open class TransitionAnimator<Source: UIViewController, Destination: UIViewContr
     public let percentAnimator = TransitionPercentAnimator()
     public internal(set) var isPresenting: Bool = true
     
-    
-    public init(from: Source.Type, to: Destination.Type, direction: Direction) {
-        self.direction = direction
-        fromTypes = [from as AnyClass]
-        toTypes = [to as AnyClass]
+    public override init() {
+        fromTypes = [Source.self]
+        toTypes = [Destination.self]
         super.init()
         percentAnimator.delegate = self
     }
     
-    public init(from: [AnyClass], to: [AnyClass], direction: Direction) {
+    public init(from: [AnyClass], to: [AnyClass], direction: Direction = .both) {
         self.direction = direction
         fromTypes = from
         toTypes = to

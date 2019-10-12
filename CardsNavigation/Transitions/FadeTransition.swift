@@ -11,8 +11,8 @@ import Liquid
 
 class FadeTransition: TransitionAnimator<UIViewController, CardsNavigationController> {
 
-    init() {
-        super.init(from: UIViewController.self, to: CardsNavigationController.self, direction: .both)
+    override init() {
+        super.init()
         
         duration = 0.3
     }

@@ -27,8 +27,9 @@ class CardTransition: TransitionAnimator<CardsNavigationController, WebViewContr
     var clipContainer: UIView!
     var scaleFactor: CGFloat = 1.0
     
-    init() {
-        super.init(from: CardsNavigationController.self, to: WebViewController.self, direction: .both)
+    
+    override init() {
+        super.init()
         
         duration = 0.7
         addCustomAnimation(animateCornerRadius)

@@ -12,9 +12,9 @@ import Liquid
 
 class BrokenViewTransition: TransitionAnimator<UIViewController, TestBrokenAnimationController> {
 
-    init() {
-        super.init(from: UIViewController.self, to: TestBrokenAnimationController.self, direction: .dismiss)
-        
+    override init() {
+        super.init()
+        direction = .dismiss
         duration = 0.7
         timing = .linear
     }
