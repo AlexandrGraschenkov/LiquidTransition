@@ -9,9 +9,9 @@ Pod::Spec.new do |s|
                    DESC
 
   s.homepage     = "https://github.com/AlexandrGraschenkov/LiquidTransition"
-  s.screenshots  = "https://github.com/AlexandrGraschenkov/LiquidTransition/raw/screenshots/gif/web_browser.gif?raw=true", 
-                   "https://github.com/AlexandrGraschenkov/LiquidTransition/raw/screenshots/gif/photo_browser.gif?raw=true", 
-                   "https://github.com/AlexandrGraschenkov/LiquidTransition/raw/screenshots/gif/complex_animation.gif?raw=true"
+  # s.screenshots  = "https://github.com/AlexandrGraschenkov/LiquidTransition/raw/screenshots/gif/web_browser.gif", 
+  #                  "https://github.com/AlexandrGraschenkov/LiquidTransition/raw/screenshots/gif/photo_browser.gif", 
+  #                  "https://github.com/AlexandrGraschenkov/LiquidTransition/raw/screenshots/gif/complex_animation.gif"
   s.license      = { :type => 'MIT', :file => 'LICENSE.txt' }
   s.author       = { "Alexander Graschenkov" => "alexandr.graschenkov91@gmail.com" }
   s.platform     = :ios, "8.0"
@@ -19,5 +19,6 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/AlexandrGraschenkov/LiquidTransition.git", :tag => "#{s.version}" }
   s.ios.frameworks = 'UIKit', 'Foundation'
+  s.ios.deployment_target  = '8.0'
   s.source_files  = "Liquid/**/*.{swift}"
 end
