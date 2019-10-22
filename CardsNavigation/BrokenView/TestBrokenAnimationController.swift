@@ -40,7 +40,7 @@ class TestBrokenAnimationController: UIViewController {
             }
             
             dismissFromPoint = pan.location(in: pan.view)
-            animator.percentAnimator.enableSmoothInteractive = smoothInteractiveSwitch.isOn
+            animator.percentAnimator.enableSmoothInteractive = true
             
             dismiss(animated: true, completion: nil)
         } else if pan.state == .changed {

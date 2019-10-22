@@ -10,6 +10,10 @@
 		FA0B4F63215F520D00C18F26 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B4F62215F520D00C18F26 /* Polygon.swift */; };
 		FA0B4F652161FF8A00C18F26 /* BrokenViewTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B4F642161FF8A00C18F26 /* BrokenViewTransition.swift */; };
 		FA0B4F6A2162BA4700C18F26 /* TestBrokenAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0B4F692162BA4700C18F26 /* TestBrokenAnimationController.swift */; };
+		FA1587C8234732010058DC46 /* UserListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1587C7234732010058DC46 /* UserListController.swift */; };
+		FA1587CC234736790058DC46 /* GithubUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1587CB234736790058DC46 /* GithubUser.swift */; };
+		FA1587CE234737BC0058DC46 /* GithubAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1587CD234737BC0058DC46 /* GithubAPIService.swift */; };
+		FA1587D023473F480058DC46 /* GithubAPIService+UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1587CF23473F480058DC46 /* GithubAPIService+UIImageView.swift */; };
 		FA1DA67721851E60004B4DD2 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA1DA67621851E60004B4DD2 /* FadeTransition.swift */; };
 		FA2B5D8D2128B43C00B38B1C /* CardCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D8C2128B43C00B38B1C /* CardCells.swift */; };
 		FA2B5D922128BAAB00B38B1C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B5D912128BAAB00B38B1C /* Extensions.swift */; };
@@ -31,6 +35,8 @@
 		FA92B84E216878870095C126 /* UIImage+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA92B84D216878870095C126 /* UIImage+Ex.swift */; };
 		FA92B85121687E6C0095C126 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA92B85021687E6C0095C126 /* Assets.xcassets */; };
 		FA94878B2135F23400DAE280 /* CardTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA94878A2135F23400DAE280 /* CardTransition.swift */; };
+		FA95E094235D00D800B023AD /* TransitionExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95E093235D00D800B023AD /* TransitionExampleVC.swift */; };
+		FA95E096235D01CA00B023AD /* TransitionLibTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95E095235D01CA00B023AD /* TransitionLibTransition.swift */; };
 		FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C5211A1A430047CECD /* AppDelegate.swift */; };
 		FAAE26C8211A1A430047CECD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C7211A1A430047CECD /* ViewController.swift */; };
 		FAAE26CB211A1A430047CECD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAE26C9211A1A430047CECD /* Main.storyboard */; };
@@ -102,6 +108,10 @@
 		FA0B4F62215F520D00C18F26 /* Polygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
 		FA0B4F642161FF8A00C18F26 /* BrokenViewTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrokenViewTransition.swift; sourceTree = "<group>"; };
 		FA0B4F692162BA4700C18F26 /* TestBrokenAnimationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestBrokenAnimationController.swift; sourceTree = "<group>"; };
+		FA1587C7234732010058DC46 /* UserListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListController.swift; sourceTree = "<group>"; };
+		FA1587CB234736790058DC46 /* GithubUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubUser.swift; sourceTree = "<group>"; };
+		FA1587CD234737BC0058DC46 /* GithubAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPIService.swift; sourceTree = "<group>"; };
+		FA1587CF23473F480058DC46 /* GithubAPIService+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GithubAPIService+UIImageView.swift"; sourceTree = "<group>"; };
 		FA1DA67621851E60004B4DD2 /* FadeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		FA1DA67821873CB3004B4DD2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FA1E8160212D3383001DA432 /* LiquidTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidTransition.swift; sourceTree = "<group>"; };
@@ -124,6 +134,8 @@
 		FA92B85021687E6C0095C126 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA94878A2135F23400DAE280 /* CardTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTransition.swift; sourceTree = "<group>"; };
 		FA94878C2135F5ED00DAE280 /* RuntimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeHelper.swift; sourceTree = "<group>"; };
+		FA95E093235D00D800B023AD /* TransitionExampleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionExampleVC.swift; sourceTree = "<group>"; };
+		FA95E095235D01CA00B023AD /* TransitionLibTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionLibTransition.swift; sourceTree = "<group>"; };
 		FAAB21DB214630C500AAFF48 /* Timing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timing.swift; sourceTree = "<group>"; };
 		FAAE26C2211A1A430047CECD /* CardsNavigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardsNavigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAE26C5211A1A430047CECD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +203,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA1587C6234731D00058DC46 /* User Cards */ = {
+			isa = PBXGroup;
+			children = (
+				FA1587C7234732010058DC46 /* UserListController.swift */,
+				FA1587CB234736790058DC46 /* GithubUser.swift */,
+				FA1587CD234737BC0058DC46 /* GithubAPIService.swift */,
+				FA1587CF23473F480058DC46 /* GithubAPIService+UIImageView.swift */,
+			);
+			path = "User Cards";
+			sourceTree = "<group>";
+		};
 		FA2B7511218AEA420065845C /* LiquidTransitionTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -244,8 +267,17 @@
 				FA1DA67621851E60004B4DD2 /* FadeTransition.swift */,
 				FA0B4F642161FF8A00C18F26 /* BrokenViewTransition.swift */,
 				FAEB331D2175305100F61B5C /* PhotoOpenTransition.swift */,
+				FA95E095235D01CA00B023AD /* TransitionLibTransition.swift */,
 			);
 			path = Transitions;
+			sourceTree = "<group>";
+		};
+		FA95E092235D00BA00B023AD /* TransitionLib */ = {
+			isa = PBXGroup;
+			children = (
+				FA95E093235D00D800B023AD /* TransitionExampleVC.swift */,
+			);
+			path = TransitionLib;
 			sourceTree = "<group>";
 		};
 		FAAE26B9211A1A430047CECD = {
@@ -277,9 +309,11 @@
 			children = (
 				FAAE26C5211A1A430047CECD /* AppDelegate.swift */,
 				FAAE26C7211A1A430047CECD /* ViewController.swift */,
+				FA95E092235D00BA00B023AD /* TransitionLib */,
+				FA1587C6234731D00058DC46 /* User Cards */,
 				FA92B84F21687C440095C126 /* Extensions */,
 				FA9487892135F17500DAE280 /* Transitions */,
-				FAAE26EC211B7AFC0047CECD /* Cards */,
+				FAAE26EC211B7AFC0047CECD /* Cards Brrowser */,
 				FAAF45582165FA330032C2A9 /* BrokenView */,
 				FAAF45592165FA670032C2A9 /* Photos */,
 				FAAE26C9211A1A430047CECD /* Main.storyboard */,
@@ -298,7 +332,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FAAE26EC211B7AFC0047CECD /* Cards */ = {
+		FAAE26EC211B7AFC0047CECD /* Cards Brrowser */ = {
 			isa = PBXGroup;
 			children = (
 				FA2B752A218AF9360065845C /* web */,
@@ -308,7 +342,7 @@
 				FA2B5D8C2128B43C00B38B1C /* CardCells.swift */,
 				FAAE26EA211B7AF70047CECD /* CardInfo.swift */,
 			);
-			path = Cards;
+			path = "Cards Brrowser";
 			sourceTree = "<group>";
 		};
 		FAAF45582165FA330032C2A9 /* BrokenView */ = {
@@ -555,6 +589,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA94878B2135F23400DAE280 /* CardTransition.swift in Sources */,
+				FA95E096235D01CA00B023AD /* TransitionLibTransition.swift in Sources */,
 				FAAE26E0211A1E9B0047CECD /* CardsNavigationController.swift in Sources */,
 				FAAE26EB211B7AF70047CECD /* CardInfo.swift in Sources */,
 				FAAE26C8211A1A430047CECD /* ViewController.swift in Sources */,
@@ -562,8 +597,10 @@
 				FA0B4F6A2162BA4700C18F26 /* TestBrokenAnimationController.swift in Sources */,
 				FA92B84A216870D10095C126 /* PhotoPreviewController.swift in Sources */,
 				FAAE26E2211A46E60047CECD /* GradientView.swift in Sources */,
+				FA1587CC234736790058DC46 /* GithubUser.swift in Sources */,
 				FA0B4F652161FF8A00C18F26 /* BrokenViewTransition.swift in Sources */,
 				FA1DA67721851E60004B4DD2 /* FadeTransition.swift in Sources */,
+				FA1587D023473F480058DC46 /* GithubAPIService+UIImageView.swift in Sources */,
 				FAEB331E2175305100F61B5C /* PhotoOpenTransition.swift in Sources */,
 				FAAE26DA211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift in Sources */,
 				FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */,
@@ -572,8 +609,11 @@
 				FAAF455B2165FA890032C2A9 /* PhotosViewController.swift in Sources */,
 				FAAE26E7211B6EC80047CECD /* UIView+Ex.swift in Sources */,
 				FAAF455D2165FAB50032C2A9 /* PhotoCell.swift in Sources */,
+				FA1587C8234732010058DC46 /* UserListController.swift in Sources */,
 				FA2B5D962128BBCD00B38B1C /* GlobalFunctions.swift in Sources */,
+				FA1587CE234737BC0058DC46 /* GithubAPIService.swift in Sources */,
 				FAAF4569216740490032C2A9 /* ThumbCaches.swift in Sources */,
+				FA95E094235D00D800B023AD /* TransitionExampleVC.swift in Sources */,
 				FA92B848216870750095C126 /* PhotosDetailViewController.swift in Sources */,
 				FA2B5D8D2128B43C00B38B1C /* CardCells.swift in Sources */,
 				FA2B5D922128BAAB00B38B1C /* Extensions.swift in Sources */,

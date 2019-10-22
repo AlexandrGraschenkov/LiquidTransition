@@ -119,8 +119,10 @@ public class TransitionRestorer: NSObject {
     /**
      Save state only specific field and restores only this field
      */
-    public func addRestoreKeyPath<Root, Value>(_ view: Root, keyPath: ReferenceWritableKeyPath<Root, Value>) {
-        customSavedValues.append(SaveState(view, keyPath: keyPath))
+    public func addRestoreKeyPath<Root, Value>(_ view: Root, keyPaths: ReferenceWritableKeyPath<Root, Value>...) {
+        for k in keyPaths {
+            customSavedValues.append(SaveState(view, keyPath: k))
+        }
     }
     
     public func addRestore(_ views: UIView...) {

@@ -9,7 +9,7 @@
 import UIKit
 import Liquid
 
-extension CATransform3D {
+private extension CATransform3D {
     static let perspectiveIdentity: CATransform3D = {
         var transform = CATransform3DIdentity
         transform.m34 = -0.006
@@ -17,9 +17,15 @@ extension CATransform3D {
     }()
 }
 
-struct AnimationHelper {
+private struct AnimationHelper {
     static func xRotation(_ angle: Double) -> CATransform3D {
         return CATransform3DRotate(.perspectiveIdentity, CGFloat(angle), 1, 0, 0)
+    }
+    
+    static func updateAnchorPoint(_ point: CGPoint, for view: UIView) {
+        let frame = view.frame
+        view.layer.anchorPoint = point
+        view.frame = frame
     }
 }
 
@@ -40,12 +46,17 @@ class CardTransition: Animator<CardsNavigationController, WebViewController> {
                             dst: WebViewController,
                             container: UIView,
                             duration: Double) {
+        // perform your animation
         let restore = TransitionRestorer()
         let content = dst.getContentView()
-        let startContentFrame = content.frame
         let card = src.getTransitionCell()
+        let toolbar = dst.toolbar!
+        let status = dst.statusBarView!
+        let startContentFrame = content.frame
         
-        restore.addRestore(content)
+        restore.addRestore(content, toolbar, status)
+        restore.addRestoreKeyPath(toolbar, keyPaths: \.layer.transform)
+        restore.addRestoreKeyPath(status, keyPaths: \.layer.transform)
         let cardFrame = card.convert(card.bounds, to: container)
         
         let scale = max(cardFrame.width / content.bounds.width,
@@ -64,18 +75,11 @@ class CardTransition: Animator<CardsNavigationController, WebViewController> {
         clipContainer.backgroundColor = UIColor.white
         content.mask = clipContainer
         
-        let toolbar = dst.toolbar!
-        restore.addRestore(toolbar)
-        let toolbarFrame = toolbar.frame
-        toolbar.layer.anchorPoint = CGPoint(x: 0.5, y: 1)
-        toolbar.frame = toolbarFrame
+        
+        AnimationHelper.updateAnchorPoint(CGPoint(x: 0.5, y: 1), for: toolbar)
         toolbar.layer.transform = AnimationHelper.xRotation(.pi * 0.6)
         
-        let status = dst.statusBarView!
-        restore.addRestore(status)
-        let statusFrame = status.frame
-        status.layer.anchorPoint = CGPoint(x: 0.5, y: 0)
-        status.frame = statusFrame
+        AnimationHelper.updateAnchorPoint(CGPoint(x: 0.5, y: 0), for: status)
         status.layer.transform = AnimationHelper.xRotation(-.pi * 0.6)
         
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
@@ -86,8 +90,6 @@ class CardTransition: Animator<CardsNavigationController, WebViewController> {
             status.layer.transform = CATransform3DIdentity
         }) { (finished) in
             content.mask = nil
-            toolbar.layer.transform = CATransform3DIdentity
-            status.layer.transform = CATransform3DIdentity
             self.clipContainer = nil
             restore.restore()
         }

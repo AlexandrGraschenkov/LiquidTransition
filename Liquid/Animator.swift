@@ -35,8 +35,8 @@ open class Animator<Source: UIViewController, Destination: UIViewController>: NS
     }
     
     public var isEnabled: Bool = true
-    public var duration: CGFloat = 1.0
-    public var direction: Direction = .both
+    open var duration: CGFloat = 1.0
+    open var direction: Direction = .both
     public var timing: Timing {
         get { return percentAnimator.timing }
         set { percentAnimator.timing = newValue }
@@ -135,9 +135,11 @@ open class Animator<Source: UIViewController, Destination: UIViewController>: NS
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         percentAnimator.context = transitionContext
         percentAnimator.totalDuration = transitionDuration(using: transitionContext)
-        if let (src, dst, _) = getControllers(context: transitionContext) {
-            prepare(src: src, dst: dst, isPresenting: isPresenting)
+        guard let (src, dst, isPresenting) = getControllers(context: transitionContext) else {
+            assert(false, "Can't resolve source and destination controller")
+            return
         }
+        prepare(src: src, dst: dst, isPresenting: isPresenting)
         
         if let toView = transitionContext.view(forKey: .to) {
             toView.transform = .identity
@@ -149,36 +151,34 @@ open class Animator<Source: UIViewController, Destination: UIViewController>: NS
         }
         
         
-        if let (src, dst, isPresenting) = getControllers(context: transitionContext) {
-            Liquid.shared.currentTransition = self
-            percentAnimator.reset()
+        Liquid.shared.currentTransition = self
+        percentAnimator.reset()
+        
+        flagOverrideAnim = true
+        if isPresenting {
+            animation(src: src, dst: dst, container: transitionContext.containerView, duration: Double(duration))
+        } else {
+            animationDismiss(src: src, dst: dst, container: transitionContext.containerView, duration: Double(duration))
+        }
+        
+        if flagOverrideAnim == false {
+            // without snapshot first frame animation is fliching
+            showSnapshotOnStartAnimation(transitionContext: transitionContext)
             
+            // try to use animation in backward direction
+            percentAnimator.backward = true
             flagOverrideAnim = true
             if isPresenting {
-                animation(src: src, dst: dst, container: transitionContext.containerView, duration: Double(duration))
-            } else {
                 animationDismiss(src: src, dst: dst, container: transitionContext.containerView, duration: Double(duration))
+            } else {
+                animation(src: src, dst: dst, container: transitionContext.containerView, duration: Double(duration))
             }
-            
-            if flagOverrideAnim == false {
-                // without snapshot first frame animation is fliching
-                showSnapshotOnStartAnimation(transitionContext: transitionContext)
-                
-                // try to use animation in backward direction
-                percentAnimator.backward = true
-                flagOverrideAnim = true
-                if isPresenting {
-                    animationDismiss(src: src, dst: dst, container: transitionContext.containerView, duration: Double(duration))
-                } else {
-                    animation(src: src, dst: dst, container: transitionContext.containerView, duration: Double(duration))
-                }
-                assert(flagOverrideAnim == true, "You must override animation(src:dst:container:duration) or animationDismiss(src:dst:container:duration)")
-            }
-            flagOverrideAnim = nil
-            
-            percentAnimator.update(0)
-            percentAnimator.animate(finish: true, speed: 1)
+            assert(flagOverrideAnim == true, "You must override animation(src:dst:container:duration) or animationDismiss(src:dst:container:duration)")
         }
+        flagOverrideAnim = nil
+        
+        percentAnimator.update(0)
+        percentAnimator.animate(finish: true, speed: 1)
     }
     
     public func completeInteractive(complete: Bool?, animated: Bool) {
@@ -249,10 +249,10 @@ open class Animator<Source: UIViewController, Destination: UIViewController>: NS
         let to = context?.viewController(forKey: .to)
         let from = context?.viewController(forKey: .from)
         
-        if let src = from as? Source, let dst = to as? Destination
+        if let src = from as? Source, let dst = to as? Destination, isPresenting
         {
             return (src, dst, true)
-        } else if let src = to as? Source, let dst = from as? Destination
+        } else if let src = to as? Source, let dst = from as? Destination, !isPresenting
         {
             return (src, dst, false)
         }

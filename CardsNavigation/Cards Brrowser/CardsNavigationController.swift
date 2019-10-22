@@ -57,7 +57,7 @@ class CardsNavigationController: UIViewController {
 //        vc.transitioningDelegate = self
         let url = URL(string: "https://ya.ru/")!
         vc.loadURL(url: url)
-        vc.modalPresentationStyle = .overFullScreen
+        vc.modalPresentationStyle = .fullScreen
         present(vc, animated: true) {
             self.collection.insertItems(at: [IndexPath(item: self.cards.count, section: 0)])
         }
@@ -71,7 +71,7 @@ class CardsNavigationController: UIViewController {
         lastOpenedCardIdx = selectedIndex.item
         if let vc = cards[lastOpenedCardIdx].controller {
 //            vc.transitioningDelegate = self
-            vc.modalPresentationStyle = .overFullScreen
+            vc.modalPresentationStyle = .fullScreen
             present(vc, animated: true, completion: nil)
         }
     }

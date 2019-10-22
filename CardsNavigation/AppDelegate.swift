@@ -33,7 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Liquid.shared.addTransitions([CardTransition(),
                                       PhotoOpenTransition(),
                                       BrokenViewTransition(),
-                                      FadeTransition()])
+                                      FadeTransition(),
+                                      TransitionLibTransition()])
         
         return true
     }

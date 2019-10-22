@@ -268,6 +268,43 @@
                                             <segue destination="PCP-0C-zqA" kind="modal" modalPresentationStyle="fullScreen" id="TXi-Zn-ejW"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="c70-xH-daj" style="IBUITableViewCellStyleDefault" id="sGh-Nl-LMt">
+                                        <rect key="frame" x="0.0" y="160" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sGh-Nl-LMt" id="FVg-Vj-GhN">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="User profile expand transition" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="c70-xH-daj">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="x99-3V-YMH" style="IBUITableViewCellStyleDefault" id="Xoy-8i-7S9">
+                                        <rect key="frame" x="0.0" y="204" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xoy-8i-7S9" id="sPK-Su-hUG">
+                                            <rect key="frame" x="0.0" y="0.0" width="347.5" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Transition Lib example" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="x99-3V-YMH">
+                                                    <rect key="frame" x="16" y="0.0" width="323.5" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="lez-Xy-OBc" kind="push" id="43G-gu-vyE"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -299,6 +336,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bod-i3-O0z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1624" y="134.03298350824588"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="4xZ-s1-8Yz">
+            <objects>
+                <viewController id="7Ws-hv-J6U" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="171-RG-3YR"/>
+                        <viewControllerLayoutGuide type="bottom" id="r4p-PP-MlN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OGD-So-Qgk">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LwI-pU-80A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="1541"/>
         </scene>
         <!--Test Broken Animation Controller-->
         <scene sceneID="qjK-zG-xf5">
@@ -359,6 +414,43 @@
                 </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="132" y="861"/>
+        </scene>
+        <!--Transition ExampleVC-->
+        <scene sceneID="hmI-PC-Bix">
+            <objects>
+                <viewController storyboardIdentifier="ViewController" id="lez-Xy-OBc" customClass="TransitionExampleVC" customModule="CardsNavigation" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="I2R-vG-dNw"/>
+                        <viewControllerLayoutGuide type="bottom" id="gzN-Wh-U23"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="6bZ-0K-KEw">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BFo-Sj-lbz">
+                                <rect key="frame" x="0.0" y="44" width="375" height="579"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="45"/>
+                                <state key="normal" title="PRESS ME">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="toNext" destination="lez-Xy-OBc" eventType="touchUpInside" id="8d3-a4-VyV"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BFo-Sj-lbz" firstAttribute="leading" secondItem="6bZ-0K-KEw" secondAttribute="leading" id="23C-XM-ASz"/>
+                            <constraint firstItem="BFo-Sj-lbz" firstAttribute="centerX" secondItem="6bZ-0K-KEw" secondAttribute="centerX" id="Mjt-5T-Qdd"/>
+                            <constraint firstItem="BFo-Sj-lbz" firstAttribute="centerY" secondItem="6bZ-0K-KEw" secondAttribute="centerY" id="tom-AB-01r"/>
+                            <constraint firstItem="BFo-Sj-lbz" firstAttribute="top" secondItem="I2R-vG-dNw" secondAttribute="bottom" id="ve7-uO-bru"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="ImR-Ft-dLU"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iei-c8-gWg" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="2239"/>
         </scene>
     </scenes>
     <resources>
