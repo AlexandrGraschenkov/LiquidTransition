@@ -3,7 +3,7 @@
 [![Cocoapods](https://img.shields.io/badge/Cocoapods-Compatible-brightgreen.svg?style=flat)](https://cocoapods.org)
 ![iOS 8.0+](https://img.shields.io/badge/iOS-8.0%2B-blue.svg)
 [![Version](https://img.shields.io/cocoapods/v/LiquidTransition.svg?style=flat)](https://cocoapods.org/pods/LiquidTransition)
-![Swift 4.2](https://img.shields.io/badge/Swift-4.2-orange.svg)
+![Swift 5](https://img.shields.io/badge/Swift-5-orange.svg)
 [![License](https://img.shields.io/cocoapods/l/LiquidTransition.svg?style=flat)](https://github.com/AlexandrGraschenkov/LiquidTransition/blob/master/LICENSE.txt)
 [![Donate](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://paypal.me/gralexdev)
 

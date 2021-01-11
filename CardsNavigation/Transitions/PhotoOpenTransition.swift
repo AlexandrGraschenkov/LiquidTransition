@@ -17,7 +17,7 @@ class PhotoOpenTransition: Animator<PhotosViewController, PhotosDetailViewContro
     fileprivate var fromFrame: CGRect = .zero
     var isInteractive = false
     
-    override init() {
+    init() {
         super.init()
         
         duration = 0.4

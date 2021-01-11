@@ -34,7 +34,7 @@ class CardTransition: Animator<CardsNavigationController, WebViewController> {
     var scaleFactor: CGFloat = 1.0
     
     
-    override init() {
+    init() {
         super.init()
         
         duration = 0.7

@@ -17,8 +17,9 @@ public class Point:Equatable,Hashable {
         self.y = y
     }
     
-    public var hashValue:Int{
-        return self.x.hashValue ^ self.y.hashValue
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.x)
+        hasher.combine(self.y)
     }
     
     public var cgPoint:CGPoint{

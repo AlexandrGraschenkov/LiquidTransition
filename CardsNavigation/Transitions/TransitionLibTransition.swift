@@ -11,7 +11,7 @@ import Liquid
 
 class TransitionLibTransition: Animator<TransitionExampleVC, TransitionExampleVC> {
     
-    override init() {
+    init() {
         super.init()
         
         duration = 0.5

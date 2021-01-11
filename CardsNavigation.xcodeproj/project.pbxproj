@@ -38,7 +38,6 @@
 		FA95E094235D00D800B023AD /* TransitionExampleVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95E093235D00D800B023AD /* TransitionExampleVC.swift */; };
 		FA95E096235D01CA00B023AD /* TransitionLibTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95E095235D01CA00B023AD /* TransitionLibTransition.swift */; };
 		FAAE26C6211A1A430047CECD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C5211A1A430047CECD /* AppDelegate.swift */; };
-		FAAE26C8211A1A430047CECD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26C7211A1A430047CECD /* ViewController.swift */; };
 		FAAE26CB211A1A430047CECD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAE26C9211A1A430047CECD /* Main.storyboard */; };
 		FAAE26D0211A1A450047CECD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAAE26CE211A1A450047CECD /* LaunchScreen.storyboard */; };
 		FAAE26DA211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAE26D9211A1A790047CECD /* CenteredCollectionViewFlowLayout.swift */; };
@@ -139,7 +138,6 @@
 		FAAB21DB214630C500AAFF48 /* Timing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timing.swift; sourceTree = "<group>"; };
 		FAAE26C2211A1A430047CECD /* CardsNavigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardsNavigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAE26C5211A1A430047CECD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FAAE26C7211A1A430047CECD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FAAE26CA211A1A430047CECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FAAE26CF211A1A450047CECD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FAAE26D1211A1A450047CECD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -308,7 +306,6 @@
 			isa = PBXGroup;
 			children = (
 				FAAE26C5211A1A430047CECD /* AppDelegate.swift */,
-				FAAE26C7211A1A430047CECD /* ViewController.swift */,
 				FA95E092235D00BA00B023AD /* TransitionLib */,
 				FA1587C6234731D00058DC46 /* User Cards */,
 				FA92B84F21687C440095C126 /* Extensions */,
@@ -592,7 +589,6 @@
 				FA95E096235D01CA00B023AD /* TransitionLibTransition.swift in Sources */,
 				FAAE26E0211A1E9B0047CECD /* CardsNavigationController.swift in Sources */,
 				FAAE26EB211B7AF70047CECD /* CardInfo.swift in Sources */,
-				FAAE26C8211A1A430047CECD /* ViewController.swift in Sources */,
 				FAAF45622166BE130032C2A9 /* PhotoInfo.swift in Sources */,
 				FA0B4F6A2162BA4700C18F26 /* TestBrokenAnimationController.swift in Sources */,
 				FA92B84A216870D10095C126 /* PhotoPreviewController.swift in Sources */,
@@ -691,7 +687,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = alex.LiquidTransitionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardsNavigation.app/CardsNavigation";
 			};
@@ -713,7 +709,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = alex.LiquidTransitionTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CardsNavigation.app/CardsNavigation";
 			};
@@ -743,7 +739,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = alex.Liquid;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -773,7 +769,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = alex.Liquid;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -909,7 +905,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = alex.CardsNavigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -929,7 +925,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = alex.CardsNavigation;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -958,7 +954,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -988,7 +984,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = alex.Voronoi;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";

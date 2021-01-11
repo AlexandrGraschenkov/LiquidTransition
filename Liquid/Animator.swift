@@ -43,28 +43,26 @@ open class Animator<Source: UIViewController, Destination: UIViewController>: NS
     }
     public let percentAnimator = PercentAnimator()
     public internal(set) var isPresenting: Bool = true
-    
-    public override init() {
-        fromTypes = [Source.self]
-        toTypes = [Destination.self]
-        super.init()
-        percentAnimator.delegate = self
+    public var context: UIViewControllerContextTransitioning? {
+        return percentAnimator.context
     }
     
+    /// Use this initialization to allow multiple controllers
     public init(from: [AnyClass], to: [AnyClass], direction: Direction = .both) {
         self.direction = direction
         fromTypes = from
         toTypes = to
         super.init()
-        percentAnimator.delegate = self
+        setup()
     }
     
-    public init(direction: Direction) {
+    
+    public init(direction: Direction = .both) {
         self.direction = direction
-        fromTypes = []
-        toTypes = []
+        fromTypes = [Source.self]
+        toTypes = [Destination.self]
         super.init()
-        percentAnimator.delegate = self
+        setup()
     }
     
     /// You can animate non animatable properties
@@ -244,6 +242,13 @@ open class Animator<Source: UIViewController, Destination: UIViewController>: NS
     fileprivate let toTypes: [AnyClass]
     fileprivate var flagOverrideAnim: Bool?
     
+    fileprivate func setup() {
+        percentAnimator.delegate = self
+        
+        if direction.contains(.dismiss) && !direction.contains(.present) {
+            isPresenting = false
+        }
+    }
     
     fileprivate func getControllers(context: UIViewControllerContextTransitioning?) -> (src: Source, dst: Destination, isPresenting: Bool)? {
         let to = context?.viewController(forKey: .to)
