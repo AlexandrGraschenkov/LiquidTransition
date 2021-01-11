@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LiquidTransition"
-  s.version      = "1.1.0"
+  s.version      = "1.2.0"
   s.summary      = "Animated transitions make simple"
   s.description  = <<-DESC
                     LiquidTransition helps to you build transition between view controllers. 
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => 'MIT', :file => 'LICENSE.txt' }
   s.author       = { "Alexander Graschenkov" => "alexandr.graschenkov91@gmail.com" }
   s.platform     = :ios, "8.0"
-  s.swift_version = '4.2'
+  s.swift_version = '5'
 
   s.source       = { :git => "https://github.com/AlexandrGraschenkov/LiquidTransition.git", :tag => "#{s.version}" }
   s.ios.frameworks = 'UIKit', 'Foundation'
