@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "LiquidTransition"
-  s.version      = "1.2.0"
+  s.version      = "1.2.1"
   s.summary      = "Animated transitions make simple"
   s.description  = <<-DESC
                     LiquidTransition helps to you build transition between view controllers. 

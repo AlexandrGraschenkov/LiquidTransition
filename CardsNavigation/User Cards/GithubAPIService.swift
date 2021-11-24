@@ -9,51 +9,77 @@
 import UIKit
 
 class GithubAPIService: NSObject {
+    static var shared = GithubAPIService()
     typealias Completion<T> = (_ result: T?, _ error: Error?)->()
     
+    fileprivate override init() {
+        super.init()
+    }
     
-    func getFollowers(login: String, completion: @escaping Completion<[GUser]>) -> Cancelable {
-        let url = URL(string: "https://api.github.com/users/\(login)/following")!
-        
+    
+    @discardableResult
+    func get<T: Decodable>(url: URL, completion: @escaping Completion<T>) -> Cancelable {
         let task = session.dataTask(with: url) { (data, _, err) in
-            let result: ParseRes<[GUser]> = self.jsonDecode(data: data, err: err)
-            completion(result.obj, result.err)
+            let result: ParseRes<T> = self.jsonDecode(data: data, err: err)
+            performInMain {
+                completion(result.obj, result.err)
+            }
         }
         task.resume()
         
         return { task.cancel() }
     }
     
+    @discardableResult
+    func getUser(login: String, completion: @escaping Completion<GUserFull>) -> Cancelable {
+        let url = URL(string: "https://api.github.com/users/\(login)")!
+        
+        return get(url: url, completion: completion)
+    }
     
+    @discardableResult
+    func getFollowing(login: String, completion: @escaping Completion<[GUser]>) -> Cancelable {
+        let url = URL(string: "https://api.github.com/users/\(login)/following")!
+        
+        return get(url: url, completion: completion)
+    }
+    
+    @discardableResult
     func getFullUser(login: String, completion: @escaping Completion<[GUserFull]>) -> Cancelable {
         let url = URL(string: "https://api.github.com/users/\(login)")!
         
-        let task = session.dataTask(with: url) { (data, _, err) in
-            let result: ParseRes<[GUserFull]> = self.jsonDecode(data: data, err: err)
-            completion(result.obj, result.err)
-        }
-        task.resume()
-        
-        return { task.cancel() }
+        return get(url: url, completion: completion)
     }
     
-    func getAvatar(id: Int64, size: Int?, completion: @escaping Completion<UIImage?>) -> Cancelable {
+    func avatarUrl(id: Int64, size: Int?) -> URL {
         var urlPath = "https://avatars3.githubusercontent.com/u/\(id)?v=4"
-        if let size = size {
+        if var size = size {
+            size = Int(CGFloat(size) * UIScreen.main.scale)
             urlPath += "&s=\(size)"
         }
         let url = URL(string: urlPath)!
-        let task = session.dataTask(with: url) { (data, _, err) in
-            var img: UIImage? = nil
-            if let data = data {
-                img = UIImage(data: data)
-            }
-            completion(img, err)
-        }
-        task.resume()
-        
-        return { task.cancel() }
+        return url
     }
+//    
+//    func getAvatar(id: Int64, size: Int?, completion: @escaping Completion<UIImage?>) -> Cancelable {
+//        var urlPath = "https://avatars3.githubusercontent.com/u/\(id)?v=4"
+//        if let size = size {
+//            urlPath += "&s=\(size)"
+//        }
+//        let url = URL(string: urlPath)!
+//        let task = session.dataTask(with: url) { (data, _, err) in
+//            var img: UIImage? = nil
+//            if let data = data {
+//                img = UIImage(data: data)
+//            }
+//            performInMain {
+//                completion(img, err)
+//            }
+//        }
+//        task.resume()
+//        
+//        return { task.cancel() }
+//    }
     
     // MARK: - private
     private let session: URLSession = URLSession.shared

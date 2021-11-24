@@ -44,7 +44,7 @@ import LiquidTransition
 class FadeTransition: Animator<FromViewController, ToViewController> {
 
     init() {
-        super.init(from: FromViewController.self, to: ToViewController.self, direction: .both)
+        super.init()
         
         duration = 0.3
         timing = Timing.default
@@ -80,8 +80,8 @@ import LiquidTransition
 class ExampleTransition: Animator<SampleController, CardsNavigationController> {
 
     var imgView: UIImageView!
-    init() {
-        super.init(from: SampleController.self, to: CardsNavigationController.self, direction: .both)
+    override init() {
+        super.init()
         
         duration = 0.4
         timing = Timing.init(closure: { $0 * $0 })

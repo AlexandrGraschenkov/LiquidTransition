@@ -136,7 +136,7 @@ public class PercentAnimator: InvertableInteractiveTransition {
     fileprivate func performSmoothInteractive(percent percentComplete: CGFloat, canInitalize: Bool) -> Bool {
         if !enableSmoothInteractive { return false }
         
-        if canInitalize && percentComplete > 0.05 {
+        if canInitalize && percentComplete > 0.03 {
             smoothInteractive.run(duration: totalDuration * Double(percentComplete)) {[weak self] (val) in
                 self?.internalUpdate(val)
             }

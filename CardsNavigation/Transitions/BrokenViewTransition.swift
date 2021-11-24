@@ -10,7 +10,7 @@ import UIKit
 import Voronoi
 import Liquid
 
-class BrokenViewTransition: Animator<UIViewController, TestBrokenAnimationController> {
+class BrokenViewTransition: Animator<TestBrokenAnimationController, UIViewController> {
 
     init() {
         super.init()
@@ -101,10 +101,9 @@ class BrokenViewTransition: Animator<UIViewController, TestBrokenAnimationContro
         return views
     }
     
-    
-    override func animationDismiss(src: UIViewController, dst: TestBrokenAnimationController, container: UIView, duration: Double) {
-        let point = dst.dismissFromPoint
-        let brokenPieces = broke(view: dst.view, fromPoint: point)
+    override func animation(src: TestBrokenAnimationController, dst: UIViewController, container: UIView, duration: Double) {
+        let point = src.dismissFromPoint
+        let brokenPieces = broke(view: src.view, fromPoint: point)
         for view in brokenPieces {
             container.addSubview(view)
             var transform = CATransform3DIdentity
@@ -113,10 +112,10 @@ class BrokenViewTransition: Animator<UIViewController, TestBrokenAnimationContro
             view.layer.transform = transform
         }
         
-        dst.view.isHidden = true
+        src.view.isHidden = true
         UIView.animate(withDuration: duration, delay: 0, options: [.curveLinear], animations: {
             for view in brokenPieces {
-                let offset = (view.center - point).norm() * dst.view.bounds.height
+                let offset = (view.center - point).norm() * src.view.bounds.height
                 view.center = offset + view.center
                 
                 var transform = CATransform3DIdentity
@@ -129,7 +128,7 @@ class BrokenViewTransition: Animator<UIViewController, TestBrokenAnimationContro
                 view.layer.transform = transform
             }
         }) { (_) in
-            dst.view.isHidden = false
+            src.view.isHidden = false
             for view in brokenPieces {
                 view.removeFromSuperview()
             }

@@ -184,7 +184,7 @@ extension Timing {
     
     fileprivate static func easeOutBounceFunc(t: CGFloat) -> CGFloat {
         if (t < 4.0 / 11.0) {
-            return pow(11.0 / 4.0, 2) * pow(t, 2)
+            return pow(11.0 / 4.0, 2.0) * pow(t, 2.0)
         }
         
         if (t < 8.0 / 11.0) {

@@ -1,0 +1,20 @@
+PODS:
+  - Kingfisher (6.3.0)
+  - TouchVisualizer (4.0.0)
+
+DEPENDENCIES:
+  - Kingfisher
+  - TouchVisualizer
+
+SPEC REPOS:
+  trunk:
+    - Kingfisher
+    - TouchVisualizer
+
+SPEC CHECKSUMS:
+  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+  TouchVisualizer: d342dc3a567b6dd289bc31b7ce8681302a93dfee
+
+PODFILE CHECKSUM: 133b22b79ee78dfb5f7361b06d7d0f503dd41d2e
+
+COCOAPODS: 1.10.1

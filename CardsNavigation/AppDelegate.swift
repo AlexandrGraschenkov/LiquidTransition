@@ -34,7 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                       PhotoOpenTransition(),
                                       BrokenViewTransition(),
                                       FadeTransition(),
-                                      TransitionLibTransition()])
+                                      TransitionLibTransition(),
+                                      UserCardTransition()])
         
         return true
     }
