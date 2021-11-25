@@ -17,10 +17,10 @@ Features:
 * Animation of custom properties *(or `CALayer` properties)*
 * Complex transition without 'lag'
 
-![Web browser](/../screenshots/gif/web_browser.gif?raw=true "Web browser") &nbsp;
-![Photo browser](/../screenshots/gif/photo_browser.gif?raw=true "Photo browser") <br>
-![Complex animation](/../screenshots/gif/complex_animation.gif?raw=true "Complex animation") &nbsp;
-![Complex animation](/../screenshots/gif/github_user_profiles.gif?raw=true "Gihub user profiles animation")
+![Web browser](https://github.com/AlexandrGraschenkov/LiquidTransition/raw/screenshots/gif/web_browser.gif "Web browser") &nbsp;
+![Photo browser](https://github.com/AlexandrGraschenkov/LiquidTransition/raw/screenshots/gif/photo_browser.gif "Photo browser") <br>
+![Complex animation](https://github.com/AlexandrGraschenkov/LiquidTransition/raw/screenshots/gif/complex_animation.gif "Complex animation") &nbsp;
+![Complex animation](https://github.com/AlexandrGraschenkov/LiquidTransition/raw/screenshots/gif/github_user_profiles.gif "Gihub user profiles animation")
 
 ## Instalation
 
