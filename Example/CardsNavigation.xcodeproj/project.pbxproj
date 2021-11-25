@@ -132,7 +132,7 @@
 		FA1587CD234737BC0058DC46 /* GithubAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubAPIService.swift; sourceTree = "<group>"; };
 		FA1587CF23473F480058DC46 /* GithubAPIService+UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GithubAPIService+UIImageView.swift"; sourceTree = "<group>"; };
 		FA1DA67621851E60004B4DD2 /* FadeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
-		FA1DA67821873CB3004B4DD2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FA1DA67821873CB3004B4DD2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		FA1E8160212D3383001DA432 /* LiquidTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiquidTransition.swift; sourceTree = "<group>"; };
 		FA1E8162212D44E3001DA432 /* PercentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PercentAnimator.swift; sourceTree = "<group>"; };
 		FA2B5D8C2128B43C00B38B1C /* CardCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCells.swift; sourceTree = "<group>"; };
@@ -146,7 +146,6 @@
 		FA4A2EA3212B2594003E414C /* DisplayLinkAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLinkAnimator.swift; sourceTree = "<group>"; };
 		FA6203DD216E9CFE002EFE71 /* Liquid.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Liquid.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA6203DF216E9CFE002EFE71 /* Liquid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Liquid.h; sourceTree = "<group>"; };
-		FA6203E0216E9CFE002EFE71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA92B847216870750095C126 /* PhotosDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosDetailViewController.swift; sourceTree = "<group>"; };
 		FA92B849216870D10095C126 /* PhotoPreviewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPreviewController.swift; sourceTree = "<group>"; };
 		FA92B84D216878870095C126 /* UIImage+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ex.swift"; sourceTree = "<group>"; };
@@ -155,6 +154,7 @@
 		FA94878C2135F5ED00DAE280 /* RuntimeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuntimeHelper.swift; sourceTree = "<group>"; };
 		FA95E093235D00D800B023AD /* TransitionExampleVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionExampleVC.swift; sourceTree = "<group>"; };
 		FA95E095235D01CA00B023AD /* TransitionLibTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionLibTransition.swift; sourceTree = "<group>"; };
+		FA9E0599274F633B0077F0DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Example/Liquid/Info.plist; sourceTree = "<group>"; };
 		FAAB21DB214630C500AAFF48 /* Timing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timing.swift; sourceTree = "<group>"; };
 		FAAE26C2211A1A430047CECD /* CardsNavigation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardsNavigation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAAE26C5211A1A430047CECD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -290,9 +290,10 @@
 				FAAF4556216567200032C2A9 /* SmoothInteractive.swift */,
 				FAAB21DB214630C500AAFF48 /* Timing.swift */,
 				FA6203DF216E9CFE002EFE71 /* Liquid.h */,
-				FA6203E0216E9CFE002EFE71 /* Info.plist */,
+				FA9E0599274F633B0077F0DF /* Info.plist */,
 			);
-			path = Liquid;
+			name = Liquid;
+			path = ../Liquid;
 			sourceTree = "<group>";
 		};
 		FA92B84F21687C440095C126 /* Extensions */ = {

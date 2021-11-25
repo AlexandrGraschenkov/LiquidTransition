@@ -239,7 +239,7 @@ extension UserDetailController {
         let toAlpha: CGFloat = 0.12
         let currAlpha = interpolate(a: fromAlpha, b: toAlpha, p: progress)
         popup?.closeButton?.backgroundColor = UIColor.black.withAlphaComponent(currAlpha)
-        let rrr = dstAnimate!.generateRect(progress: progress)
+//        let rrr = dstAnimate!.generateRect(progress: progress)
         popup?.container?.frame = dstAnimate!.generateRect(progress: progress)
         popup?.container?.layer.cornerRadius = 0
         let mask = CAShapeLayer()

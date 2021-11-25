@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol PercentAnimatorDelegate: class {
+protocol PercentAnimatorDelegate: AnyObject {
     func transitionPercentChanged(_ percent: CGFloat)
     func transitionCompleted(context: UIViewControllerContextTransitioning)
 }

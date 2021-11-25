@@ -21,12 +21,12 @@ public class Event:Comparable,Hashable{
         pe = pev
     }
     
-    public var hashValue: Int {
+    public func hash(into hasher: inout Hasher) {
         var hash = point.hashValue ^ pe.hashValue
         if(arch != nil){
             hash = hash ^ 13
         }
-        return hash
+        hasher.combine(hash)
     }
 }
 
