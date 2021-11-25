@@ -18,8 +18,9 @@ Features:
 * Complex transition without 'lag'
 
 ![Web browser](/../screenshots/gif/web_browser.gif?raw=true "Web browser") &nbsp;
-![Photo browser](/../screenshots/gif/photo_browser.gif?raw=true "Photo browser") &nbsp;
-![Complex animation](/../screenshots/gif/complex_animation.gif?raw=true "Complex animation")
+![Photo browser](/../screenshots/gif/photo_browser.gif?raw=true "Photo browser") <br>
+![Complex animation](/../screenshots/gif/complex_animation.gif?raw=true "Complex animation") &nbsp;
+![Complex animation](/../screenshots/gif/github_user_profiles.gif?raw=true "Gihub user profiles animation")
 
 ## Instalation
 
@@ -143,6 +144,7 @@ and define your conditions
 - [x] Restore view state helper class
 - [x] Smooth interactive animation for complex prepare animation
 - [x] Support Cocoapods
+- [x] Support Swift Package Manager
 - [ ] Support Carthage
 - [x] Add custom save keys for `TransitionRestorer`
 - [ ] Add some default animations
