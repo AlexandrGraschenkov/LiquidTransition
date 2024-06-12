@@ -11,16 +11,20 @@ let package = Package(
     products: [
         .library(
             name: "Liquid",
-            targets: ["Liquid"]),
+            targets: ["Liquid"]
+        ),
     ],
     targets: [
         .target(
             name: "Liquid",
-            path: "Liquid"),
+            path: "Liquid",
+            resources: [.copy("PrivacyInfo.xcprivacy")]
+        ),
         .target(
             name: "LiquidTests",
             dependencies: ["Liquid"],
-            path: "LiquidTests")
+            path: "LiquidTests"
+        )
     ],
     swiftLanguageVersions: [
       .v5
